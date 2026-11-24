@@ -1,0 +1,638 @@
+Implement the following gameplay update. The game is heavily inspired by **86: Eighty-Six**, so preserve its futuristic military atmosphere, intense mech combat, tactical squad warfare, mechanical designs, and cinematic presentation.
+
+Focus on making these changes meaningful to actual gameplay. Do not simply add visual effects or UI elements without implementing their underlying mechanics. Inspect the existing shield system, boss AI, camera controls, combat systems, audio manager, and animation systems before modifying anything.
+
+Preserve existing functionality wherever possible. Reuse existing systems and modify them when appropriate instead of creating unnecessary replacements.
+
+**1. REWORK THE PROTECTIVE SHIELD SYSTEM**
+
+The current squad-protection ability is too powerful because its shields have infinite HP. Rework it so that shields can actually be destroyed through enemy attacks while remaining exceptionally durable.
+
+The shields should have a very high but finite amount of health. They should be capable of absorbing substantial amounts of incoming damage, allowing squadmates to survive intense firefights, but they must eventually break when exposed to enough attacks.
+
+The shields should:
+- Have significantly higher HP than ordinary defensive shields.
+- Absorb incoming damage instead of allowing it to reach the protected mech while the shield is active.
+- Be destructible through sustained enemy fire.
+- Be vulnerable to bullets, missiles, explosions, artillery, and other damaging attacks.
+- Display visible damage reactions when attacked.
+- Remain properly attached to their assigned squadmate.
+- Have their own independently tracked HP.
+- Never share durability with another squadmate's shield.
+
+Do not make the shields so weak that a few ordinary bullets destroy them. They are supposed to be advanced, high-performance defensive armor capable of protecting an entire squad during dangerous engagements.
+
+However, do not make them effectively indestructible either. Heavy attacks and concentrated enemy fire should eventually break them.
+
+**Shield damage behavior:**
+
+When a protected squadmate receives an incoming attack, the shield should absorb the damage first.
+
+When the shield reaches zero HP:
+- Immediately trigger a shield-breaking effect.
+- Remove or deactivate the protective armor.
+- Restore the squadmate's normal damage reception.
+- Play a distinct shield-break sound.
+- Display a noticeable visual effect.
+- Prevent the destroyed shield from continuing to absorb damage.
+- Begin the appropriate ability cooldown according to the existing cooldown logic.
+
+Make sure there are no situations where a shield reaches zero HP but continues protecting its owner due to damage-processing or synchronization issues.
+
+If a shield-breaking attack deals more damage than the remaining shield HP, handle the remaining damage consistently through the existing damage system. Avoid creating an exploit where the final hit causes unintended immunity or excessive damage multiplication.
+
+**Visual damage and armor deterioration:**
+
+The protective armor must continue to resemble an upgraded version of each squadmate's original mech design.
+
+As the shield takes damage, introduce visual indications of deterioration, such as:
+- Flickering energy lines.
+- Damaged armor sections.
+- Electrical discharges.
+- Cracks or fractures in energy-reinforced plating.
+- Brief flashes around damaged areas.
+- Increasing instability as shield HP becomes critically low.
+
+At low shield HP, the armor should appear visibly damaged and unstable.
+
+When the shield finally breaks, make the entire protective armor configuration disappear through a dramatic mechanical disassembly or energy-collapse effect.
+
+Do not make these effects obscure the original unit or interfere with procedural animations.
+
+**Increase the shield ability cooldown considerably.**
+
+The shield ability must no longer be something the player can activate repeatedly throughout every engagement.
+
+Set a substantially longer cooldown, with approximately 90 seconds as a starting balance target. Make this value configurable so it can be adjusted through balancing.
+
+The cooldown should begin when the ability is activated, not when the shield breaks. This prevents inconsistent cooldown behavior depending on how quickly enemies destroy the shields.
+
+Keep the existing 30-second maximum shield duration. Each shield should disappear when either its HP reaches zero or its 30-second duration expires, whichever happens first.
+
+The ability must still deploy individual protective armor around every eligible active squadmate simultaneously.
+
+Make sure:
+- Every squadmate receives an individual shield.
+- Every shield has its own HP and duration.
+- One squadmate's shield breaking does not affect the others.
+- The cooldown cannot be bypassed by repeatedly activating the ability.
+- Destroyed shields cannot be recreated without the ability being available.
+- Newly deployed squadmates are handled correctly according to the existing squad system.
+
+Balance the shields through actual combat testing, especially against bosses, artillery, and groups of enemies. They should provide a meaningful defensive advantage without making the squad invincible.
+
+---
+
+**2. GIVE BOSSES TELEPORTATION ABILITIES**
+
+Introduce teleportation abilities for EVERY boss in the game.
+
+Bosses should be capable of performing short-range spatial displacements during combat, allowing them to reposition rapidly, evade attacks, surprise the player, and create more challenging encounters.
+
+Do not simply give bosses ordinary high-speed movement and call it teleportation.
+
+The boss should visibly disappear from its current location and reappear at another valid location.
+
+The teleportation should feel powerful, threatening, and appropriate for a futuristic military combat environment.
+
+**Teleportation behavior:**
+
+Bosses should be able to:
+- Teleport toward the player when trying to close the distance.
+- Teleport sideways to avoid incoming attacks.
+- Teleport backward when repositioning.
+- Teleport to a nearby advantageous combat position.
+- Teleport around obstacles when appropriate.
+- Teleport to different angles to create opportunities for attacks.
+- Use teleportation to escape unfavorable positioning.
+- Reposition during combat without completely abandoning their current target.
+
+Teleportation should be integrated into the existing boss AI and pathfinding systems.
+
+Bosses should evaluate their current situation before deciding to teleport.
+
+For example:
+- A boss under concentrated gunfire may teleport to a nearby position outside the player's direct line of fire.
+- A distant boss may teleport closer to create pressure.
+- A boss surrounded by multiple squadmates may reposition to avoid being overwhelmed.
+- A boss preparing a powerful attack may teleport to a position that makes the attack more effective.
+- A boss that loses a favorable attack angle may teleport to establish a new one.
+
+Do not make bosses teleport randomly without considering their environment or combat situation.
+
+**Boss-specific teleportation personalities:**
+
+Do not give every boss identical teleportation behavior.
+
+Each boss should have its own teleportation style based on its size, movement characteristics, weapons, and combat identity.
+
+For example:
+- Heavy artillery bosses should use teleportation primarily for strategic repositioning and establishing firing angles.
+- Fast assault bosses should use shorter, more aggressive teleportation bursts to close distance and flank the player.
+- Large spider-legged bosses should use teleportation to reposition their entire body without disrupting their leg rig or procedural animations.
+- Aerial bosses should use teleportation to rapidly change altitude or reposition through the battlefield.
+- Heavy melee bosses should use teleportation to close distance before performing dangerous close-range attacks.
+
+Create appropriate variations for every other boss instead of using one generic teleport behavior.
+
+**Teleportation visual effects:**
+
+Make boss teleportation visually impressive.
+
+When a boss teleports:
+- Create a distinctive energy distortion at its original position.
+- Make the boss disappear rapidly.
+- Create an afterimage or residual energy effect.
+- Generate a visible distortion at the destination.
+- Make the boss reappear with an appropriate energy burst.
+- Synchronize the entire model and its components during the transition.
+
+The effect should communicate that the boss has actually disappeared and reappeared, not just moved extremely quickly.
+
+Use visual effects appropriate to each boss's established color scheme and design.
+
+Avoid excessive particles or effects that reduce performance.
+
+**Teleportation limitations and fairness:**
+
+Boss teleportation must be powerful without becoming unfair.
+
+Implement:
+- A configurable teleportation cooldown for each boss.
+- Appropriate minimum and maximum teleport distances.
+- Destination validation.
+- Obstacle and collision checks.
+- Protection against teleporting inside walls or solid objects.
+- Prevention of repeated teleportation exploits.
+- Appropriate restrictions for bosses performing certain attacks or animations.
+
+Bosses must not teleport directly into inaccessible geometry, underneath the map, inside the player, or into locations where they become stuck.
+
+Do not allow bosses to teleport continuously without giving the player an opportunity to respond.
+
+**Combat telegraphs:**
+
+Give players a brief visual or audio indication when a boss is preparing to teleport.
+
+The indication should be subtle enough to preserve tension but noticeable enough that skilled players can recognize the behavior.
+
+Use appropriate effects such as:
+- A brief energy buildup.
+- A distortion around the boss.
+- A unique sound cue.
+- A short animation before disappearing.
+
+Do not make the preparation so long that teleportation becomes ineffective.
+
+The player should be able to react to the teleportation, but should not always know exactly where the boss will reappear.
+
+**Animation synchronization:**
+
+This is extremely important.
+
+Boss teleportation must not break existing procedural animations.
+
+Ensure that:
+- All legs and limbs move with the boss correctly.
+- Spider-legged bosses do not leave their legs behind.
+- No joints stretch during teleportation.
+- The model does not snap into an incorrect orientation.
+- The boss's weapon attachments remain correctly positioned.
+- The boss does not continue using a running animation while stationary.
+- The appropriate animation plays after reappearing.
+
+Test teleportation repeatedly at different distances and during different combat states.
+
+---
+
+**3. INCREASE THE MAXIMUM CAMERA ZOOM-OUT RANGE**
+
+Increase the maximum distance at which the player can zoom out the camera.
+
+The current camera zoom-out limit restricts the player's ability to see the wider battlefield, especially during large engagements involving several squadmates, enemies, and bosses.
+
+Extend the maximum zoom-out distance considerably so players can obtain a broader tactical overview of the battlefield.
+
+The player should be able to:
+- See more of the surrounding environment.
+- Monitor all five squadmates more easily.
+- Observe enemy formations.
+- Understand where bosses are positioned.
+- Track large-scale engagements.
+- Make better tactical decisions.
+- Observe battles involving multiple units simultaneously.
+
+The additional zoom range should feel natural and should not make the camera controls uncomfortable.
+
+**Camera behavior:**
+
+Preserve the existing zoom controls and camera movement behavior.
+
+Improve the maximum zoom-out distance without breaking:
+- Normal zoom levels.
+- Minimum zoom distance.
+- Camera rotation.
+- Camera positioning.
+- Camera smoothing.
+- Existing player movement controls.
+- Any camera-related gameplay abilities.
+
+Make the zoom transition smooth rather than allowing the camera to jump suddenly between distances.
+
+**Camera collision and visibility:**
+
+Ensure the camera works correctly when zoomed far out.
+
+Inspect:
+- Terrain clipping.
+- Building obstruction.
+- Camera collision.
+- Map boundaries.
+- Units disappearing due to visibility settings.
+- Excessive object pop-in.
+- Incorrect camera positioning.
+- UI scaling and readability.
+
+The camera should not become stuck inside geometry when zooming in or out.
+
+Do not simply increase the camera's distance variable without checking its other constraints.
+
+The player should be able to zoom out far enough to gain a useful battlefield overview while still being able to identify important units and threats.
+
+Keep the existing camera behavior at normal distances unchanged.
+
+---
+
+**4. INTRODUCE A NEW SKILL-BASED GAMEPLAY MECHANIC**
+
+Add a completely new gameplay mechanic that rewards player skill, timing, precision, and tactical decision-making.
+
+This mechanic must have a genuine impact on combat.
+
+Do not add a superficial feature that only displays extra UI, increases a score, or plays an animation without changing how encounters work.
+
+The mechanic should give skilled players a meaningful advantage while remaining challenging to execute.
+
+Implement a **PRECISION TARGETING AND COMPONENT DISRUPTION SYSTEM**.
+
+The objective is to allow players to intelligently target specific mechanical components of enemies instead of always attacking their overall health.
+
+The mechanic should introduce a new layer of tactical combat in which players identify vulnerable components, exploit openings, and selectively disable enemy capabilities.
+
+**Component targeting:**
+
+Depending on the enemy's design, different mechanical components should be targetable.
+
+Examples include:
+- Weapon mounts.
+- Missile launchers.
+- Artillery cannons.
+- Sensors.
+- Energy cores.
+- Armor plates.
+- Leg joints.
+- Thrusters.
+- Defensive generators.
+- Other important mechanical components.
+
+Do not force every enemy to have identical components.
+
+Use each unit's existing model and mechanical design to determine which components are appropriate.
+
+**Precision execution:**
+
+The player should need to aim carefully at specific components.
+
+Simply shooting anywhere on an enemy should not produce the same effects as accurately targeting a vulnerable component.
+
+Implement appropriate component hit detection using the existing targeting and projectile systems.
+
+A successful precision hit should provide feedback through:
+- A distinct hit effect.
+- A mechanical impact sound.
+- Visible component damage.
+- Appropriate enemy reaction.
+- Clear visual confirmation that the targeted component was damaged.
+
+Where appropriate, display a small component indicator showing its condition.
+
+**Meaningful combat consequences:**
+
+Destroying or disabling different components should affect the enemy's actual combat capabilities.
+
+For example:
+
+1. **Weapon systems:** Destroying a weapon mount could disable or weaken the corresponding weapon, reduce its firing frequency, or limit its attack options.
+
+2. **Missile systems:** Destroying missile launchers should reduce the enemy's missile capacity or completely disable that launcher.
+
+3. **Movement systems:** Damaging leg joints or mobility components could reduce movement speed, acceleration, or turning ability.
+
+4. **Sensors:** Damaging sensors could reduce detection range, tracking accuracy, or targeting effectiveness.
+
+5. **Defensive systems:** Destroying a defensive generator could disable an enemy shield or reduce its protection.
+
+6. **Energy cores:** Exposing and successfully damaging a vulnerable energy core could inflict substantial damage or temporarily disrupt certain enemy abilities.
+
+These consequences should depend on the actual components of each unit.
+
+Do not give a boss a missile-launcher weakness if it does not have missile launchers.
+
+**Boss-specific vulnerable components:**
+
+This mechanic should have an especially important role in boss encounters.
+
+Bosses should have identifiable mechanical weaknesses that players can exploit through precision targeting.
+
+However, the vulnerable components should not remain constantly exposed.
+
+Introduce appropriate attack patterns and temporary vulnerability windows.
+
+For example:
+- A boss may briefly expose its energy core after performing a powerful attack.
+- An artillery boss may reveal vulnerable weapon mechanisms while reloading.
+- A fast-moving boss may expose its leg joints during a recovery animation.
+- A heavily armored boss may need to be flanked before certain components become accessible.
+- A defensive boss may temporarily expose its generator when activating a powerful shield.
+
+These are examples. Develop unique component weaknesses based on each boss's existing design and attacks.
+
+**Skill-based rewards:**
+
+A successful precision attack against an exposed component should be more valuable than repeatedly firing at the main body.
+
+Reward players who:
+- Recognize attack patterns.
+- Anticipate vulnerability windows.
+- Maintain accurate aim.
+- Target the correct mechanical component.
+- Time their attacks correctly.
+- Exploit opportunities before they disappear.
+
+A successful component disruption should create a meaningful combat opening.
+
+For example, disabling a boss's weapon system could create a short period in which the player and squad can safely reposition or attack.
+
+Do not make bosses completely dependent on component destruction. Players should still be able to defeat enemies through conventional damage.
+
+The system should add tactical depth rather than become a mandatory and tedious requirement.
+
+**Visual and audio feedback:**
+
+Damaged components must visibly reflect their condition.
+
+Use effects such as:
+- Sparks.
+- Damaged mechanical parts.
+- Electrical discharges.
+- Smoke.
+- Broken armor plating.
+- Disabled weapon mechanisms.
+- Flickering energy systems.
+
+Do not use the same effect for every component.
+
+Make component damage recognizable through the appearance and behavior of the affected part.
+
+**AI interactions:**
+
+The enemy AI should react intelligently to component damage.
+
+For example:
+- Enemies with damaged mobility may attempt to maintain distance.
+- Enemies with disabled weapons should switch to alternative attacks where available.
+- Bosses with damaged systems should modify their attack patterns.
+- Enemies with damaged sensors should have reduced tracking effectiveness.
+
+Do not allow the AI to behave as though the destroyed component is still fully operational.
+
+The component system must integrate with existing health, armor, weapons, targeting, and AI systems.
+
+**Balance and testing:**
+
+The mechanic must be challenging but fair.
+
+Avoid making component hitboxes so small that accurate targeting becomes frustrating.
+
+Ensure that:
+- Components have appropriate durability.
+- Different weapons interact with components sensibly.
+- Explosions and area damage behave consistently.
+- Component destruction produces the intended consequences.
+- Destroyed components cannot continue functioning.
+- Component weaknesses do not create instant boss kills unless specifically intended by the existing balance.
+- Ordinary combat remains viable.
+- The mechanic works against standard enemies, elite units, and bosses.
+
+The result should make combat feel more tactical and skill-based, similar to a military operation where understanding enemy machinery and exploiting mechanical weaknesses is just as important as raw firepower.
+
+---
+
+**5. ADD SUSPENSEFUL BACKGROUND MUSIC WITH UNIQUE BOSS THEMES**
+
+Introduce a proper background music system that significantly improves the atmosphere of the game.
+
+The game should feel like a futuristic military operation inspired by 86: Eighty-Six, with constant tension, dangerous encounters, and cinematic combat.
+
+The music should primarily be suspenseful, atmospheric, dark, and futuristic.
+
+Avoid overly loud or unnecessarily aggressive music that overwhelms the gameplay.
+
+**Music direction:**
+
+Look for tracks featuring:
+- Dark ambient drones.
+- Deep atmospheric synthesizers.
+- Subtle electronic pulses.
+- Suspenseful strings.
+- Slow cinematic percussion.
+- Industrial mechanical sounds.
+- Low-frequency tension.
+- Distorted electronic textures.
+- Gradual musical build-ups.
+- Futuristic military soundscapes.
+
+The soundtrack should create tension while leaving enough room for weapon effects, mechanical sounds, footsteps, and squad communications.
+
+**Individual boss themes:**
+
+THIS IS A MAJOR REQUIREMENT.
+
+Every boss in the game must have its OWN UNIQUE BACKGROUND MUSIC THEME.
+
+Do not use one generic boss battle track for every boss.
+
+Create or source a distinct theme for each individual boss, reflecting its identity, size, movement, combat style, and threat level.
+
+For example:
+- Heavy artillery bosses should have imposing, slow-building themes with powerful mechanical percussion and deep atmospheric elements.
+- Fast assault bosses should have more urgent rhythms, aggressive electronic pulses, and faster musical progression.
+- Large spider-legged bosses should have unsettling mechanical sounds, dark drones, and tension-building orchestration.
+- Aerial bosses should have cinematic, expansive, and threatening musical elements.
+- Extremely dangerous or endgame bosses should have particularly intense and distinctive themes.
+
+These are examples. Make sure every actual boss receives an individually assigned theme.
+
+Each theme should be recognizable enough that players can distinguish different boss encounters through their music.
+
+Do not simply reuse the same track with different volume levels or minor modifications.
+
+**Dynamic music transitions:**
+
+Integrate the music into the existing audio manager.
+
+The music should respond to actual gameplay events.
+
+Implement appropriate music states such as:
+- Exploration.
+- Enemy detection.
+- Standard combat.
+- Heavy combat.
+- Boss encounter.
+- Individual boss encounter themes.
+- Critical boss phase.
+- Victory.
+- Defeat.
+
+When a boss appears:
+- Identify which specific boss has spawned.
+- Load or activate its assigned theme.
+- Gradually transition away from the previous music.
+- Avoid sudden volume changes.
+- Avoid restarting music unnecessarily.
+
+When a boss enters a different combat phase, its theme may become more intense through additional layers, percussion, or variations where appropriate.
+
+When the boss is defeated, transition smoothly into the appropriate victory, exploration, or post-combat music.
+
+If multiple bosses are active simultaneously, handle music selection intelligently.
+
+Do not stack several full-volume boss tracks on top of one another. Use an appropriate primary encounter theme or controlled musical layering.
+
+**Music sourcing from the internet:**
+
+All new background music and boss themes should be obtained from legitimate internet sources.
+
+Search music libraries such as:
+- Pixabay Music.
+- Free Music Archive.
+- OpenGameArt.
+- Wikimedia Commons.
+- Internet Archive.
+- Other legitimate royalty-free music libraries.
+
+Prioritize tracks with verified licenses that permit use in the game.
+
+Prefer CC0, public-domain, and clearly licensed royalty-free music.
+
+Do not download copyrighted music from 86: Eighty-Six, other anime, movies, or commercial video games without permission.
+
+Do not assume that music being available online means it is free to use.
+
+Check the licensing terms and attribution requirements for every track.
+
+Download the actual audio files and integrate them into the project's existing audio directory.
+
+Do not depend on streaming music from the internet during gameplay.
+
+Create a music asset manifest containing:
+- Track filename.
+- Assigned boss or gameplay situation.
+- Original source URL.
+- Creator or uploader.
+- License information.
+- Attribution requirements.
+
+Do not pretend tracks have been downloaded or licensed if they have not actually been obtained or verified. If a suitable track cannot be sourced legally, report the missing asset clearly instead of silently substituting copyrighted music.
+
+**Audio balancing:**
+
+Music must never overpower important gameplay audio.
+
+Keep:
+- Weapon sounds audible.
+- Missile warnings noticeable.
+- Boss attack warnings clear.
+- Squad communications understandable.
+- Mechanical movement sounds recognizable.
+
+Use smooth fades, consistent loudness, and appropriate volume balancing.
+
+Add separate music volume control if the existing audio settings support it. Reuse existing settings rather than creating duplicate audio controls.
+
+Test each boss theme during real combat, not just in isolation.
+
+---
+
+**6. PERFORMANCE, COMPATIBILITY, AND REQUIRED TESTING**
+
+All new mechanics must integrate properly with the existing game.
+
+Pay special attention to compatibility between:
+- Boss teleportation and boss procedural animations.
+- Boss teleportation and pathfinding.
+- Component destruction and existing damage calculations.
+- Component damage and enemy AI behavior.
+- Shield destruction and squadmate health.
+- Camera zoom and battlefield visibility.
+- Dynamic music and simultaneous enemy encounters.
+
+Avoid creating unnecessary objects every frame, excessive particle effects, expensive calculations, or duplicate AI controllers.
+
+Before considering the update complete, perform the following tests:
+
+**Shield system:**
+1. Activate the protective armor ability with a full squad of five.
+2. Verify that all five squadmates receive individual shields.
+3. Test shields against bullets, missiles, artillery, and explosions.
+4. Verify that shields have high but finite HP.
+5. Confirm that concentrated enemy fire can destroy them.
+6. Confirm that breaking one shield does not affect the others.
+7. Confirm that normal damage reception resumes immediately after shield destruction.
+8. Verify the 30-second expiration.
+9. Verify the increased ability cooldown.
+10. Confirm that the cooldown cannot be bypassed.
+
+**Boss teleportation:**
+11. Test every boss individually.
+12. Verify that each boss can teleport in different combat situations.
+13. Test teleportation during attacks and movement.
+14. Verify that bosses cannot teleport into solid objects or inaccessible areas.
+15. Check destination validation and cooldowns.
+16. Verify that teleportation does not break procedural animations.
+17. Test several bosses teleporting during the same encounter.
+18. Confirm that players receive appropriate visual and audio telegraphs.
+
+**Camera:**
+19. Verify the increased maximum zoom-out distance.
+20. Test camera movement at minimum, normal, and maximum zoom.
+21. Check camera collision against buildings and terrain.
+22. Verify that all five squadmates can be observed from the expanded camera distance.
+23. Check that normal camera controls remain responsive.
+
+**New skill mechanic:**
+24. Test precision targeting against standard enemies.
+25. Test component destruction against elite enemies.
+26. Test every boss's unique vulnerable components.
+27. Verify that destroying weapon components actually disables their weapons.
+28. Verify that mobility damage affects movement.
+29. Verify that destroyed components cannot continue functioning.
+30. Test vulnerability windows and precision rewards.
+31. Make sure ordinary combat remains effective.
+
+**Music:**
+32. Verify that every boss has its own unique theme.
+33. Confirm that the correct theme plays when each boss spawns.
+34. Test transitions between exploration and combat.
+35. Test transitions between different boss encounters.
+36. Test situations involving multiple bosses.
+37. Verify that music does not overlap unexpectedly.
+38. Confirm that music volume does not overpower gameplay audio.
+39. Verify that downloaded tracks work without an internet connection.
+40. Confirm that all music licenses and attribution requirements have been checked.
+
+Do not mark any feature as complete merely because its interface, animation, or visual effect appears to work. Verify the actual underlying gameplay behavior.
+
+The final result should deliver more challenging and intelligent boss encounters, destructible but extremely durable squad-protection armor, improved battlefield awareness, and a genuinely skill-based combat mechanic that rewards precision and tactical thinking.
+
+Most importantly, every boss should feel like a unique threat, with its own teleportation behavior, combat identity, and recognizable musical theme. The update should make encounters more suspenseful, strategic, and memorable without sacrificing the existing game's performance or core gameplay systems.

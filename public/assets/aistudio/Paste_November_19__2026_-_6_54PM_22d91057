@@ -1,0 +1,852 @@
+# MAJOR GAMEPLAY UPDATE: SUSPENSEFUL MUSIC OVERHAUL, BOSS PROCEDURAL ANIMATION FIX, SANDBOX MODE + EXTREME REVENANT BUFF
+
+Implement a major update focused on improving the game's atmosphere, fixing high-speed procedural animations, transforming Training mode into a fully functional Sandbox mode, and making REVENANT variants substantially more dangerous.
+
+This update has five primary objectives:
+
+1. Add suspenseful background music sourced from the internet, with proper volume balancing.
+2. Fix procedural boss leg animations that glitch, stretch, or become unstable at high movement speeds.
+3. Replace the existing Training game mode with a fully interactive Sandbox mode.
+4. Make all REVENANT variants insanely fast, aggressive, and powerful.
+5. Ensure all procedural animations can keep up with the actual movement speed of units, including bosses and REVENANTS.
+
+**Do not simply increase movement speeds or adjust animation values without testing the actual results.** The animations must remain synchronized with movement physics at both normal and extreme speeds.
+
+Preserve the existing game systems, unit designs, enemy AI, weapons, physics, audio manager, and progression systems. Modify existing systems where possible instead of unnecessarily rewriting unrelated code.
+
+---
+
+# 1. SUSPENSEFUL BACKGROUND MUSIC OVERHAUL
+
+Introduce background music throughout the game to make the experience more atmospheric and intense.
+
+The music should primarily be suspenseful, dark, atmospheric, and futuristic military-themed.
+
+The objective is to create tension without overwhelming the player or blasting their ears.
+
+### Musical direction
+
+Use music that features elements such as:
+- Deep atmospheric drones.
+- Low-frequency ambient tones.
+- Subtle electronic pulses.
+- Slow rhythmic percussion.
+- Distant metallic sounds.
+- Dark synthesizers.
+- Tension-building strings.
+- Subtle industrial textures.
+- Gradually increasing intensity.
+- Minimalistic cinematic soundscapes.
+
+Avoid overly loud, aggressive music that constantly demands attention.
+
+The music should feel like the soundtrack of a futuristic military operation where something dangerous could happen at any moment.
+
+### Music categories
+
+Create different music tracks or variations for different situations.
+
+**A. Main menu**
+- Dark, atmospheric, and mysterious.
+- Establishes the futuristic military atmosphere.
+- Relatively calm and unobtrusive.
+- Should not become repetitive or irritating.
+
+**B. Exploration and Free Roam**
+- Slow suspenseful ambient music.
+- Subtle electronic textures.
+- Low-intensity tension.
+- Allow environmental audio and mechanical movement to remain noticeable.
+
+**C. Normal combat**
+- More rhythmic and intense.
+- Gradually increases tension during engagements.
+- Avoid excessive percussion or overpowering bass.
+- Maintain enough space for weapons, footsteps, and radio communications to be heard.
+
+**D. Boss encounters**
+- More threatening and cinematic.
+- Stronger percussion and darker atmospheric layers.
+- Gradually builds as the boss becomes more aggressive.
+- Should make the encounter feel dangerous without drowning out attack warnings or radio dialogue.
+
+**E. REVENANT encounters**
+- Unique suspenseful and disturbing music.
+- Distorted electronic textures.
+- Deep ambient drones.
+- Unsettling rhythmic pulses.
+- Gradual tension buildup.
+- Occasional subtle radio-like interference if appropriate.
+
+The REVENANT music should immediately make the player recognize that the encounter is different from ordinary combat.
+
+**F. Victory and defeat**
+- Victory music should feel rewarding and cinematic.
+- Defeat music should feel ominous and heavy.
+- Both should transition smoothly into the end-of-round presentation.
+
+### Dynamic music system
+
+Music must respond to actual gameplay events.
+
+Implement a dynamic music system with different intensity states:
+
+- Exploration.
+- Suspense.
+- Combat.
+- Heavy combat.
+- Boss encounter.
+- REVENANT encounter.
+- Victory.
+- Defeat.
+
+When the game transitions between these states:
+- Crossfade between tracks or musical layers.
+- Avoid sudden volume jumps.
+- Avoid abrupt audio cuts.
+- Use smooth transitions.
+- Make sure only the intended music state is active.
+
+For example, when a boss appears, the normal combat music should gradually transition into boss music rather than stopping instantly and restarting at full volume.
+
+When a REVENANT appears, introduce its unique musical atmosphere without unnecessarily stacking several full-volume tracks.
+
+### Volume balancing
+
+This is an important requirement.
+
+**The music must never blast the player's ears.**
+
+- Keep background music quieter than important gameplay audio.
+- Do not let music overpower weapon effects, footsteps, radio communications, or enemy attack warnings.
+- Control excessive bass frequencies.
+- Prevent sudden loud sections.
+- Normalize music assets where necessary.
+- Use smooth fade-ins and fade-outs.
+- Avoid aggressive volume compression that makes quiet sections unnecessarily loud.
+- Ensure music does not clip or distort.
+
+Add separate volume controls for:
+- Master volume.
+- Music volume.
+- Sound effects.
+- Radio communications.
+- Mechanical audio.
+
+Respect the existing audio settings if these controls already exist. Do not create duplicate settings.
+
+### Music sourcing requirement
+
+**All music added in this update must be sourced from the internet.**
+
+Search legitimate music libraries such as:
+- Pixabay Music.
+- Free Music Archive.
+- OpenGameArt.
+- Wikimedia Commons.
+- Internet Archive.
+- Other legitimate music libraries with verified licensing.
+
+Prefer CC0, public-domain, or clearly licensed royalty-free tracks.
+
+Verify whether the tracks permit use and redistribution in the intended game.
+
+Do not use copyrighted music from movies, anime, or other video games without permission.
+
+### Music asset integration
+
+- Download the actual music files.
+- Store them locally in the project's audio directory.
+- Do not rely on internet streaming during gameplay.
+- Use descriptive filenames.
+- Organize tracks by their gameplay category.
+- Integrate them into the existing audio manager.
+- Test every track at its actual in-game volume.
+
+Create a music asset manifest containing:
+- Filename.
+- Track description.
+- Original source URL.
+- Creator or uploader.
+- License.
+- Attribution requirements.
+- Intended gameplay use.
+
+Do not pretend an audio file has been downloaded if it has not actually been obtained. If a suitable track cannot be downloaded or its license cannot be verified, find another source or clearly report the missing asset.
+
+---
+
+# 2. FIX BOSS PROCEDURAL LEG ANIMATIONS
+
+Completely investigate and fix the procedural leg animation problems affecting bosses.
+
+The current problem is that boss legs glitch out when running at high speeds. The legs may stretch, snap, jitter, move unnaturally, lose synchronization, or fail to keep up with the boss's actual movement.
+
+This must be fixed at the underlying animation and movement-system level.
+
+**Do not solve this by simply slowing down the bosses.** Bosses must retain their intended high movement speeds while their procedural animations accurately follow their movement.
+
+### Core problem investigation
+
+Inspect the existing procedural animation implementation.
+
+Identify the actual cause of the instability, including possible issues with:
+- Gait cycle timing.
+- Leg target calculations.
+- Inverse kinematics.
+- Foot placement.
+- Foot planting.
+- Body stabilization.
+- Movement interpolation.
+- Excessive frame-to-frame position changes.
+- Animation update frequency.
+- Physics update timing.
+- Sudden changes in velocity.
+- Leg joint constraints.
+- Pathfinding direction changes.
+- High-speed turning.
+- Large differences between physics and rendering update rates.
+
+Do not hide the problem with random smoothing values without understanding why it happens.
+
+### Speed-responsive gait system
+
+The procedural gait must automatically adapt to the boss's actual movement speed.
+
+As movement speed increases:
+- Walking cycles become faster.
+- Leg stepping frequency increases.
+- Foot placement adjusts to the new movement speed.
+- Step length changes appropriately.
+- Body stabilization responds to stronger movement.
+- Leg recovery time decreases when appropriate.
+
+At low speeds, the boss should maintain deliberate, heavy mechanical movement.
+
+At high speeds, it should transition into an appropriate running gait.
+
+At extreme speeds, the legs must continue cycling naturally without losing their intended positions.
+
+### Important synchronization requirement
+
+**The animation must always reflect actual movement speed.**
+
+Do not use a fixed animation speed that remains unchanged while the boss moves faster.
+
+Use appropriate movement information, such as:
+- Actual horizontal velocity.
+- Movement direction.
+- Acceleration.
+- Angular velocity.
+- Desired movement speed.
+- Current gait state.
+
+The actual movement speed should drive the animation calculations.
+
+When the boss suddenly accelerates, the gait should respond smoothly without becoming detached from the movement physics.
+
+When it slows down, the gait should decelerate naturally.
+
+When it stops, the legs should transition into an appropriate planted or idle stance rather than continuing to run.
+
+---
+
+# 3. ADVANCED PROCEDURAL LEG ANIMATION AND IK
+
+Improve the procedural animation system so that large spider-legged bosses remain visually stable even during extreme movement.
+
+### A. Inverse kinematics
+
+Implement or improve a reliable inverse kinematics solution for the boss legs.
+
+Each leg should:
+- Calculate its intended foot position.
+- Maintain reasonable joint angles.
+- Respect segment lengths.
+- Avoid stretching beyond its physical limits.
+- Avoid folding into impossible positions.
+- Maintain a believable mechanical stance.
+- Adapt to changes in terrain where supported.
+
+Ensure that the leg joints remain stable during rapid acceleration and sharp turns.
+
+If the current rig already uses IK, improve the existing solver rather than introducing a conflicting second system.
+
+### B. Adaptive foot planting
+
+Foot planting must remain synchronized with the boss's movement.
+
+While a foot is planted:
+- It should remain relatively stable against the ground.
+- The body should move forward relative to the planted foot.
+- The foot should not slide excessively.
+- The leg should maintain a valid joint configuration.
+
+When the boss reaches the step threshold:
+- Lift the foot.
+- Move it toward its next calculated position.
+- Follow a smooth step trajectory.
+- Place the foot back onto the ground.
+- Continue the gait cycle.
+
+At high speeds:
+- Increase stepping frequency.
+- Adjust stride length.
+- Reduce unnecessary waiting between steps.
+- Prevent feet from remaining planted for too long.
+
+Do not allow the legs to lag behind the body during fast running.
+
+### C. Body stabilization
+
+The boss body should remain mechanically stable while its legs move.
+
+Implement procedural adjustments for:
+- Body height.
+- Body tilt.
+- Pitch.
+- Roll.
+- Movement acceleration.
+- Landing impact.
+- Uneven terrain.
+- Rapid direction changes.
+
+At high speed, the body may lean forward slightly to communicate momentum, but it must remain visually connected to the leg movement.
+
+Prevent excessive body shaking, unrealistic bouncing, or sudden rotations.
+
+### D. Turning and directional transitions
+
+Bosses should be able to turn quickly without their legs glitching.
+
+When the boss changes direction:
+- Update the gait direction appropriately.
+- Recalculate leg targets.
+- Avoid instant foot teleportation.
+- Prevent legs from crossing unnaturally.
+- Maintain foot placement stability.
+- Blend smoothly into the new movement direction.
+
+Test both gradual turns and sudden high-speed direction changes.
+
+### E. Animation interpolation
+
+Use stable interpolation between calculated leg positions.
+
+Prevent:
+- Sudden snapping.
+- Large joint-position jumps.
+- Uncontrolled oscillation.
+- Foot jitter.
+- Excessive smoothing that makes the legs lag behind the body.
+
+The interpolation must be responsive enough for extremely fast bosses.
+
+Do not use so much smoothing that the boss appears to run while its legs are several frames behind it.
+
+### F. Update timing and physics synchronization
+
+Ensure that procedural animation updates are synchronized with the movement and physics systems.
+
+Inspect whether the current implementation updates animation calculations at the correct point in the game loop.
+
+Use suitable timing and interpolation methods to prevent different update rates from causing visual instability.
+
+Consider using substeps or additional movement sampling when necessary for extreme-speed movement.
+
+Avoid unnecessarily expensive calculations on every frame for every leg.
+
+### G. Different boss designs
+
+Do not force every boss to use exactly the same gait.
+
+Preserve the unique mechanical anatomy and movement style of every boss.
+
+For example:
+- Heavy artillery bosses should have powerful, weighty movement.
+- Lightweight bosses should have quicker and more agile steps.
+- Extremely fast bosses should have rapid, coordinated leg movement.
+- Large spider-like bosses should maintain believable spacing between their legs.
+
+The animation system should support different leg counts, body sizes, stride lengths, and gait configurations where needed.
+
+---
+
+# 4. TRANSFORM TRAINING MODE INTO SANDBOX MODE
+
+Replace the existing Training game mode with a fully functional **SANDBOX MODE**.
+
+The old Training mode should become an open environment where the player can freely spawn, test, fight, and experiment with every unit and enemy in the game.
+
+This should not be a limited tutorial or a fixed training encounter.
+
+It should be a proper sandbox where the player has control over what appears in the world.
+
+### Sandbox spawning system
+
+Allow the player to spawn every available unit and enemy, including:
+
+- All playable mech units.
+- All friendly AI units.
+- All standard ground enemies.
+- All flying enemies.
+- All artillery units.
+- All elite enemy variants.
+- All boss variants.
+- All REVENANT variants.
+- All corrupted versions of playable units.
+- Special event enemies.
+
+The sandbox must automatically include newly added units and enemies as the game expands.
+
+Do not require developers to manually rebuild the entire spawn menu every time a new unit is introduced.
+
+Use a centralized unit and enemy registry that the sandbox can read.
+
+### Spawn menu
+
+Create a clean, minimalist military-themed spawn interface.
+
+Organize spawnable entities into categories:
+
+**PLAYER UNITS**
+Every playable mech in the game.
+
+**FRIENDLY UNITS**
+Allied AI units and squadmates.
+
+**HOSTILE UNITS**
+Standard enemy mechs and ordinary enemies.
+
+**ELITE UNITS**
+Advanced enemy variants and specialized units.
+
+**BOSSES**
+Every boss and boss variant.
+
+**REVENANTS**
+Every REVENANT variant, including corrupted versions of all available player units.
+
+Each entry should display:
+- Unit name.
+- Unit type.
+- Small visual preview or icon.
+- Team affiliation.
+- Relevant variant information.
+
+The interface should be easy to navigate without covering too much of the screen.
+
+### Spawn controls
+
+Allow players to:
+- Select a unit.
+- Spawn the selected unit.
+- Spawn multiple copies.
+- Choose whether it is friendly or hostile where supported.
+- Set the number of units to spawn.
+- Remove individual spawned units.
+- Remove all spawned units.
+- Respawn destroyed units.
+- Reset the battlefield.
+
+Add sensible spawn limits to prevent performance problems.
+
+Allow the player to place spawned units in appropriate positions without creating immediate collisions or overlapping entities.
+
+### AI behavior controls
+
+Allow the player to configure spawned AI units.
+
+Possible settings:
+- Idle.
+- Follow.
+- Patrol.
+- Aggressive.
+- Defensive.
+- Attack player.
+- Attack hostile units.
+- Friendly support.
+- Boss behavior.
+
+When appropriate, allow the player to switch team affiliation between friendly and hostile.
+
+Make sure team changes correctly update targeting, damage, and AI relationships.
+
+Do not allow units to attack themselves or their own team unless a specific game mechanic intentionally permits it.
+
+### Sandbox environment controls
+
+Include useful testing controls such as:
+- Reset environment.
+- Clear all spawned units.
+- Pause and resume simulation.
+- Reset unit health.
+- Restore the player's health.
+- Toggle invulnerability for testing.
+- Toggle infinite ammunition for testing.
+- Adjust enemy aggression.
+- Adjust unit movement speed for testing, where technically safe.
+- Spawn a REVENANT immediately.
+- Spawn a boss immediately.
+
+These controls should only affect Sandbox mode and should not modify normal progression or campaign balance.
+
+### Testing different scenarios
+
+The Sandbox should allow the player to create combat situations such as:
+
+- One boss against the entire player squad.
+- Several bosses fighting one another.
+- A REVENANT fighting its original mech.
+- Multiple REVENANT variants fighting together.
+- Flying enemies attacking ground units.
+- Heavy artillery units attacking fast-moving enemies.
+- Four friendly units against a large enemy force.
+- Multiple high-speed bosses running simultaneously.
+- A large battle with several enemy types.
+
+The player should be able to experiment without restarting the entire game after every test.
+
+### REVENANT availability
+
+All REVENANT variants must be available in the Sandbox regardless of whether the player has failed a game mode.
+
+Sandbox spawning must bypass the normal failure-based REVENANT unlock or encounter trigger.
+
+The player must be able to manually spawn any REVENANT at any time.
+
+However, manually spawning a REVENANT in Sandbox must not modify the player's failed-run records or trigger a REVENANT encounter in another game mode.
+
+### Sandbox progression isolation
+
+Sandbox mode must not:
+- Change campaign progression.
+- Count as a failed game mode.
+- Trigger the next-round REVENANT system.
+- Award normal match progression.
+- Alter saved unit upgrades.
+- Modify normal game difficulty.
+- Accidentally trigger victory or defeat sequences.
+
+Keep Sandbox experimentation isolated from standard game progression.
+
+If the game already uses a common save system, ensure Sandbox settings do not overwrite normal progression data.
+
+---
+
+# 5. EXTREMELY BUFF ALL REVENANT VARIANTS
+
+Make every REVENANT variant significantly more powerful than its previous version.
+
+The REVENANTS should become some of the most dangerous enemies in the entire game.
+
+Their movement should be extremely fast, their attacks devastating, and their behavior highly aggressive.
+
+**Do not just give them more health. Upgrade their entire combat capability.**
+
+### A. Extreme movement speed
+
+All REVENANTS must receive:
+- Extremely high movement speed.
+- Very fast acceleration.
+- Powerful directional changes.
+- Rapid pursuit.
+- Fast attack repositioning.
+- Faster dash movement.
+- Improved evasive maneuvers.
+- Increased movement responsiveness.
+- More aggressive target pursuit.
+
+They should be noticeably faster than the normal versions of their corresponding units.
+
+They must not feel like ordinary enemies with a purple outline.
+
+### B. Advanced combat AI
+
+Improve their combat intelligence.
+
+REVENANTS should:
+- Aggressively pursue their targets.
+- Rapidly reposition when attacked.
+- Predict player movement.
+- Adapt to dashes and grappling.
+- Attack from unexpected angles.
+- Prioritize vulnerable squadmates.
+- Attempt to overwhelm the player.
+- Use their abilities more effectively.
+- Avoid staying stationary for extended periods.
+- Coordinate attacks with other enemies when appropriate.
+
+They should feel like corrupted, enhanced versions of their original machines.
+
+### C. Extreme damage output
+
+Increase their combat strength significantly.
+
+Improve:
+- Weapon damage.
+- Attack frequency.
+- Projectile velocity.
+- Explosive damage.
+- Melee damage where applicable.
+- Missile tracking.
+- Special ability damage.
+- Area-of-effect attacks.
+
+However, preserve recognizable attack patterns and telegraphs.
+
+Even an extremely powerful REVENANT should give the player a chance to react and dodge.
+
+### D. Increased durability
+
+Make REVENANTS much harder to destroy.
+
+Possible improvements:
+- Increased armor.
+- Increased health.
+- Improved damage resistance.
+- Better defensive movement.
+- Stronger shielding where appropriate.
+- Reduced vulnerability during certain attacks.
+
+Do not make them completely invulnerable.
+
+Damage should still have a meaningful effect.
+
+If the current game supports armor damage, damaged systems, or mechanical destruction, preserve those interactions.
+
+### E. Unique abilities for each REVENANT
+
+Every REVENANT must retain the abilities and identity of its original mech, but its corrupted form should have significantly enhanced versions.
+
+For example:
+
+**COLOSSUS REVENANT**
+- Extremely fast artillery repositioning.
+- Faster projectile delivery.
+- Stronger explosive attacks.
+- More aggressive long-range targeting.
+- Powerful corrupted artillery barrage.
+
+**VALKYRIE REVENANT**
+- Extreme aerial speed.
+- Rapid altitude changes.
+- Advanced aerial pursuit.
+- Highly aggressive missile combinations.
+- Powerful corrupted aerial attacks.
+
+Create equivalent unique improvements for every other REVENANT variant.
+
+Do not give all REVENANTS identical attacks.
+
+### F. Extreme-speed animation compatibility
+
+The REVENANT speed buffs must use the improved procedural animation system.
+
+Their animations must remain synchronized with their actual movement speeds.
+
+In particular:
+- Spider legs must not glitch.
+- Feet must not slide uncontrollably.
+- Joints must not stretch.
+- Bodies must remain connected to their limbs.
+- Gait cycles must adjust to extreme speeds.
+- Rapid direction changes must not break IK.
+- Landing animations must remain stable.
+- Attack animations must blend correctly with movement.
+
+**A REVENANT that moves extremely fast but has broken or glitching leg animations is not acceptable.**
+
+Do not consider the REVENANT speed overhaul complete until the procedural animations have been stress-tested at the new maximum movement speeds.
+
+---
+
+# 6. REVENANT APPEARANCE AND VISUAL IDENTITY
+
+Preserve the established REVENANT appearance.
+
+All REVENANT variants must remain:
+- Predominantly white.
+- Purple accented.
+- Surrounded by a visible purple outline.
+- Equipped with corrupted energy effects.
+- Recognizable as corrupted versions of their original units.
+
+The extreme buffs should also make their visual presentation more intimidating.
+
+Add controlled effects such as:
+- Stronger purple energy emissions.
+- Brief energy surges during acceleration.
+- Purple trails during high-speed movement.
+- Electrical discharges during attacks.
+- Distorted energy effects around their armor.
+- Short visual bursts when using special abilities.
+
+The purple outline must remain visible during fast movement and against different background environments.
+
+Do not allow visual effects to obscure their legs, body orientation, or attack animations.
+
+---
+
+# 7. PERFORMANCE AND OPTIMIZATION
+
+This update introduces more demanding encounters, especially with the Sandbox and extreme-speed units.
+
+Ensure the game remains stable when several fast units are active simultaneously.
+
+### Animation optimization
+- Avoid unnecessary IK recalculations.
+- Use appropriate animation update frequencies.
+- Prevent excessive physics calculations.
+- Keep interpolation stable.
+- Avoid excessive substeps where unnecessary.
+- Use efficient leg target calculations.
+- Avoid creating unnecessary temporary objects every frame.
+
+### Sandbox optimization
+- Enforce configurable spawn limits.
+- Use efficient entity registration.
+- Properly destroy removed units.
+- Clean up their projectiles, effects, and audio.
+- Avoid duplicate AI controllers.
+- Avoid unnecessary updates for inactive entities.
+
+### Boss and REVENANT optimization
+- Make sure multiple high-speed bosses can fight simultaneously.
+- Prevent collision tunneling at high speeds.
+- Ensure projectiles correctly detect fast-moving targets.
+- Prevent animation instability from accumulating over time.
+- Avoid excessive particle and trail creation.
+
+---
+
+# 8. REQUIRED EXTREME-SPEED ANIMATION TESTING
+
+This is one of the most important parts of this update.
+
+Do not just test the boss animations while walking slowly.
+
+Test the procedural animation system at normal speed, high speed, and maximum REVENANT speed.
+
+### Test scenarios
+
+Test every spider-legged boss and REVENANT variant in the following situations:
+
+1. Standing still.
+2. Walking slowly.
+3. Running at normal speed.
+4. Running at high speed.
+5. Running at maximum speed.
+6. Accelerating from a complete stop.
+7. Decelerating from maximum speed.
+8. Making sharp 90-degree turns.
+9. Performing sudden 180-degree turns.
+10. Dashing while moving.
+11. Chasing a moving player.
+12. Repositioning during combat.
+13. Moving across uneven terrain.
+14. Colliding with obstacles.
+15. Transitioning from running into an attack.
+16. Transitioning from an attack back into running.
+17. Landing after a jump or leap.
+18. Fighting while multiple nearby units are also moving at high speed.
+
+### Specific animation failures to look for
+
+Check for:
+- Legs stretching beyond their intended lengths.
+- Feet floating above the ground.
+- Feet clipping into the ground.
+- Feet sliding excessively.
+- Legs crossing through the body.
+- Joints suddenly snapping.
+- Limbs moving in the wrong direction.
+- Gait cycles slowing down while the body speeds up.
+- Gait cycles continuing after the boss stops.
+- Body movement becoming disconnected from leg movement.
+- IK instability during rapid turns.
+- Animation jitter caused by physics update timing.
+- Excessive body bouncing.
+- Leg targets jumping between positions.
+- Animations breaking when several bosses are active.
+
+### Required acceptance criteria
+
+The animation system must:
+
+- Maintain stable joint constraints.
+- Keep the feet reasonably synchronized with the ground.
+- Maintain consistent leg segment lengths.
+- Adapt to actual movement speed.
+- Transition smoothly between movement states.
+- Avoid visible snapping and jitter.
+- Remain stable at the maximum intended movement speed.
+- Continue working when several high-speed bosses or REVENANTS are active.
+
+Test the actual maximum speeds used by the buffed REVENANTS, not just the old boss speed values.
+
+If an animation breaks at the new maximum speed, fix the underlying calculation and repeat the test.
+
+**Do not reduce REVENANT movement speed merely to hide an animation problem.**
+
+---
+
+# 9. REQUIRED FINAL TESTING
+
+Before completing the update, verify the following:
+
+### Music
+1. All new music is sourced from the internet.
+2. Every track has verified usage rights.
+3. Music works offline after downloading.
+4. Music is suspenseful and atmospheric.
+5. Music does not overpower gameplay audio.
+6. Boss and REVENANT music transitions work correctly.
+7. Volume controls work correctly.
+8. Music does not overlap or restart unexpectedly.
+
+### Procedural animations
+9. Every spider-legged boss runs without visible leg glitches.
+10. Every REVENANT runs without visible leg glitches.
+11. The leg animation speed matches the actual unit movement speed.
+12. High-speed turns do not break the IK system.
+13. Feet remain stable during movement.
+14. Animation transitions work correctly.
+15. Multiple fast bosses can move simultaneously without animation instability.
+
+### Sandbox
+16. The former Training mode is replaced with Sandbox mode.
+17. Every playable unit can be spawned.
+18. Every enemy type can be spawned.
+19. Every boss variant can be spawned.
+20. Every REVENANT variant can be spawned.
+21. Friendly and hostile AI behavior works correctly.
+22. Multiple units can be spawned and removed.
+23. Sandbox testing does not change normal progression.
+24. The Sandbox does not accidentally trigger normal failure or victory systems.
+
+### REVENANT
+25. Every REVENANT is significantly faster than before.
+26. Every REVENANT deals substantially more damage.
+27. Every REVENANT has improved durability.
+28. Every REVENANT has more aggressive combat AI.
+29. Each REVENANT retains its original unit identity.
+30. Every REVENANT has unique enhanced abilities.
+31. Their white-and-purple appearance and purple outline remain visible.
+32. Their movement animations remain stable at maximum speed.
+
+---
+
+# FINAL DESIGN REQUIREMENT
+
+The music should create an atmosphere of constant suspense without overwhelming the player.
+
+The procedural animation system must be reliable enough to handle extremely fast bosses and REVENANTS without broken legs, snapping joints, or unnatural movement.
+
+Training mode should become a genuine Sandbox where the player can spawn any unit or enemy, create custom battles, test every REVENANT, and experiment freely without affecting normal game progression.
+
+REVENANTS should become terrifyingly fast and powerful. They must be capable of overwhelming the player through aggressive movement, devastating attacks, and improved combat intelligence.
+
+Most importantly, **animation quality must keep up with gameplay speed.** The game should not sacrifice visual stability just to make units move faster.
+
+The intended result is a much more atmospheric, customizable, and intense combat experience, with stable high-speed procedural animations even during the most chaotic encounters.

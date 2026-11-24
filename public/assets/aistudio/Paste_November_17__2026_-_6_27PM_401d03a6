@@ -1,0 +1,1084 @@
+# MAJOR GAMEPLAY UPDATE: ADVANCED MOBILITY, DASHING, GRAPPLING, AND ROCKET-POWERED FLIGHT
+
+Implement a major movement and mobility update to the existing 2D sci-fi mech combat game.
+
+I want the game to become MUCH FASTER-PACED, MORE DYNAMIC, AND MORE MOVEMENT-FOCUSED.
+
+The game currently emphasizes heavy artillery, massive machines, powerful weapons, and deliberate movement. Preserve the weight and mechanical identity of the mechs, but introduce advanced mobility systems that allow players to move around the battlefield much faster.
+
+The objective is to create a combination of heavy mechanical combat and fast-paced futuristic movement.
+
+The player should be able to:
+- Move quickly across the battlefield.
+- Dash in different directions.
+- Leave cinematic afterimages while dashing.
+- Grapple onto buildings, structures, and environmental objects.
+- Pull themselves toward objects.
+- Use grappling to reposition during combat.
+- Pilot an entirely new flying mech.
+- Use rocket propulsion to fly.
+- Fight enemies that can also fly and use rocket propulsion.
+
+This update must integrate with the existing physics, procedural animation, weapons, AI, camera, and combat systems.
+
+Do not remove existing mechanics or unnecessarily rewrite working systems.
+
+---
+
+# PART 1: CAMERA SHAKE SETTINGS
+
+Add a dedicated camera shake setting.
+
+Some players may find the camera shake distracting, especially during fast movement, explosions, artillery bombardments, and dashing.
+
+I want a proper setting that allows players to completely disable camera shake.
+
+### Settings options
+
+Add a Camera Effects section to the settings menu.
+
+Include the following options:
+
+**Camera Shake:**
+- OFF
+- LOW
+- MEDIUM
+- HIGH
+
+When set to OFF, completely disable camera shake.
+
+This must include:
+- Weapon recoil shake.
+- Explosion shake.
+- Artillery impact shake.
+- Boss ultimate shake.
+- Heavy mech footsteps.
+- Environmental explosions.
+- Dash impact shake.
+- Grappling impact shake.
+- Camera shake caused by flying or landing.
+
+When set to LOW, reduce camera movement significantly.
+
+When set to MEDIUM, use the normal camera shake intensity.
+
+When set to HIGH, use stronger cinematic camera feedback.
+
+### Important implementation details
+
+Camera shake must be handled through a centralized camera effects system.
+
+Do not allow individual weapons, explosions, and abilities to bypass the camera shake setting.
+
+All shake effects should respect the user's chosen setting.
+
+Disabling camera shake must NOT disable:
+- Weapon recoil physics.
+- Chassis movement.
+- Procedural leg reactions.
+- Explosion particles.
+- Screen effects.
+- Visual impacts.
+
+Only camera movement should be affected.
+
+Also prevent excessive camera shake from overlapping when several explosions happen simultaneously.
+
+Add a separate option for cinematic camera effects so players can reduce automatic camera zooming and dramatic camera movement during boss ultimates if necessary.
+
+Save these preferences locally.
+
+---
+
+# PART 2: FIX HIGH-SPEED PROCEDURAL LEG ANIMATIONS
+
+This is a major priority.
+
+The existing procedural spider-leg animations look strange when the mechs move at high speeds.
+
+The legs may move too quickly, stretch unnaturally, slide across the ground, lose coordination, or fail to keep up with the chassis.
+
+Completely improve the procedural animation system so it remains convincing at ALL movement speeds.
+
+Do not solve this problem by simply reducing the animation speed.
+
+The animation needs to properly adapt to the actual movement physics.
+
+### 1. Dynamic gait system
+
+Create a movement-based gait controller.
+
+The procedural leg animation must support:
+
+- Idle.
+- Slow walking.
+- Normal walking.
+- Fast walking.
+- Running.
+- Sprinting.
+- Dashing.
+- Strafing.
+- Reversing.
+- Turning at high speed.
+- Sudden braking.
+- Grappling.
+- Midair movement.
+- Landing.
+- Stumbling.
+- Recovering from impacts.
+
+Each movement state should have a dedicated gait configuration.
+
+### 2. Speed-based gait transitions
+
+Do not use one animation cycle for every movement speed.
+
+Create several gait modes and blend between them.
+
+For example:
+
+**Idle to walking:**
+
+The legs gradually begin moving instead of instantly switching into a walking cycle.
+
+**Walking to running:**
+
+Increase stride length, stepping frequency, and foot movement speed.
+
+**Running to sprinting:**
+
+Increase the distance between foot placements and make the leg movements more aggressive.
+
+**Sprinting to stopping:**
+
+The legs should reposition to absorb the sudden reduction in momentum.
+
+Use smooth interpolation between gait states.
+
+Avoid abrupt animation changes.
+
+### 3. Fix foot sliding
+
+This is extremely important.
+
+Implement more reliable world-space foot planting.
+
+During the stance phase, a foot should remain planted relative to the world while the mech moves over it.
+
+During the swing phase, the foot should move toward its next target.
+
+Calculate the target positions based on:
+- Actual velocity.
+- Current acceleration.
+- Movement direction.
+- Body rotation.
+- Angular velocity.
+- Gait phase.
+- Leg configuration.
+
+When the mech starts accelerating, predict where the foot needs to land.
+
+When the mech changes direction, gradually adjust the next foot placement.
+
+Do not allow the legs to randomly snap to new positions.
+
+### 4. High-speed inverse kinematics
+
+Improve the inverse kinematics solver.
+
+Prevent:
+- Excessive leg stretching.
+- Joint flipping.
+- Unnatural knee bending.
+- Feet entering the chassis.
+- Legs passing through one another.
+- Random foot teleportation.
+- Uncontrolled joint movement.
+- Excessive foot sliding.
+
+Use joint angle constraints and maximum reach limits.
+
+When the chassis moves faster than a leg can complete its current step, smoothly advance its next stepping cycle rather than allowing it to stretch unnaturally.
+
+### 5. Body stabilization
+
+The chassis should respond to the actual leg movement.
+
+At high speeds:
+- The body should lean slightly in the direction of movement.
+- The chassis should react to sharp turns.
+- The suspension should respond to landing forces.
+- The body should shift during acceleration.
+- The legs should adapt to the changing center of mass.
+
+Heavy units should retain their weight.
+
+Lightweight units should have more agile movement.
+
+### 6. Different leg systems for different units
+
+Make sure the new animation system works with every existing playable and enemy mech.
+
+This includes:
+- Recon Scout.
+- Standard Combat Walker.
+- Long-Range Sniper.
+- Heavy Assault Walker.
+- Artillery Walker.
+- Electronic Warfare Walker.
+- Engineer Support Walker.
+- M-09 COLOSSUS.
+- Thunderhead bosses.
+- New flying units.
+
+Grounded mechs should use their procedural leg system.
+
+Flying units should use appropriate landing, takeoff, and aerial stabilization animations.
+
+Make the animation system modular so each unit can define its own stride length, leg count, gait, and movement limits.
+
+---
+
+# PART 3: NEW DASH MECHANIC
+
+Add a dedicated dash ability to all suitable ground-based playable mechs.
+
+The dash should make movement significantly more responsive and exciting.
+
+It should function as a short, powerful burst of acceleration that allows the player to rapidly reposition during combat.
+
+### 1. Dash controls
+
+Default control:
+
+- Left Shift: Sprint.
+- Space: Dash.
+
+The dash direction should depend on the player's movement input.
+
+Support:
+- Forward dash.
+- Backward dash.
+- Left dash.
+- Right dash.
+- Diagonal dash.
+
+When no directional input is held, dash in the current movement direction.
+
+Allow players to customize the dash key in the settings menu.
+
+### 2. Dash physics
+
+The dash must be physically integrated into the existing movement system.
+
+Do not simply teleport the player or instantly change its position.
+
+When dashing:
+- Apply a strong directional acceleration impulse.
+- Temporarily increase maximum movement speed.
+- Preserve some existing momentum.
+- Apply appropriate friction and air resistance.
+- Allow the mech to gradually decelerate after the dash.
+- Prevent instant direction changes.
+- Respect collision with buildings and environmental objects.
+
+The dash should feel powerful and responsive.
+
+However, different mechs must have different dash characteristics.
+
+### Unit-specific dash behavior
+
+Light units:
+- Longer dash distance.
+- Faster acceleration.
+- Shorter recovery time.
+
+Standard units:
+- Balanced dash speed and distance.
+
+Heavy units:
+- Shorter dash distance.
+- Stronger initial force.
+- More noticeable chassis movement.
+- Longer recovery time.
+
+Artillery units:
+- Limited dash capability.
+- More noticeable stability disruption.
+
+Do not make every mech dash identically.
+
+### 3. Cooldown and dash energy
+
+Implement a dash cooldown system.
+
+Display the dash cooldown clearly in the HUD.
+
+Make the cooldown depend on unit weight and equipment.
+
+Allow special upgrades to improve:
+- Dash distance.
+- Dash acceleration.
+- Cooldown.
+- Recovery speed.
+
+Do not allow infinite uncontrolled dashing.
+
+### 4. Afterimage effect
+
+This is one of the most important visual features.
+
+When the player dashes, the mech should leave a sequence of glowing afterimages behind it.
+
+The effect should look stylish, fast, and futuristic.
+
+Create several semi-transparent copies of the mech's previous positions.
+
+Each afterimage should:
+- Preserve the mech's current pose.
+- Have decreasing opacity.
+- Fade away quickly.
+- Have a subtle glow.
+- Disappear smoothly.
+- Follow the direction and movement of the dash.
+
+The afterimages should capture the actual mech sprite, including its legs and weapon orientation.
+
+Do not use a generic circle or simple speed streak as a replacement.
+
+The effect should make it look like the mech is moving so quickly that several visual echoes remain behind it.
+
+### 5. Additional dash visual effects
+
+Add:
+- Directional motion streaks.
+- Small dust bursts.
+- Mechanical leg movement.
+- Brief energy trails.
+- Subtle atmospheric distortion.
+- Footstep particles.
+- A short acceleration flash.
+
+For heavy mechs, create a more mechanical and forceful dash effect.
+
+For lightweight mechs, use sharper and more futuristic visual effects.
+
+### 6. Dash animation
+
+The procedural legs must have a dedicated dash animation.
+
+During a ground dash:
+- Legs reposition into an aggressive propulsion gait.
+- The body leans toward the dash direction.
+- The legs push against the ground.
+- The chassis lowers slightly.
+- The mech returns to its normal gait after the burst.
+
+Do not freeze the legs during a dash.
+
+The animation must remain smooth even during rapid consecutive movement changes.
+
+---
+
+# PART 4: GRAPPLING HOOK SYSTEM
+
+Add a fully functional grappling system.
+
+The player should be able to grapple onto buildings, infrastructure, environmental objects, and suitable terrain surfaces.
+
+This should introduce a completely new movement option.
+
+The grapple should allow the player to rapidly reposition, pull toward structures, escape dangerous situations, and move across complex environments.
+
+Do not make the grappling hook a decorative animation.
+
+It must actually interact with the world's physics and collision systems.
+
+### 1. Grappling controls
+
+Default control:
+
+- E: Grapple.
+
+The player aims with the mouse cursor.
+
+When a valid grappling point is available, display a targeting indicator.
+
+Pressing E launches the grappling cable toward the selected point.
+
+If the player is already grappling, pressing E again disconnects the cable.
+
+### 2. Grapple targets
+
+Allow grappling onto suitable:
+
+- Buildings.
+- Walls.
+- Towers.
+- Bridges.
+- Industrial structures.
+- Large infrastructure.
+- Ruins.
+- Large environmental objects.
+- Special designated anchor points.
+
+The grapple should not attach to every random decorative object.
+
+Each object must have appropriate collision and grapple properties.
+
+Create an extensible system where developers can mark specific objects as valid grapple targets.
+
+### 3. Grapple physics
+
+Use a real cable or rope simulation.
+
+At minimum, implement a physically convincing grapple constraint with:
+- Anchor position.
+- Rope length.
+- Maximum reach.
+- Tension.
+- Pull force.
+- Momentum preservation.
+- Detachment behavior.
+
+When the player attaches to an object, the cable should visibly connect the mech to the anchor point.
+
+As the player moves:
+- The cable should remain connected.
+- The player should swing or pull toward the anchor.
+- Momentum should be preserved.
+- The cable should respond to movement.
+- The player should not instantly teleport.
+
+The grapple must interact with the existing movement physics.
+
+### 4. Grapple movement modes
+
+Support multiple ways of using the grapple.
+
+**Pull:**
+
+When the player activates the grapple, apply force toward the anchor.
+
+The player should accelerate toward the targeted structure.
+
+**Swing:**
+
+When attached to a point above or beside the player, allow momentum-based swinging.
+
+The player should be able to build up speed by moving and maintaining momentum.
+
+**Reel in:**
+
+Allow the player to shorten the rope and pull closer to the anchor.
+
+**Release:**
+
+When disconnected, preserve the player's current momentum.
+
+The player should be able to launch themselves away from the grapple point.
+
+**Grapple Dash:**
+
+Allow the player to activate a dash immediately after releasing the grapple.
+
+This should combine the grapple's preserved momentum with the dash impulse.
+
+It should create an especially fast movement maneuver.
+
+### 5. Cable visual effects
+
+The grappling cable must look mechanical.
+
+Include:
+- A visible launcher.
+- Cable deployment.
+- Cable tension.
+- An anchor impact effect.
+- Mechanical connection.
+- Small sparks during attachment.
+- Retraction animation.
+
+Different units can have different grapple cable designs.
+
+Make the cable visible at all times while attached.
+
+Use appropriate rendering layers so the cable can pass behind or in front of the mech depending on its attachment position.
+
+### 6. Grapple limitations
+
+Keep the mechanic balanced.
+
+Implement:
+- Maximum grappling distance.
+- Invalid target detection.
+- Cable obstruction checks.
+- Cooldown after detachment where necessary.
+- Maximum tension.
+- Attachment failure when the target is destroyed.
+
+When the anchor object is destroyed, the grapple should automatically detach.
+
+The player must not be pulled through buildings or solid obstacles.
+
+Make grappling useful without making ordinary movement irrelevant.
+
+---
+
+# PART 5: NEW PLAYABLE UNIT - ROCKET-POWERED FLYING MECH
+
+Add an entirely new playable unit to the roster.
+
+Official designation:
+
+**A-12 VALKYRIE - ROCKET ASSAULT WALKER**
+
+Role: Aerial assault, rapid deployment, and high-mobility combat.
+
+This unit is designed to fly using powerful rocket propulsion systems.
+
+Unlike the other units, which rely primarily on their spider-like legs to move, this unit can take off, hover, fly across the battlefield, and land.
+
+It should introduce an entirely new playstyle.
+
+The flying mech should be highly mobile and capable of attacking enemies from unexpected angles.
+
+### 1. Physical appearance
+
+Design an original flying combat mech.
+
+It should feature:
+- A compact armored central chassis.
+- Four articulated mechanical legs for landing.
+- Multiple rocket propulsion units.
+- Rear or side-mounted thrusters.
+- Additional directional stabilizers.
+- Weapon mounting points.
+- Flight control sensors.
+- Heat exhausts.
+- Reinforced armor.
+
+It should still look like part of the existing spider-mech universe.
+
+Do not turn it into a conventional fighter jet.
+
+Its identity should remain that of a mechanical walker equipped with rocket propulsion.
+
+### 2. Rocket propulsion system
+
+The Valkyrie uses rocket engines to achieve flight.
+
+Implement:
+- Main propulsion.
+- Directional thrusters.
+- Vertical lift.
+- Lateral thrust.
+- Forward acceleration.
+- Reverse thrust.
+- Hover stabilization.
+- Controlled descent.
+
+The player should have precise control over its flight direction.
+
+### 3. Flight controls
+
+Suggested default controls:
+
+- W: Forward.
+- A: Left.
+- S: Backward.
+- D: Right.
+- Space: Ascend.
+- Ctrl: Descend.
+- Shift: Rocket boost.
+- E: Grapple, if available to this unit.
+- Mouse: Aim.
+- Left Click: Fire primary weapon.
+- Right Click: Fire secondary weapon.
+
+Make the controls configurable.
+
+### 4. Flight physics
+
+Flight should not feel like ordinary walking with a different sprite.
+
+Implement an actual aerial movement system.
+
+Include:
+- Vertical velocity.
+- Horizontal velocity.
+- Thrust acceleration.
+- Gravity.
+- Air resistance.
+- Momentum.
+- Inertia.
+- Directional stabilization.
+- Maximum flight speed.
+- Hover control.
+- Landing detection.
+
+The flying unit should retain momentum after releasing movement controls.
+
+Turning should gradually change the direction of movement.
+
+Rocket thrust should create visible acceleration.
+
+### 5. Flight energy and overheating
+
+Add a rocket energy or heat system.
+
+Continuous flight and boosting should generate heat.
+
+When overheating:
+- Reduce boost effectiveness.
+- Restrict maximum thrust temporarily.
+- Display a warning.
+- Allow the system to cool down.
+
+Normal hovering should remain possible, but aggressive boosting should require management.
+
+Balance this carefully so the unit remains enjoyable.
+
+### 6. Takeoff and landing animations
+
+Create dedicated animations.
+
+**Takeoff:**
+
+1. The legs adjust.
+2. Thrusters activate.
+3. Exhaust flames appear.
+4. The chassis lifts from the ground.
+5. Landing legs retract or reposition.
+
+**Hovering:**
+
+- Thrusters continuously adjust.
+- The mech moves slightly to maintain stability.
+- Directional stabilizers react to movement.
+
+**Flying:**
+
+- Rocket flames increase during acceleration.
+- The chassis tilts according to movement.
+- Small stabilization movements occur.
+
+**Landing:**
+
+1. The mech slows down.
+2. The thrusters decrease power.
+3. The legs extend.
+4. Feet approach the ground.
+5. Landing impact occurs.
+6. Suspension compresses.
+7. Normal procedural walking resumes.
+
+Make these animations smooth.
+
+---
+
+# PART 6: FLIGHT COMBAT AND WEAPON SYSTEM
+
+The Valkyrie should have weapons specifically suited to aerial combat.
+
+Suggested weapons:
+
+**Aerial Autocannon**
+
+- Medium fire rate.
+- Good accuracy while flying.
+- Moderate recoil.
+- Effective against ordinary enemy units.
+
+**Rocket Pod**
+
+- Multiple rockets.
+- Small area explosions.
+- Visible smoke trails.
+- Limited ammunition.
+
+**Air-to-Ground Missile**
+
+- Lock-on system.
+- High damage.
+- Longer cooldown.
+- Effective against heavy enemy platforms.
+
+**Precision Railgun**
+
+- Optional alternative weapon.
+- High damage.
+- Requires reduced movement for best accuracy.
+
+Weapons should interact with flight physics.
+
+Firing powerful weapons while flying should slightly destabilize the chassis.
+
+Recoil should physically affect the flight trajectory when appropriate.
+
+The player should have to manage thrust while engaging targets.
+
+---
+
+# PART 7: NEW ENEMY TYPE - ROCKET-POWERED FLYING ENEMIES
+
+Add entirely new AI-controlled flying enemies.
+
+The player should not be the only unit capable of flight.
+
+Create at least three different flying enemy types.
+
+They must be fully functional enemies with independent flight physics and combat AI.
+
+## ENEMY 01: INTERCEPTOR
+
+Role: Fast aerial pursuit.
+
+Characteristics:
+- Lightweight chassis.
+- High flight speed.
+- Powerful directional thrusters.
+- Low armor.
+- Fast turning.
+- Light autocannon.
+
+Behavior:
+- Pursues the player.
+- Attempts to flank.
+- Performs fast aerial strafing.
+- Avoids staying in one position.
+- Repositions after attacking.
+
+It should be difficult to hit but relatively fragile.
+
+## ENEMY 02: ROCKET HUNTER
+
+Role: Aerial missile attacker.
+
+Characteristics:
+- Medium armor.
+- Multiple rocket launchers.
+- Moderate flight speed.
+- Good targeting systems.
+
+Behavior:
+- Maintains a suitable attack distance.
+- Locks onto the player.
+- Fires guided missiles.
+- Changes altitude or position after firing.
+- Retreats when heavily damaged.
+
+Its missiles should have visible warning indicators.
+
+## ENEMY 03: HEAVY SKY BREAKER
+
+Role: Heavy aerial assault.
+
+Characteristics:
+- Large armored body.
+- Powerful rocket propulsion.
+- Heavy autocannons.
+- Multiple missile systems.
+- Lower flight speed than the Interceptor.
+- High durability.
+
+Behavior:
+- Aggressively approaches the player.
+- Uses heavy weapons.
+- Performs aerial bombardment.
+- Tries to maintain firing angles.
+- Retreats to cool its propulsion systems when overheating.
+
+It should feel like a flying heavy weapons platform.
+
+### Enemy flight AI
+
+Flying enemies must have a dedicated AI movement controller.
+
+Do not make them follow the player using ordinary ground pathfinding.
+
+Implement:
+- Three-dimensional-style altitude movement in the 2D game world.
+- Obstacle avoidance.
+- Flight path planning.
+- Target tracking.
+- Aerial pursuit.
+- Evasive maneuvers.
+- Rocket boost management.
+- Hover behavior.
+- Landing when appropriate.
+
+They should understand terrain and avoid flying directly into buildings.
+
+Use a dedicated flight navigation system.
+
+---
+
+# PART 8: IMPROVED MOVEMENT COMBINATIONS
+
+Make the new movement systems work together.
+
+The player should be able to combine movement mechanics rather than using them independently.
+
+Examples:
+
+**Dash + Grapple**
+
+Dash toward an anchor, grapple onto it, swing around a structure, and release with preserved momentum.
+
+**Grapple + Dash Release**
+
+Pull toward a tower, release the cable, and immediately dash forward.
+
+**Flight + Dash**
+
+The Valkyrie can use a short directional rocket boost while airborne.
+
+**Flight + Grapple**
+
+Allow the flying unit to grapple onto valid infrastructure to stabilize itself or rapidly reposition.
+
+**Ground Movement + Grapple**
+
+Allow ordinary walking mechs to grapple onto a building and pull themselves upward or toward its side.
+
+**Dash + Weapon Fire**
+
+Allow weapons to continue firing while dashing, but make powerful weapons less accurate or destabilizing during rapid movement.
+
+These combinations should be responsive and physically consistent.
+
+Avoid unnecessary restrictions that make movement combinations feel clumsy.
+
+---
+
+# PART 9: GAMEPLAY PACE AND COMBAT OVERHAUL
+
+Make the overall gameplay much faster-paced.
+
+The existing game has a heavy artillery identity, but movement should become more dynamic.
+
+I want more opportunities for:
+- Rapid repositioning.
+- Pursuit.
+- Evasion.
+- Aerial combat.
+- Grappling.
+- Flanking.
+- Midair attacks.
+- Fast engagement and disengagement.
+
+Increase the pace of combat without turning every weapon into an automatic machine gun.
+
+Maintain the existing weapon identities.
+
+Artillery should remain powerful and deliberate.
+
+Light weapons should be more suitable for fast movement.
+
+The result should be a battlefield where massive artillery platforms coexist with extremely agile ground and aerial units.
+
+### Combat adjustments
+
+- Improve player responsiveness.
+- Reduce unnecessary movement delays.
+- Make dash cooldowns reasonable.
+- Allow faster target acquisition for agile units.
+- Improve enemy repositioning.
+- Make aerial enemies more active.
+- Add encounters that combine ground and aerial enemies.
+- Encourage vertical movement and grappling.
+
+Keep heavy units heavy.
+
+Do not make the Heavy Assault Walker or Artillery Walker move like the Valkyrie.
+
+The increased game speed should come primarily from additional movement options, better responsiveness, and improved combat pacing.
+
+---
+
+# PART 10: UI AND HUD ADDITIONS
+
+Update the combat HUD to support the new mobility features.
+
+Display:
+
+**Dash**
+- Dash cooldown.
+- Dash availability.
+- Current dash state.
+
+**Grapple**
+- Target indicator.
+- Valid/invalid anchor status.
+- Grapple connection status.
+- Cable tension indicator.
+- Grapple distance.
+
+**Flight**
+- Altitude.
+- Vertical velocity.
+- Rocket energy or heat.
+- Boost availability.
+- Flight stability.
+
+**Enemy aircraft**
+- Aerial enemy indicators.
+- Altitude or relative height.
+- Missile lock-on warnings.
+- Incoming rocket warnings.
+
+Keep the interface readable.
+
+Do not clutter the screen with unnecessary information.
+
+Use the existing industrial military HUD design.
+
+---
+
+# PART 11: SETTINGS AND CUSTOMIZATION
+
+Add or update settings for:
+
+- Camera shake.
+- Cinematic camera effects.
+- Dash visual effects.
+- Afterimage intensity.
+- Grapple visual effects.
+- Flight visual effects.
+- Rocket exhaust effects.
+- Mouse sensitivity.
+- Flight control sensitivity.
+- Camera zoom.
+- Control remapping.
+
+Make sure visual effect settings do not unintentionally change gameplay physics.
+
+Allow players to disable afterimages separately from the dash mechanic.
+
+Allow players to disable excessive visual distortion without removing important gameplay indicators.
+
+Save settings locally.
+
+---
+
+# PART 12: TECHNICAL IMPLEMENTATION
+
+Integrate the new systems into the existing project.
+
+Preserve the current architecture and all working gameplay systems.
+
+Recommended additions:
+
+**Movement**
+- DashController.
+- DashPhysics.
+- AfterimageRenderer.
+- MovementStateController.
+- GaitController.
+- HighSpeedLegAnimator.
+
+**Grappling**
+- GrappleController.
+- GrappleCable.
+- GrappleAnchor.
+- GrapplePhysics.
+- GrappleTargetRegistry.
+
+**Flight**
+- FlightController.
+- RocketPropulsion.
+- FlightPhysics.
+- FlightStabilizer.
+- FlightAnimationController.
+- FlightEnergyManager.
+
+**Enemies**
+- FlyingEnemy.
+- AerialEnemyAI.
+- AerialNavigation.
+- MissileLockOn.
+- FlightCombatController.
+
+**Camera**
+- CameraEffectsManager.
+- CameraShakeSettings.
+- CinematicCameraController.
+
+Use the existing update loop and fixed physics timestep.
+
+Do not create separate, conflicting physics systems.
+
+Ensure that all movement is frame-rate independent.
+
+Optimize afterimage rendering so repeated dashes do not create excessive memory usage.
+
+Use object pooling where appropriate.
+
+Make grappling constraints stable and prevent extreme physics forces.
+
+Use smooth interpolation for animation transitions.
+
+Ensure flying units can interact properly with grounded units, weapons, projectiles, and the environment.
+
+---
+
+# PART 13: STRICT QUALITY REQUIREMENTS
+
+These requirements must be followed:
+
+1. The camera shake OFF option must completely work.
+2. High-speed procedural leg animations must be fixed, not hidden by reducing speed.
+3. Dashing must have actual physics and cooldowns.
+4. Afterimages must use the actual mech pose and fade naturally.
+5. Grappling must physically connect to valid world objects.
+6. The player must be able to swing, pull, release, and preserve momentum.
+7. The Valkyrie must have a functional flight system.
+8. Flying enemies must have their own flight physics.
+9. The flying enemies must be able to fight the player and navigate obstacles.
+10. All new systems must work together.
+11. Existing playable units must remain functional.
+12. All existing boss and artillery systems must remain intact.
+13. Do not add menu options that do nothing.
+14. Do not substitute animations for actual gameplay functionality.
+15. Do not allow physics bugs during rapid movement or grappling.
+16. Do not allow the legs to stretch or break at high speeds.
+17. Do not make the flying units behave like ground units that simply float above the map.
+
+If a complex system cannot be implemented completely in one development pass, implement a functional version first and expand it without breaking the rest of the game.
+
+---
+
+# FINAL EXPECTED RESULT
+
+The game should now support a much faster and more versatile combat experience.
+
+The player can control traditional spider-legged combat mechs, rapidly dash across the battlefield, grapple onto infrastructure, swing between buildings, and launch themselves into combat.
+
+A new rocket-powered flying mech adds an entirely new way to play.
+
+Enemy forces should also contain flying machines that can pursue, flank, and attack from the air.
+
+The procedural leg animations must remain smooth at high speeds.
+
+The camera shake should be completely configurable.
+
+The dash should have stylish afterimages and satisfying acceleration.
+
+The grappling system should make the battlefield feel more interactive and vertical.
+
+The flight system should make aerial combat a fully supported part of the game.
+
+**MOST IMPORTANT DESIGN DIRECTION:**
+
+I want the game to feel like a combination of heavy futuristic mech warfare and extremely dynamic movement-based combat.
+
+One moment, the player should be firing a massive artillery cannon.
+
+The next moment, they should be dashing between enemy attacks, grappling onto a building, swinging around it, and launching themselves back into combat.
+
+Above them, rocket-powered enemy machines should be chasing allied units while missiles and autocannon fire cross the battlefield.
+
+Make movement an important part of combat, not just a way to travel from one location to another.
+
+The game should be much faster, more fluid, more exciting, and visually impressive while preserving the mechanical identity of the original mechs.

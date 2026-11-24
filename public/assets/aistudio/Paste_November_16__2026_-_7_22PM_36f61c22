@@ -1,0 +1,839 @@
+# MAJOR GAME UPDATE: PLAYABLE MORTAR WALKER + HIGH-SPEED THUNDERHEAD BOSS OVERHAUL
+
+Implement the following major additions and changes to the existing game.
+
+This update has three main objectives:
+
+1. Add a new playable long-range mortar mech to the player's unit roster.
+2. Completely overhaul the Thunderhead boss so it becomes an extremely fast, aggressive, mobile artillery machine.
+3. Make Thunderhead bosses actually spawn and function in different game modes, including Skirmish, Survival, and Free Roam.
+
+Preserve all existing mechanics, physics, procedural leg animations, weapon systems, unit selection, and game modes. Extend the existing architecture instead of unnecessarily rewriting working systems.
+
+---
+
+# PART 1: NEW PLAYABLE UNIT - LONG-RANGE MORTAR WALKER
+
+Add a completely new playable unit to the player's roster.
+
+Official designation:
+
+**M-09 COLOSSUS - MOBILE MORTAR WALKER**
+
+Role: Long-range artillery support.
+
+This unit is designed to bombard enemy positions from extremely long distances. It should function as a player-controlled counterpart to the Thunderhead's artillery gameplay, but with a smaller chassis and different battlefield capabilities.
+
+It should not feel like a standard combat mech with a mortar attached.
+
+It should feel like a specialized mobile artillery platform.
+
+## 1. Physical appearance
+
+Create an original design with:
+
+- A large armored central chassis.
+- An oversized elevated mortar cannon.
+- A visible ammunition compartment.
+- Mechanical shell-loading equipment.
+- Reinforced hydraulic supports.
+- Six to eight heavy articulated spider legs.
+- A rear ammunition storage module.
+- Multiple sensor systems.
+- Visible recoil mechanisms.
+- Industrial military markings.
+
+Its mortar should be its defining visual feature.
+
+The weapon should occupy a substantial portion of the mech's upper structure.
+
+Make it visibly heavier than the Standard Combat Walker, but significantly smaller than the Thunderhead boss.
+
+Its silhouette must be recognizable even when zoomed out.
+
+Use the existing game's dark, gritty military science-fiction art direction.
+
+## 2. Movement and physics
+
+The M-09 should have moderate movement speed.
+
+It should be capable of repositioning between firing positions, but should not be as agile as the Recon Scout.
+
+Characteristics:
+
+- Heavy chassis.
+- Moderate acceleration.
+- Moderate maximum speed.
+- Slower turning.
+- High recoil resistance when deployed.
+- Lower stability while moving and firing.
+- Longer braking distance.
+- Strong suspension.
+
+The procedural legs must reflect its weight.
+
+Walking should look deliberate and heavy.
+
+When deploying its mortar, the unit should spread its legs and lower its chassis to create a stable firing platform.
+
+## 3. Primary weapon: Heavy mortar cannon
+
+The M-09 should have a powerful ballistic mortar.
+
+Unlike regular cannons, it must launch shells upward into a curved trajectory.
+
+The player should aim at a location rather than directly aiming at an enemy sprite.
+
+When the player aims, show an artillery targeting interface.
+
+The interface should include:
+
+- Targeting circle.
+- Predicted impact location.
+- Estimated projectile travel time.
+- Maximum firing range.
+- Minimum firing range.
+- Current ammunition type.
+- Reload status.
+
+The mortar must be capable of attacking enemies that are outside the player's immediate camera view, provided they are within its firing range and the player has an appropriate targeting solution.
+
+### Firing sequence
+
+When firing:
+
+1. The mortar elevates toward the selected firing angle.
+2. The mechanical supports adjust.
+3. The legs spread into a stable configuration.
+4. The chassis lowers slightly.
+5. The loading mechanism completes its firing preparation.
+6. The mortar fires.
+7. The chassis physically recoils.
+8. The legs absorb the recoil.
+9. The shell follows a ballistic trajectory.
+10. The projectile impacts the designated location.
+
+The firing animation should be properly integrated with the existing physics and procedural leg systems.
+
+Do not use a fake recoil animation.
+
+The actual chassis must react to the weapon's firing force.
+
+## 4. Ammunition types
+
+Give the player multiple mortar ammunition options.
+
+**HE - High Explosive**
+
+The standard ammunition.
+
+- Large conventional explosion.
+- Strong area damage.
+- Moderate reload.
+- Effective against groups of enemies.
+
+**AP - Armor Penetrating**
+
+- Smaller impact area.
+- Higher damage against heavily armored targets.
+- More effective against enemy boss components.
+
+**CLUSTER - Cluster Shell**
+
+- Separates into smaller explosive projectiles.
+- Covers a wide area.
+- Effective against enemy formations.
+
+**SMOKE - Smoke Shell**
+
+- Creates a large smoke cloud.
+- Blocks visibility.
+- Can help allied units reposition.
+- Disrupts enemy targeting.
+
+**EMP - Electronic Disruption**
+
+- Creates an electronic disruption field.
+- Temporarily interferes with enemy sensors.
+- Disrupts nearby electronic targeting systems.
+
+Each ammunition type should have distinct projectiles, sounds, explosions, and tactical applications.
+
+## 5. Special ability: OVERWATCH BARRAGE
+
+Give the M-09 a unique ultimate ability.
+
+When activated, the player selects a large target area.
+
+The mech performs a special preparation sequence before launching a rapid series of artillery shells at the selected area.
+
+During the ability:
+
+- Its legs deploy into a reinforced stance.
+- The mortar elevates.
+- Ammunition compartments open.
+- Mechanical loading systems operate rapidly.
+- Multiple shells are launched.
+- Each projectile follows its own ballistic trajectory.
+- The target area experiences successive explosions.
+
+The ability should have a substantial cooldown.
+
+Use a cinematic camera angle during the initial preparation, but return control to the player quickly.
+
+Make the entire ability feel powerful and satisfying.
+
+## 6. Unit selection integration
+
+Add M-09 COLOSSUS to the existing unit selection screen.
+
+Include:
+
+- A unique unit preview.
+- Animated procedural legs.
+- Animated mortar elevation.
+- A firing demonstration.
+- Unit statistics.
+- Weapon information.
+- Ammunition selection.
+- Special ability description.
+
+Allow the player to test it in the existing training environment.
+
+Make sure it is genuinely playable in all game modes where player units are permitted.
+
+---
+
+# PART 2: THUNDERHEAD BOSS OVERHAUL - HIGH-SPEED MOBILE ARTILLERY
+
+Completely change the movement behavior of the Thunderhead boss variants.
+
+Previously, Thunderhead was designed as a very slow, extremely heavy artillery installation.
+
+I now want it to become an extremely FAST mobile artillery platform.
+
+It should be terrifying because of its combination of massive size, high movement speed, and devastating long-range artillery.
+
+**It must no longer behave like a stationary siege machine.**
+
+It should actively hunt, reposition, pursue, and outmaneuver the player while maintaining its long-range artillery capabilities.
+
+## 1. Dramatically increased movement speed
+
+Increase the Thunderhead's movement speed substantially.
+
+It should be capable of traversing large portions of the battlefield much faster than before.
+
+Its movement should be surprising considering its enormous size.
+
+Give it:
+
+- High movement speed.
+- Powerful acceleration.
+- Strong engine output.
+- Faster directional changes.
+- Improved rotational responsiveness.
+- Rapid repositioning.
+- High-speed pursuit behavior.
+- Fast emergency retreats.
+
+It should be able to move between artillery firing positions quickly.
+
+Do not make it teleport.
+
+Its movement must remain physically simulated.
+
+Its enormous legs should visibly move much faster to support the increased speed.
+
+### Important movement distinction
+
+The boss must still LOOK and FEEL massive.
+
+Do not simply make it look like a small, lightweight spider mech.
+
+Its chassis should retain substantial inertia.
+
+Its body should experience:
+- Large suspension movement.
+- Significant weight shifting.
+- Heavy foot impacts.
+- Chassis vibration.
+- Ground dust.
+- Mechanical stress during sharp turns.
+
+When accelerating, its enormous legs should push aggressively against the ground.
+
+When turning at high speed, its body should lean and redistribute weight.
+
+When braking, its legs should spread and stabilize the chassis.
+
+The result should be a gigantic machine that can move frighteningly fast without appearing weightless.
+
+## 2. High-speed procedural leg animation
+
+Rework all Thunderhead leg animations to support its increased movement speed.
+
+The boss needs its own specialized fast movement gait.
+
+Do not reuse the regular walking animation.
+
+Add these movement states:
+
+**Heavy idle:** Subtle hydraulic movement and mechanical adjustments.
+
+**Fast walking:** Long, heavy strides with coordinated foot placement.
+
+**Rapid movement:** Faster alternating leg cycles and increased chassis movement.
+
+**Full-speed pursuit:** Aggressive leg movements, longer strides, and pronounced ground impacts.
+
+**High-speed turning:** Individual legs reposition to maintain stability.
+
+**Emergency braking:** Legs spread and dig into the terrain.
+
+**Artillery deployment:** The legs rapidly reposition into a firing stance.
+
+**Recoil recovery:** The legs absorb the weapon's firing force and stabilize the chassis.
+
+**Critical damage:** Damaged legs become less coordinated and reduce movement performance.
+
+Implement real inverse kinematics and world-space foot planting.
+
+The feet should not slide excessively.
+
+The body must react to the actual movement of the feet.
+
+At high speeds, the boss should create considerable dust and terrain effects.
+
+## 3. New boss combat behavior
+
+The Thunderhead should now act like an aggressive mobile artillery hunter.
+
+Instead of remaining far away in one position, it should constantly change its position to find better firing angles.
+
+Its new combat behavior should include:
+
+- Rapidly moving between artillery positions.
+- Pursuing the player's general location.
+- Tracking allied formations.
+- Firing while maintaining distance.
+- Retreating when surrounded.
+- Moving around terrain obstacles.
+- Repositioning after major artillery attacks.
+- Attempting to surround or cut off escape routes.
+- Using its defensive weapons against nearby attackers.
+
+It should be capable of changing its position during a battle.
+
+The player should never be able to assume that the boss will remain in one place.
+
+## 4. Fast artillery firing system
+
+Rework its artillery attacks to complement its increased mobility.
+
+The boss should be capable of quickly stopping, stabilizing, firing, and moving again.
+
+Its new attack sequence should be:
+
+1. Detect a potential target.
+2. Calculate the firing solution.
+3. Rapidly reposition if necessary.
+4. Deploy its firing stance.
+5. Elevate the mortar.
+6. Load ammunition.
+7. Fire the projectile.
+8. Recover from recoil.
+9. Immediately begin moving toward another position.
+
+Reduce unnecessary idle time between attacks.
+
+The boss should feel like a mobile artillery platform that is constantly relocating to avoid counterattacks.
+
+Do not remove the physical firing preparation and recoil.
+
+The weapons should still feel extremely heavy.
+
+## 5. Make each boss variant faster differently
+
+Do not simply apply the same movement speed multiplier to every variant.
+
+Each Thunderhead variant should have a distinct movement personality.
+
+**THUNDERHEAD - SIEGE**
+
+Now becomes a fast-moving standard artillery hunter.
+
+It should have excellent movement speed for its size, rapid repositioning, and reliable long-range bombardment.
+
+**THUNDERHEAD - CATACLYSM**
+
+Despite being the largest variant, it should have surprisingly powerful movement and acceleration.
+
+It should be capable of rapidly crossing the battlefield.
+
+Its enormous size should make its movements especially intimidating.
+
+It should have slightly slower turning than the other variants but extremely powerful forward acceleration.
+
+**THUNDERHEAD - STORMBRINGER**
+
+Make this the fastest variant.
+
+It should be extremely aggressive and constantly reposition.
+
+It can perform rapid bombardment sequences before moving away.
+
+**THUNDERHEAD - FORTRESS**
+
+Make it the slowest Thunderhead variant, but still considerably faster than its original version.
+
+It should have strong acceleration and extremely stable movement.
+
+It can rapidly establish defensive artillery positions.
+
+**THUNDERHEAD - BLACKOUT**
+
+Give it high mobility and rapid repositioning.
+
+It should use electronic interference to disrupt enemy tracking before moving to another firing location.
+
+---
+
+# PART 3: BOSS ULTIMATE ATTACKS - SPECIAL ANIMATIONS AND CUTSCENES
+
+This is a major priority.
+
+Every Thunderhead variant must receive a unique ultimate ability with its own dedicated animation sequence and cinematic presentation.
+
+I do not want the ultimate attacks to simply be ordinary artillery shots with larger explosions.
+
+They should feel like special boss abilities.
+
+Each ultimate needs:
+
+- A unique name.
+- A distinct visual identity.
+- A dedicated preparation animation.
+- Unique mechanical movements.
+- A cinematic camera sequence.
+- A special sound design.
+- A recognizable warning.
+- An enormous attack effect.
+- A recovery sequence.
+
+Use the existing camera, animation, particle, weapon, and audio systems.
+
+Create a reusable boss ultimate framework so additional boss abilities can be added later.
+
+## 1. Ultimate: SIEGE - DEADFALL PROTOCOL
+
+The Siege variant launches a massive strategic mortar attack.
+
+Sequence:
+
+1. The boss abruptly stops moving.
+2. Its enormous legs rapidly spread into a reinforced firing stance.
+3. Multiple armor panels open.
+4. Its mortar cannon elevates.
+5. A series of mechanical locking sounds plays.
+6. The camera briefly cuts to a dramatic angle showing the cannon.
+7. A warning siren activates across the battlefield.
+8. The boss fires an enormous strategic shell.
+9. The camera follows the shell through the sky.
+10. The shell descends toward its target.
+11. A massive explosion fills the impact area.
+12. The camera shakes as the shockwave expands.
+
+The ability should be extremely powerful and have a substantial cooldown.
+
+## 2. Ultimate: CATACLYSM - EXTINCTION SALVO
+
+This should be one of the most impressive attacks in the game.
+
+The Cataclysm variant prepares an enormous multi-shell strategic bombardment.
+
+Sequence:
+
+1. The boss rapidly repositions toward a clear firing location.
+2. Its massive legs lock into the ground.
+3. Multiple artillery compartments open.
+4. The enormous main cannon begins charging and elevating.
+5. Additional launch mechanisms activate.
+6. A dramatic cinematic camera angle reveals the full machine.
+7. Several strategic shells launch in sequence.
+8. The camera briefly follows different projectiles.
+9. Multiple impact markers appear across a wide battlefield.
+10. Enormous explosions occur in succession.
+
+Make the bombardment look like a coordinated strategic strike.
+
+Use large smoke columns, enormous shockwaves, environmental lighting, and powerful audio effects.
+
+The player must receive enough warning and time to react.
+
+## 3. Ultimate: STORMBRINGER - HELLFIRE PURSUIT
+
+This ultimate should emphasize the boss's speed.
+
+Sequence:
+
+1. The boss rapidly accelerates.
+2. All its legs begin moving at extreme speed.
+3. Its cannon rotates toward the player.
+4. The camera tracks the boss's movement briefly.
+5. It launches multiple artillery shells while rapidly repositioning.
+6. The shells descend across the player's predicted escape routes.
+7. The boss quickly changes direction and begins another attack sequence.
+
+The attack should make the boss feel almost impossible to outrun.
+
+However, the player must still have opportunities to avoid the impact zones.
+
+## 4. Ultimate: FORTRESS - IRON JUDGMENT
+
+The Fortress deploys its full defensive and offensive arsenal.
+
+Sequence:
+
+1. The boss stops and spreads its massive legs.
+2. Reinforced armor panels extend.
+3. Auxiliary cannons rotate into position.
+4. Multiple defensive weapon systems activate.
+5. The main mortar elevates.
+6. The camera shows the entire machine from a dramatic angle.
+7. The Fortress launches a coordinated barrage.
+8. Additional cannons provide suppressive fire.
+9. The battlefield is filled with explosions and projectile impacts.
+
+It should feel like an entire artillery installation firing simultaneously.
+
+## 5. Ultimate: BLACKOUT - SILENT APOCALYPSE
+
+This ultimate should focus on electronic warfare.
+
+Sequence:
+
+1. The boss rapidly repositions.
+2. Its sensor arrays rotate.
+3. Blue-white electronic energy begins building around its equipment.
+4. The HUD begins displaying interference effects.
+5. The camera briefly focuses on the boss.
+6. It launches a massive EMP mortar shell.
+7. The projectile creates a distinctive energy trail.
+8. Upon impact, a large electronic disruption field expands.
+9. Nearby sensors, radar, and targeting systems become temporarily disrupted.
+
+The boss uses the disruption to reposition and prepare another attack.
+
+Do not permanently disable the player's controls.
+
+---
+
+# PART 4: CINEMATIC AND CAMERA SYSTEM
+
+Create a specialized boss ultimate cinematic system.
+
+This should work without breaking the normal gameplay camera.
+
+### Camera behavior
+
+During an ultimate:
+
+- Slightly zoom out to show the boss's full body.
+- Use a dramatic camera angle during preparation.
+- Show the artillery weapon elevating.
+- Show the mechanical legs bracing.
+- Show the weapon firing.
+- Follow the projectile when appropriate.
+- Show the explosion from a suitable angle.
+- Smoothly return to the regular player camera.
+
+Use smooth transitions rather than sudden camera jumps.
+
+### Player control
+
+Do not make the player lose control for excessively long periods.
+
+The cinematic should emphasize the boss attack without making combat frustrating.
+
+Ideally, the introduction should last only a few seconds.
+
+Allow the player to skip or shorten repeated cinematic sequences in the settings.
+
+For especially dangerous attacks, prioritize gameplay warnings over extended cinematics.
+
+### Audio synchronization
+
+Synchronize:
+- Hydraulic sounds.
+- Mechanical locking sounds.
+- Warning alarms.
+- Weapon charging.
+- Artillery firing.
+- Projectile travel.
+- Explosion.
+- Shockwave.
+
+Every animation should have matching sound timing.
+
+---
+
+# PART 5: MAKE THUNDERHEAD SPAWN IN OTHER GAME MODES
+
+This is extremely important.
+
+Currently, the Thunderhead boss should not be restricted to special campaign missions.
+
+I want the boss to actually spawn and function in other playable game modes.
+
+Integrate it into the existing game mode and spawn management systems.
+
+Do not simply display it in a menu.
+
+It must actually spawn, navigate the battlefield, detect targets, attack, receive damage, and be destroyable.
+
+## 1. Skirmish mode
+
+Add a boss encounter configuration to Skirmish.
+
+Allow the player to select:
+
+- No boss.
+- Siege.
+- Cataclysm.
+- Stormbringer.
+- Fortress.
+- Blackout.
+- Random boss.
+
+Allow adjustable settings for:
+- Boss health multiplier.
+- Boss damage multiplier.
+- Boss movement speed.
+- Boss spawn distance.
+- Boss aggression.
+- Boss attack frequency.
+
+The player should be able to launch a normal skirmish with a boss included.
+
+The boss should behave as an additional enemy faction threat.
+
+## 2. Survival mode
+
+Add Thunderhead bosses to the wave system.
+
+Bosses should appear during special waves.
+
+Example progression:
+
+- Wave 1-3: Normal enemy units.
+- Wave 4: Larger enemy formation.
+- Wave 5: First Thunderhead encounter.
+- Wave 6-9: Increasing enemy difficulty.
+- Wave 10: More dangerous boss variant.
+- Later waves: Random Thunderhead variants and additional enemy formations.
+
+Make the boss encounters progressively harder.
+
+Do not spawn multiple enormous bosses immediately unless the player has deliberately selected an extreme difficulty.
+
+The wave system should account for the boss's health, damage, and attack patterns.
+
+## 3. Free Roam
+
+Make Thunderhead bosses capable of spawning naturally in the open world.
+
+They should behave like roaming high-threat military units.
+
+Spawn them:
+- At distant battlefield locations.
+- Near enemy-controlled territory.
+- In specialized artillery zones.
+- During random high-threat encounters.
+
+The player should occasionally discover one through reconnaissance, minimap signals, distant explosions, or radio warnings.
+
+Some bosses should roam between locations.
+
+Others should remain in patrol areas until they detect the player.
+
+Do not spawn them directly on top of the player.
+
+Create a minimum spawn distance and proper terrain validation.
+
+## 4. Training mode
+
+Add a boss testing option.
+
+Allow the player to spawn:
+- Any individual Thunderhead variant.
+- A selected boss ultimate.
+- Different boss health values.
+- Different movement speeds.
+- Different aggression settings.
+
+Make it useful for testing weapons and procedural animations.
+
+## 5. Campaign mode
+
+Preserve all existing scripted boss missions.
+
+The new movement system and ultimate abilities must work in campaign encounters.
+
+Also allow Thunderhead variants to appear in suitable campaign missions as additional threats.
+
+---
+
+# PART 6: BOSS SPAWN DIRECTOR AND ENCOUNTER MANAGEMENT
+
+Create a proper boss spawning system.
+
+Recommended components:
+
+- BossSpawnManager.
+- BossEncounterDirector.
+- BossSpawnRules.
+- BossModeConfiguration.
+- BossDifficultyScaling.
+- BossRespawnController.
+
+The spawn system should account for:
+
+- Current game mode.
+- Current map.
+- Player position.
+- Number of existing enemies.
+- Number of active bosses.
+- Difficulty.
+- Time elapsed.
+- Current wave.
+- Boss cooldown.
+- Available terrain.
+- Whether the boss can navigate the area.
+
+### Important spawn requirements
+
+Do not spawn bosses inside buildings, obstacles, or inaccessible terrain.
+
+Do not spawn them directly within the player's immediate view unless a scripted encounter specifically requires it.
+
+Use valid navigation locations.
+
+Ensure that only the intended number of bosses can exist simultaneously.
+
+Prevent duplicate spawning.
+
+Ensure that boss entities are cleaned up correctly after destruction or when restarting a game mode.
+
+When a boss dies, update the mission, survival wave, rewards, and encounter state accordingly.
+
+---
+
+# PART 7: BALANCING THE NEW PLAYABLE UNIT AGAINST THE BOSS
+
+The M-09 COLOSSUS should be a particularly useful unit against Thunderhead bosses.
+
+Its long-range mortar allows the player to attack the boss from a distance.
+
+However, the boss must remain dangerous.
+
+Create tactical interactions between the two artillery platforms.
+
+For example:
+
+- The M-09 can attack the boss's exposed artillery components.
+- Its armor-piercing shells can damage reinforced sections.
+- Its EMP ammunition can temporarily disrupt the boss's targeting systems.
+- Its smoke ammunition can help allied units avoid attacks.
+- Its cluster shells can attack defensive support units.
+
+The boss, however, can relocate much faster than the player might expect.
+
+This means the player must constantly calculate firing positions and anticipate the boss's movement.
+
+Do not make the player mortar unit automatically win the encounter because it has long range.
+
+The boss should be capable of counter-bombardment and rapid repositioning.
+
+Make artillery versus artillery combat a meaningful gameplay experience.
+
+---
+
+# PART 8: TECHNICAL IMPLEMENTATION AND PRESERVATION
+
+Integrate everything directly into the existing codebase.
+
+Preserve the existing:
+- HTML5 Canvas rendering.
+- JavaScript architecture.
+- Physics timestep.
+- Procedural inverse kinematics.
+- World-space foot planting.
+- Weapon recoil.
+- Projectile system.
+- Particle system.
+- Audio system.
+- Boss component damage.
+- Unit selection.
+- Allied AI.
+- Enemy AI.
+- Camera.
+- Minimap.
+- Game modes.
+- Save system.
+
+Add reusable classes for the new systems.
+
+Suggested additions:
+
+- M09MortarWalker.
+- MortarWeapon.
+- MortarTargetingSystem.
+- MortarAmmoManager.
+- OverwatchBarrage.
+- ThunderheadMovementController.
+- ThunderheadFastGait.
+- BossUltimateController.
+- BossCinematicController.
+- BossSpawnManager.
+- BossEncounterDirector.
+
+Do not duplicate existing functionality unnecessarily.
+
+Do not break the current playable units.
+
+Make sure the new mortar unit is selectable and functional.
+
+Make sure all five boss variants have their new movement and ultimate animations.
+
+Make sure the bosses actually spawn in the designated game modes.
+
+Make sure the cinematic system transitions correctly back into normal gameplay.
+
+Optimize all animations and effects for stable performance.
+
+---
+
+# FINAL EXPECTED RESULT
+
+The updated game should now feature a new player-controlled long-range artillery mech and five completely revamped Thunderhead boss variants.
+
+The M-09 COLOSSUS should allow players to experience heavy artillery combat firsthand, with ballistic targeting, ammunition choices, powerful recoil, and a special artillery barrage.
+
+Thunderhead should become a much more unpredictable and dangerous threat.
+
+It should be enormous, but surprisingly fast.
+
+It should rapidly cross the battlefield using its massive procedural legs, reposition itself, acquire targets, and unleash devastating long-range mortar attacks.
+
+Its ultimate abilities should have their own recognizable animations, sound design, camera movements, and cinematic sequences.
+
+Most importantly, Thunderhead should no longer be limited to campaign missions. It must actually appear and function in Skirmish, Survival, Free Roam, and Training.
+
+**FINAL DESIGN DIRECTION:**
+
+The player now has access to mobile artillery, but the enemy has an enormous, high-speed strategic artillery platform.
+
+The player can bombard the battlefield from a distance, but the Thunderhead can hunt them down while doing the same.
+
+Make artillery combat feel like a battle of positioning, prediction, timing, and overwhelming mechanical firepower.

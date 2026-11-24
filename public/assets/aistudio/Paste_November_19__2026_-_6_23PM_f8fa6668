@@ -1,0 +1,980 @@
+# MAJOR SQUAD EXPANSION, BATTLEFIELD RADIO OVERHAUL, VICTORY CINEMATICS, BOSS SPEED UPDATE + REVENANT ENEMY SYSTEM
+
+Implement a major content and immersion update that makes battles feel like large-scale military engagements. Expand the player's squad, introduce over 100 additional radio messages, add cinematic victory sequences, make every boss significantly faster, and introduce a special corrupted enemy called **REVENANT** that appears in the next attempt of a game mode after the player fails it.
+
+This update should make victories more rewarding, defeats more intimidating, and the battlefield feel more alive.
+
+**Important:** All audio introduced in this update must be sourced from the internet, downloaded, properly licensed, and integrated into the game. This includes radio dialogue, screaming, dying sounds, static, transmissions, and cinematic audio.
+
+Preserve the existing game architecture, mech designs, combat mechanics, HUD, audio manager, game modes, and progression systems. Integrate the new features into the existing systems rather than unnecessarily rebuilding them.
+
+---
+
+# 1. ADD THREE MORE AI SQUADMATES
+
+Increase the player's squad to **four units total: the player and three AI-controlled squadmates.**
+
+The purpose is to make the player less vulnerable when fighting large groups of enemies, bosses, and other dangerous threats.
+
+The three additional squadmates must actively participate in combat. They should not simply follow the player or act as decorative NPCs.
+
+### Squadmate roles
+
+Give each squadmate a distinct combat role.
+
+**SQUADMATE 1 — ASSAULT**
+- Focuses on attacking hostile ground units.
+- Uses aggressive positioning and attempts to flank enemies.
+- Prioritizes dangerous enemies threatening the player.
+- Can provide covering fire while the player moves or retreats.
+- Uses heavier weapons and close-to-medium-range combat tactics.
+
+**SQUADMATE 2 — SUPPORT**
+- Prioritizes protecting the player and other squadmates.
+- Provides covering fire against incoming enemies.
+- Can assist damaged squadmates when they are in danger.
+- Uses defensive abilities, repair systems, or limited emergency support if the existing game mechanics allow it.
+- Prioritizes keeping the squad operational rather than chasing kills.
+
+**SQUADMATE 3 — RECON / SNIPER**
+- Identifies enemies at longer distances.
+- Prioritizes dangerous ranged enemies, missile launchers, and artillery units.
+- Engages enemies from a distance.
+- Communicates enemy positions through radio.
+- Attempts to maintain a safe firing position while supporting the squad.
+
+Do not make all three AI units behave identically. Each must have its own combat priorities, movement preferences, weapon usage, and personality.
+
+### Squad AI behavior
+
+The squadmates must:
+
+- Follow the player when no immediate combat situation requires otherwise.
+- Maintain reasonable formation spacing.
+- Avoid stacking directly on top of each other.
+- Recognize nearby hostile units.
+- Automatically engage enemies when combat begins.
+- Prioritize enemies attacking the player.
+- Take cover when appropriate.
+- Reposition when their current position becomes dangerous.
+- Avoid unnecessary collisions with buildings, terrain, and other mechs.
+- Support the player during boss fights.
+- Communicate important battlefield information.
+- Use their own dash, grapple, movement, and defensive systems when appropriate.
+- Have functional anti-air defense systems.
+- Avoid standing still while being attacked.
+
+They should be able to operate independently without requiring constant player commands.
+
+### Squad protection and survival
+
+Make the additional squadmates genuinely useful for survival.
+
+They should be able to:
+- Draw enemy attention away from the player.
+- Eliminate weaker enemies before they overwhelm the player.
+- Help attack dangerous targets.
+- Provide covering fire during retreats.
+- Assist the player during difficult encounters.
+- Help deal with incoming missiles and other threats.
+- Protect the player when surrounded.
+
+Do not make them invincible.
+
+Squadmates should still take damage, become critically damaged, and potentially be destroyed. Their survival should depend on their positioning, AI intelligence, and the difficulty of the encounter.
+
+When a squadmate is critically damaged, they should communicate over the radio and trigger the appropriate distress dialogue.
+
+### Squad formation
+
+Create a flexible four-unit formation.
+
+The three AI units should automatically adjust their positions based on:
+- Player movement.
+- Enemy positions.
+- Terrain.
+- Incoming attacks.
+- Current combat situation.
+- Their respective combat roles.
+
+Avoid making the squad move in a perfectly straight line at all times.
+
+They should sometimes spread out, flank enemies, take defensive positions, or regroup depending on the situation.
+
+If the player uses a dash, grapple, or flight ability, the AI squadmates should attempt to keep up without becoming stuck or teleporting excessively.
+
+### Squad HUD integration
+
+Add small, minimalist indicators for the three squadmates.
+
+Display:
+- Their callsigns.
+- Their health or armor condition.
+- Their current status.
+- A small indicator when they are critically damaged.
+- A destruction indicator when they are lost.
+
+Keep the existing minimalist military HUD design. Do not introduce large panels that cover the battlefield.
+
+---
+
+# 2. ADD AT LEAST 120 NEW RADIO MESSAGES
+
+Expand the existing radio communication system with **at least 120 additional unique voice messages**.
+
+These must be actual spoken recordings, not text-only dialogue or meaningless static.
+
+Use different voices, personalities, speaking styles, and emotional conditions.
+
+The battlefield should feel like a real military operation where several pilots and command personnel constantly communicate with one another.
+
+### Radio message categories
+
+Add a large collection of dialogue across the following categories:
+
+**A. Mission orders**
+- Deployment instructions.
+- Objective updates.
+- Attack orders.
+- Defensive orders.
+- Retreat commands.
+- Regrouping instructions.
+- Formation changes.
+- Reinforcement requests.
+
+**B. Combat communications**
+- Enemy contact.
+- Enemy elimination.
+- Incoming enemy reinforcements.
+- Weapons deployed.
+- Artillery support.
+- Missile launches.
+- Successful attacks.
+- Flanking maneuvers.
+- Enemy positions.
+- Suppression fire.
+
+**C. Player assistance**
+- Warnings when the player is surrounded.
+- Warnings when the player is critically damaged.
+- Squadmates reporting that they are covering the player.
+- Requests for assistance.
+- Reports that a dangerous enemy is targeting the player.
+- Communications when the player is being pursued.
+- Reports when a squadmate successfully eliminates an enemy threatening the player.
+
+**D. Squadmate communications**
+- Assault unit reporting an engagement.
+- Support unit reporting damage or assistance.
+- Recon unit identifying enemy positions.
+- Squadmates confirming commands.
+- Squadmates requesting ammunition or support.
+- Squadmates reporting their current condition.
+- Squadmates reacting to the destruction of another unit.
+
+**E. Boss communications**
+- First contact with a boss.
+- Boss movement and attack warnings.
+- Boss entering an aggressive state.
+- Boss preparing a special attack.
+- Boss changing combat behavior.
+- Boss receiving heavy damage.
+- Boss being defeated.
+
+**F. Critical damage and distress**
+- Pilots reporting critical damage.
+- Pilots losing control of their mechs.
+- Pilots reporting damaged weapons.
+- Pilots requesting emergency assistance.
+- Pilots reporting reactor or power failure.
+- Pilots communicating that they cannot continue fighting.
+
+**G. Death and final transmissions**
+- Distress calls.
+- Desperate requests for assistance.
+- Screaming during heavy damage.
+- Final words before a mech is destroyed.
+- Radio transmissions cutting out during destruction.
+- Other pilots reacting to a teammate's final transmission.
+- Command personnel confirming that a friendly unit has been lost.
+
+**H. Victory and defeat**
+- Mission completed.
+- Enemy forces eliminated.
+- Squad survival reports.
+- Mission failure.
+- Emergency withdrawal.
+- Squad loss reports.
+- Command reactions to an unexpected victory or defeat.
+
+### Screaming and dying sounds over radio static
+
+Make this part especially immersive.
+
+Add actual recorded screaming, pain reactions, and dying sounds that sound like they are being transmitted through military radio equipment.
+
+Use these sounds when:
+- An allied mech receives catastrophic damage.
+- A pilot is trapped inside a heavily damaged mech.
+- An allied unit is being destroyed.
+- A squadmate experiences a critical system failure.
+- A unit sends a final distress transmission.
+- A pilot is unable to finish a transmission.
+
+The sounds should be appropriately synchronized with the actual combat events.
+
+Some transmissions can contain understandable words followed by screaming, heavy breathing, or interrupted speech.
+
+Others can contain only a short scream or distress noise transmitted through static.
+
+Examples of the intended presentation:
+
+- "I'm hit! I'm hit! Somebody help me!"
+- "I can't get out! My systems are failing!"
+- "Mayday! Mayday! I'm going down!"
+- "Get me out of here!"
+- "My reactor... it's going to..."
+- A sudden scream followed by distorted radio static.
+- A final transmission that gradually fades into silence.
+
+Do not play these effects randomly. They must be connected to an actual character or unit experiencing the corresponding event.
+
+### Realistic radio processing
+
+Process the voice recordings using:
+- Narrow-band radio filtering.
+- Compression.
+- Radio static.
+- Transmission crackles.
+- Mild distortion.
+- Signal interference.
+- Occasional audio dropouts.
+- Radio activation and termination sounds.
+
+Use different interference levels depending on the situation.
+
+For example, ordinary orders can sound relatively clear, while transmissions from a critically damaged unit can become increasingly distorted.
+
+**The spoken dialogue must remain understandable whenever words are being spoken.** Static should enhance the experience, not completely drown out the voice.
+
+### Voice variety
+
+Use multiple distinct voices.
+
+Include:
+- Calm commanders.
+- Serious squad leaders.
+- Aggressive assault pilots.
+- Experienced support personnel.
+- Nervous or panicked pilots.
+- Exhausted pilots.
+- Distressed pilots.
+- Emergency communication operators.
+
+Do not make every voice sound like the same person with a different radio filter.
+
+### Dialogue variation
+
+Implement:
+- Random selection from appropriate dialogue pools.
+- Per-character cooldowns.
+- Per-event cooldowns.
+- Communication priority levels.
+- Duplicate event prevention.
+- Context-sensitive dialogue selection.
+
+Do not repeatedly play the same warning every time several missiles approach.
+
+The communication system should select a suitable message based on the actual situation.
+
+---
+
+# 3. ALL NEW AUDIO MUST COME FROM THE INTERNET
+
+**Every audio asset introduced in this update MUST be sourced from the internet.**
+
+This includes:
+- All 120+ new radio messages.
+- Military voice recordings.
+- Screaming and dying sounds.
+- Pain and distress sounds.
+- Radio static.
+- Transmission interference.
+- Radio activation and termination sounds.
+- Any new boss audio.
+- Victory and defeat sounds.
+- Cinematic music and background audio.
+- Any additional sound effects introduced by this update.
+
+### Audio sources
+
+Search legitimate downloadable audio libraries and platforms, including:
+
+- Freesound.
+- Pixabay Sound Effects.
+- Mixkit.
+- OpenGameArt.
+- Wikimedia Commons.
+- Internet Archive.
+- Other legitimate audio libraries with clear licensing information.
+
+For spoken dialogue that does not already exist in an appropriately licensed recording, use an online voice-generation or text-to-speech service that explicitly permits the intended use.
+
+Generate the required original dialogue, download the actual audio files, and integrate them into the project.
+
+For screams and dying sounds, use appropriately licensed recordings from legitimate audio libraries or properly licensed performers.
+
+### Licensing requirements
+
+- Prefer CC0, public-domain, or clearly licensed royalty-free recordings.
+- Verify the license of every asset.
+- Confirm that game use and redistribution are permitted.
+- Include creator attribution when required.
+- Do not use copyrighted Call of Duty, anime, movie, or other game voice recordings without permission.
+- Do not directly copy recognizable characters' voices.
+- Write original dialogue for this game.
+
+### Audio storage
+
+All downloaded assets must:
+- Be stored locally in the project's audio directory.
+- Work without an internet connection during gameplay.
+- Have descriptive filenames.
+- Be properly categorized.
+- Be integrated into the existing audio manager.
+- Have appropriate volume levels.
+- Be tested in the actual game.
+
+Never rely on external streaming links during gameplay.
+
+Create an audio asset manifest containing:
+- Filename.
+- Description.
+- Source URL.
+- Creator or uploader.
+- License.
+- Attribution requirements.
+- Intended in-game event.
+
+Do not claim an audio file has been downloaded if it has not actually been obtained. If an asset is unavailable or its license cannot be verified, find a suitable alternative or clearly report the missing asset.
+
+---
+
+# 4. END-OF-ROUND VICTORY CINEMATICS
+
+Whenever the player successfully wins a game mode or completes a successful round, introduce a cinematic end-of-round sequence.
+
+The inspiration should be the high-quality military match presentation and player-performance recognition found in games such as Call of Duty: Warzone.
+
+However, create an original presentation for this game. Do not copy its exact interface, animations, graphics, music, or copyrighted assets.
+
+The victory screen should feel like an impressive military after-action report mixed with a cinematic squad highlight.
+
+### Victory cutscene
+
+After the game detects a victory:
+
+1. Stop or transition out of active combat.
+2. Allow the remaining combat effects to settle.
+3. Move the camera into a cinematic position.
+4. Show the player's mech and surviving squadmates.
+5. Play appropriate victory audio.
+6. Display the final squad results.
+7. Highlight the strongest individual performances.
+8. Transition into the normal post-match or next-round interface.
+
+Do not immediately display a plain text "VICTORY" message.
+
+Make the sequence visually satisfying and memorable.
+
+### Camera presentation
+
+Use cinematic camera movements such as:
+- Slow camera movement around the squad.
+- Close-up shots of the mechs.
+- Low-angle shots that emphasize their size.
+- Weapon and armor detail shots.
+- Squad formation shots.
+- Brief slow-motion footage of the final elimination, when available.
+- A final wide shot showing the surviving squad.
+
+Make every cutscene somewhat different depending on the match.
+
+For example:
+- A victory against a boss can show the destroyed boss in the background.
+- A victory with heavy squad losses can show the surviving units standing together.
+- A flawless victory can emphasize the squad's coordinated performance.
+- A close victory can use a more dramatic camera sequence.
+
+### Best player / best teammate awards
+
+Create a detailed after-action results screen that recognizes individual performance.
+
+Include awards such as:
+
+**MVP**
+The player or squadmate with the strongest overall combat contribution.
+
+**BEST TEAMMATE**
+The unit that contributed the most to squad survival and teamwork.
+
+**TOP ELIMINATOR**
+The unit with the most enemy eliminations.
+
+**MOST DAMAGE**
+The unit that dealt the highest total damage.
+
+**TOP SUPPORT**
+The unit that provided the most assistance, repairs, protection, or other support.
+
+**SQUAD SAVIOR**
+The unit responsible for the most meaningful rescues or emergency assists, if these mechanics are supported.
+
+**BOSS HUNTER**
+The unit that contributed the most damage against bosses.
+
+**LAST ONE STANDING**
+The unit that survived the longest under extreme combat conditions.
+
+Only display awards that are supported by actual match data. Do not invent statistics or assign awards randomly.
+
+### Performance tracking
+
+Track statistics throughout the round, including:
+- Eliminations.
+- Assists.
+- Total damage dealt.
+- Damage received.
+- Boss damage.
+- Objectives completed.
+- Squadmate assistance.
+- Repairs or support actions.
+- Revives or rescues, if supported.
+- Survival time.
+- Accuracy, if available.
+
+Use these statistics to determine the awards.
+
+The MVP should not automatically go to the player simply because they are human-controlled. An AI squadmate should be eligible to win an award when its actual performance deserves it.
+
+### Best teammate recognition
+
+Make the Best Teammate award particularly meaningful.
+
+Consider:
+- Damage prevented.
+- Damage repaired.
+- Enemies eliminated while threatening another squadmate.
+- Successful assistance.
+- Time spent protecting or supporting the squad.
+- Rescue actions.
+
+This award should recognize teamwork rather than simply rewarding the highest kill count.
+
+### Cinematic presentation
+
+For the final results screen:
+- Show the winning squad.
+- Highlight the MVP.
+- Feature the Best Teammate.
+- Display the earned awards.
+- Show individual performance statistics.
+- Include the selected mech's appearance.
+- Use subtle motion, lighting, and background effects.
+- Play appropriately sourced cinematic audio.
+
+Keep the interface military-themed, polished, and readable.
+
+### Player controls
+
+Allow the player to:
+- Skip the cutscene.
+- View the full squad results.
+- Continue to the next round or menu.
+
+Do not force the player to watch the entire sequence repeatedly.
+
+The victory presentation must trigger after every successful win in every applicable game mode, not just the main campaign.
+
+---
+
+# 5. MAKE EVERY BOSS EXTREMELY FAST
+
+Overhaul the movement and combat behavior of every boss.
+
+All bosses must become significantly faster and more aggressive than their current versions.
+
+The goal is to make boss fights feel like intense encounters against terrifying advanced military machines.
+
+Do not limit this update to simply increasing the boss movement speed number. Improve their actual movement behavior and combat AI.
+
+### Boss movement
+
+Every boss should have:
+- Much higher movement speed.
+- Faster acceleration.
+- More responsive directional changes.
+- Faster repositioning.
+- Rapid pursuit behavior.
+- More aggressive attack transitions.
+- Faster recovery after movement abilities.
+- Improved target tracking.
+- More advanced evasive movement.
+
+Bosses should actively chase the player and squad rather than remaining stationary or moving slowly across the battlefield.
+
+### Advanced movement behavior
+
+Depending on the boss design, implement:
+- High-speed charges.
+- Rapid lateral dashes.
+- Sudden direction changes.
+- Quick repositioning.
+- Long-distance leaps.
+- Burst acceleration.
+- Rapid aerial movement.
+- Aggressive pursuit.
+- Fast transitions between attacks.
+
+Flying bosses should be especially mobile and capable of changing altitude and direction quickly.
+
+Ground-based bosses should use their legs and movement systems to achieve high speeds without looking like they are sliding across the ground.
+
+### Preserve boss identity
+
+Do not make all bosses move identically.
+
+Every boss must retain its individual personality, weapons, silhouette, attack patterns, and special abilities.
+
+A heavy artillery boss can still feel like an enormous weapon platform, but it should use powerful acceleration, advanced movement systems, and rapid repositioning to remain dangerous.
+
+A lightweight boss should use extreme agility and rapid attack combinations.
+
+A flying boss should use three-dimensional maneuverability to constantly pressure the squad.
+
+### Fairness and readability
+
+Although bosses should be extremely fast, their attacks must remain readable and avoid unavoidable damage.
+
+- Preserve recognizable attack telegraphs.
+- Make dangerous attacks visually clear.
+- Allow the player to dodge using existing movement abilities.
+- Prevent bosses from instantly teleporting onto the player without an intentional ability.
+- Keep collision detection reliable at high speeds.
+- Avoid animation and physics instability.
+- Make boss movement work with the existing dash, grapple, and flight systems.
+
+The result should be a boss that is incredibly difficult to track and fight, but still possible to defeat through skill and coordination.
+
+---
+
+# 6. INTRODUCE THE REVENANT — CORRUPTED VERSION OF THE PLAYER'S PREVIOUS UNIT
+
+Introduce a new special enemy variant called:
+
+# REVENANT
+
+The REVENANT is a corrupted version of the mech unit the player previously selected.
+
+It appears in the next attempt of the same game mode after the player fails that mode.
+
+This enemy should feel like a terrifying reflection of the player's previous unit: a familiar mech silhouette that has been corrupted into something hostile.
+
+It must be visually distinctive, significantly stronger than the original unit, and accompanied by disturbing radio transmissions.
+
+### Core appearance
+
+The REVENANT must always have a white and purple color scheme.
+
+Its appearance should be based on the exact mech unit that the player selected during the failed run.
+
+Preserve recognizable aspects of the original unit:
+- Body shape.
+- Overall silhouette.
+- Weapon configuration.
+- Leg design.
+- Mechanical proportions.
+- Distinctive armor pieces.
+- Recognizable equipment.
+
+However, modify its appearance to make it clearly corrupted.
+
+### Required color design
+
+Use:
+- Predominantly white armor.
+- Deep purple or violet armor sections.
+- Glowing purple energy details.
+- Bright purple lighting.
+- Darkened mechanical joints.
+- Corrupted-looking internal components.
+- Purple damage cracks or energy patterns.
+- A strong, visible purple outline around its entire silhouette.
+
+**The purple outline must be visible during actual gameplay**, including against dark environments and other visual effects.
+
+The enemy must be recognizable as the previous mech unit, but its white-and-purple corruption must make it immediately identifiable as a REVENANT.
+
+Do not make a generic purple enemy that only resembles the player's unit.
+
+### Corruption effects
+
+Add distinctive visual effects:
+- Pulsating purple energy.
+- Intermittent violet electrical discharges.
+- Unstable energy emissions.
+- Purple sparks.
+- Distorted visual effects around its body.
+- Occasional corrupted lighting flickers.
+- Purple trails during fast movement.
+- Brief energy surges before powerful attacks.
+
+Keep the visual effects controlled enough that the player can still understand the enemy's position and attack animations.
+
+---
+
+# 7. REVENANT FAILURE-TO-NEXT-ROUND SYSTEM
+
+The REVENANT must appear as a consequence of failure.
+
+Implement a mode-specific tracking system.
+
+### Required behavior
+
+When the player fails a game mode:
+
+1. Record which game mode was played.
+2. Record which mech unit the player selected during that failed attempt.
+3. Record the failure state.
+4. Mark that specific game mode as eligible to spawn a REVENANT variant.
+5. When the player starts the next attempt of that same game mode, generate a REVENANT using the previously selected mech unit.
+6. Spawn the REVENANT as a special hostile enemy during that attempt.
+
+### Important mode-specific rules
+
+The REVENANT must only be triggered by the next attempt of the same game mode.
+
+For example:
+
+- The player fails Survival using the M-09 COLOSSUS.
+- The player enters Skirmish. No Survival REVENANT should be triggered.
+- The player later starts Survival again.
+- The M-09 COLOSSUS REVENANT appears as a special enemy.
+
+Do not allow failure in one game mode to activate a REVENANT in every other game mode.
+
+### Updating the recorded unit
+
+If the player fails the next attempt:
+- Record the unit used during that latest failed attempt.
+- Prepare the corresponding REVENANT for the following attempt of that same mode.
+
+For example:
+- First failure: Player used the M-09 COLOSSUS.
+- Second attempt: The COLOSSUS REVENANT appears.
+- Player fails the second attempt while using the A-12 VALKYRIE.
+- Third attempt: The VALKYRIE REVENANT appears.
+
+The most recently failed run should determine the next REVENANT variant.
+
+### Spawn behavior
+
+Introduce the REVENANT as a special encounter rather than just another ordinary enemy.
+
+Possible spawn moments:
+- A surprise arrival during combat.
+- A special signal detected through the radio.
+- A corrupted energy signature appearing on the battlefield.
+- A dramatic entrance with its purple outline becoming visible.
+- A sudden interference event followed by its appearance.
+
+Do not spawn it immediately in front of the player without warning.
+
+The encounter should feel intentional and threatening.
+
+The REVENANT should appear only once per eligible attempt unless a specific game mode is designed to support multiple boss-level encounters.
+
+### Persistence
+
+Ensure the failure records remain correct when:
+- The player changes menus.
+- The player enters a different game mode.
+- The player closes and reopens the game, if the existing save system supports persistence.
+- The player selects a different unit for the next attempt.
+
+Use the existing save and progression architecture wherever possible.
+
+---
+
+# 8. REVENANT COMBAT BEHAVIOR AND POWER
+
+The REVENANT must be significantly stronger than the original mech it is based on.
+
+It should not simply have more health. It must have improved combat capabilities.
+
+### Required improvements
+
+Compared with the original unit, the REVENANT should have:
+- Higher movement speed.
+- Faster acceleration.
+- Greater attack damage.
+- Improved durability.
+- Faster reaction time.
+- More aggressive targeting.
+- Better pursuit behavior.
+- Faster attack transitions.
+- Stronger abilities.
+- More advanced evasive movement.
+
+The exact improvements should depend on the original mech class.
+
+For example:
+
+**COLOSSUS REVENANT**
+- Faster artillery repositioning.
+- More aggressive long-range targeting.
+- Stronger explosive attacks.
+- Improved mobility compared with the original COLOSSUS.
+- More dangerous area-denial abilities.
+
+**VALKYRIE REVENANT**
+- Extremely aggressive aerial pursuit.
+- Faster flight transitions.
+- More dangerous missile combinations.
+- Improved aerial maneuverability.
+- Faster target acquisition.
+
+Other mech variants should receive abilities that reflect their original unit design.
+
+### Corrupted ability behavior
+
+Give the REVENANT a unique corrupted combat ability based on the original unit.
+
+Examples:
+- Purple energy-enhanced projectiles.
+- Corrupted missile volleys.
+- High-speed dash attacks.
+- Unstable explosive rounds.
+- Aggressive close-range attacks.
+- Purple energy bursts.
+- Short-range teleport-like repositioning only if it fits the existing game's physics and is clearly telegraphed.
+
+Do not give every REVENANT identical attacks.
+
+Its combat behavior should reflect the unit it was created from.
+
+### Difficulty balancing
+
+The REVENANT should be much stronger than the original unit, but it must still be possible to defeat.
+
+Its strength should account for:
+- Game mode difficulty.
+- Current enemy count.
+- Squad size.
+- Existing boss difficulty.
+- Player progression, where applicable.
+
+Do not make it so powerful that the three added squadmates become useless or the encounter becomes impossible.
+
+It should feel like the player's previous mech has returned as a superior, corrupted enemy.
+
+---
+
+# 9. REVENANT RADIO HORROR AND SOUND DESIGN
+
+The REVENANT must have a distinctive audio identity.
+
+Its sound should make the player immediately recognize that something is wrong.
+
+### Required audio
+
+Use actual internet-sourced audio recordings for:
+- Corrupted radio transmissions.
+- Distorted screaming.
+- Unsettling human vocal reactions.
+- Heavy breathing.
+- Pain and distress sounds.
+- Radio interference.
+- Electrical distortion.
+- Corrupted mechanical sounds.
+- Unique REVENANT movement and attack sounds.
+
+The REVENANT should occasionally emit screams or distorted vocal sounds through radio static.
+
+Some transmissions should sound like a damaged pilot attempting to communicate.
+
+Others can be fragmented, interrupted, or overwhelmed by static.
+
+Examples of the intended atmosphere:
+- A faint scream that suddenly becomes distorted.
+- A corrupted radio transmission containing fragments of understandable speech.
+- A deep, unstable breathing sound beneath radio interference.
+- A short distress call followed by a burst of static.
+- A distorted version of a normal military transmission.
+
+Do not make the REVENANT constantly scream at full volume. Use audio strategically during its entrance, combat, damage states, and special attacks.
+
+### REVENANT voice-line behavior
+
+Possible original dialogue concepts:
+- "Signal detected..."
+- "You left me behind."
+- "I can still see you."
+- "Unit... identified."
+- "Do you remember me?"
+- "I am still operational."
+- "Why did you leave?"
+- "Target reacquired."
+- "You cannot escape."
+- "We are not finished."
+
+These are examples of original dialogue. Create additional variations appropriate to the corrupted enemy.
+
+The voice should sound heavily corrupted through radio processing, but understandable words must remain audible whenever actual speech is used.
+
+### Audio sourcing
+
+All REVENANT audio must follow the same internet-sourced audio requirement:
+- Download recordings from legitimate audio libraries.
+- Verify usage rights.
+- Use properly licensed voice performers or online voice-generation services for original spoken dialogue.
+- Prefer CC0 or public-domain recordings where possible.
+- Store all assets locally.
+- Create source and license records.
+- Do not use copyrighted horror sounds, anime audio, or recognizable game voice recordings without permission.
+
+Do not pretend an internet audio file exists if it has not actually been downloaded.
+
+---
+
+# 10. REVENANT VISUAL INTRODUCTION
+
+Give the REVENANT a unique introduction when it first appears in a game mode.
+
+Suggested sequence:
+
+1. The normal battlefield briefly experiences radio interference.
+2. A warning indicator appears on the player's HUD.
+3. The radio emits a corrupted signal.
+4. A faint purple glow appears in the distance.
+5. The REVENANT becomes visible, with its white armor and bright purple outline.
+6. Its mechanical systems activate with a distorted startup sound.
+7. It begins targeting the player's squad.
+8. A short REVENANT identification message appears on the HUD.
+
+Use a title such as:
+
+**UNKNOWN HOSTILE SIGNATURE**
+
+<escape>IDENTIFICATION: REVENANT</escape>
+
+Keep the sequence short enough that it does not interrupt combat unnecessarily.
+
+The REVENANT's first appearance should be memorable, especially on the first encounter.
+
+---
+
+# 11. TECHNICAL IMPLEMENTATION
+
+Integrate all features into the current architecture.
+
+Suggested systems:
+
+- `SquadManager`: Manages the player and three AI squadmates.
+- `SquadAIController`: Handles independent squadmate behavior and combat decisions.
+- `SquadFormationController`: Manages formation, spacing, and repositioning.
+- `RadioDialogueDatabase`: Stores the additional 120+ voice messages.
+- `RadioEventManager`: Triggers communications based on actual gameplay events.
+- `RadioAudioProcessor`: Handles static, interference, and transmission effects.
+- `AudioAssetRegistry`: Tracks downloaded audio and its source information.
+- `VictoryCinematicManager`: Handles end-of-round camera sequences.
+- `MatchPerformanceTracker`: Records statistics and determines awards.
+- `BossMovementController`: Handles improved high-speed boss movement.
+- `RevenantManager`: Creates and manages REVENANT variants.
+- `FailedRunTracker`: Records the failed mode and previously selected mech.
+- `RevenantVariantFactory`: Generates the corrupted version of the previously selected unit.
+
+Use existing equivalent systems if available. Do not create duplicate managers that conflict with current game logic.
+
+### Performance requirements
+
+- Avoid unnecessary AI calculations every frame.
+- Prevent squadmates from stacking on one another.
+- Avoid excessive pathfinding requests.
+- Ensure high-speed bosses do not break collision detection.
+- Avoid spawning duplicate REVENANT enemies.
+- Properly clean up audio and destroyed units.
+- Prevent overlapping dialogue from flooding the radio.
+- Ensure victory cutscenes cannot trigger multiple times for one victory.
+- Keep performance stable with four allied units, multiple enemy units, and bosses active simultaneously.
+
+---
+
+# 12. REQUIRED TESTING
+
+Test every feature before considering the update complete.
+
+### Squad testing
+1. The player spawns with exactly three additional AI squadmates.
+2. All three have distinct combat roles.
+3. All three can follow and support the player.
+4. They can fight enemies independently.
+5. They can assist the player during boss encounters.
+6. They do not constantly collide or stack together.
+7. Their radio dialogue responds to actual events.
+8. They can be damaged and destroyed normally.
+
+### Radio testing
+9. At least 120 new unique radio messages are integrated.
+10. The new lines use different voices and categories.
+11. Screaming and dying audio plays during appropriate damage events.
+12. Distress transmissions sound like they are coming through a military radio.
+13. Dialogue remains understandable when words are spoken.
+14. Repeated events do not cause excessive duplicate messages.
+15. All added audio is internet-sourced, downloaded, and properly licensed.
+
+### Victory cinematic testing
+16. Every successful game mode triggers an end-of-round cinematic.
+17. Cinematics show the player and surviving squadmates.
+18. MVP and Best Teammate awards are calculated from actual statistics.
+19. Other awards are based on genuine performance.
+20. The cutscene can be skipped.
+21. Victory sequences do not trigger more than once per completed round.
+
+### Boss testing
+22. Every boss is significantly faster than before.
+23. Every boss has appropriately improved movement behavior.
+24. Bosses retain their unique attack patterns and identities.
+25. High-speed movement does not break collision or animation systems.
+26. Boss attacks remain readable and possible to dodge.
+
+### REVENANT testing
+27. Failing a game mode records the selected mech.
+28. Entering a different game mode does not trigger the wrong REVENANT.
+29. Starting the same failed game mode again spawns the corresponding REVENANT.
+30. The REVENANT visually matches the previously selected mech.
+31. Every REVENANT uses the white-and-purple design.
+32. Every REVENANT has a visible purple outline.
+33. The REVENANT is considerably stronger than its original unit.
+34. Its behavior and abilities reflect the original mech class.
+35. Its screaming and corrupted radio audio triggers appropriately.
+36. Failing again updates the next REVENANT to match the most recently used mech.
+37. No duplicate REVENANT encounters are accidentally generated.
+
+---
+
+# FINAL DESIGN REQUIREMENT
+
+This update should make the game feel like a much larger and more intense military operation.
+
+The player should no longer fight alone. Three additional AI squadmates should provide meaningful combat support, protect one another, and communicate naturally.
+
+The battlefield should become much more alive through at least 120 additional radio messages, including urgent orders, combat reports, distress transmissions, screaming, and final communications from destroyed units.
+
+Every victory should feel rewarding through a cinematic after-action presentation that highlights the MVP, Best Teammate, and other outstanding performances.
+
+Every boss should be extremely fast, aggressive, and dangerous while remaining fair enough to fight.
+
+Finally, the REVENANT should make defeat have consequences. When the player fails a game mode, their previously selected mech should return in the next attempt as a powerful corrupted enemy, with white armor, purple energy, a bright purple outline, unique abilities, and disturbing radio transmissions.
+
+**The overall experience should feel like a military mech squad fighting increasingly dangerous enemies, where victories are celebrated, squad losses are felt, and every failure can bring back a corrupted version of the player's own machine.**

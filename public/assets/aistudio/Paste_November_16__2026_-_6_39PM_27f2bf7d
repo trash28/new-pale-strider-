@@ -1,0 +1,1052 @@
+# MAJOR GAME UPDATE: COLOSSAL LONG-RANGE NUCLEAR ARTILLERY BOSS
+
+## 1. CORE CONCEPT
+
+Add a completely new enemy class to the game: a gigantic, long-range, multi-legged artillery machine that functions as one of the game's major boss encounters.
+
+This is not an ordinary enemy mech.
+
+It should be an enormous walking weapons platform, designed specifically for long-range bombardment and battlefield destruction.
+
+Its primary weapon is a massive, nuclear-style mortar cannon capable of launching devastating explosive warheads over extremely long distances.
+
+The boss should feel like a strategic military weapon that was never intended to fight ordinary frontline battles.
+
+It should be:
+- Extremely large.
+- Extremely heavy.
+- Slow-moving.
+- Heavily armored.
+- Difficult to destroy.
+- Capable of attacking from beyond normal engagement distances.
+- Armed with devastating artillery weapons.
+- Visually intimidating even when viewed from far away.
+
+The player should immediately recognize that this is not a regular enemy.
+
+When this boss appears, the atmosphere of the entire battlefield should change.
+
+Distant warning sirens should activate. Allied units should react to its presence. The minimap should display a massive enemy threat marker. The music should become more intense.
+
+The boss should feel like a walking catastrophe.
+
+Give it an original military designation, unique visual identity, and several different variants.
+
+Suggested main designation:
+
+**THUNDERHEAD-CLASS STRATEGIC ARTILLERY PLATFORM**
+
+Its official designation can differ between variants.
+
+---
+
+# 2. MASSIVE PHYSICAL DESIGN AND SCALE
+
+The boss must be significantly larger than every existing playable mech and ordinary enemy.
+
+Do not simply enlarge an existing mech sprite.
+
+Give it an entirely different silhouette and mechanical structure.
+
+It should resemble a gigantic mobile artillery installation supported by multiple enormous mechanical legs.
+
+### Overall structure
+
+The machine should consist of:
+
+- A massive central armored chassis.
+- An enormous artillery turret.
+- A giant mortar-launching assembly.
+- Multiple ammunition compartments.
+- Reinforced armor plating.
+- Large mechanical suspension structures.
+- Heavy articulated legs.
+- Multiple sensor arrays.
+- Auxiliary defensive weapons.
+- Visible ammunition loading machinery.
+- Large exhaust systems.
+- Industrial warning lights.
+- Military identification markings.
+
+Its central body should be substantially wider and taller than a regular combat mech.
+
+The artillery cannon should be one of its defining visual features.
+
+It must be so large that its weapon looks almost disproportionately massive compared with an ordinary mech.
+
+### Physical scale
+
+Establish a consistent scale hierarchy.
+
+For example:
+- Recon Scout: 1x.
+- Standard Combat Walker: 1x.
+- Heavy Assault Walker: 1.5x.
+- Large enemy hunter: 2x.
+- Thunderhead boss: approximately 5x to 8x the visual footprint of a standard mech.
+
+The boss must not feel like a regular mech with a larger health bar.
+
+It should occupy a significant amount of battlefield space.
+
+Its body and legs should be visible simultaneously when the camera is sufficiently zoomed out.
+
+Allow the camera to zoom out slightly during the boss introduction and major attacks so the player can appreciate its enormous size.
+
+### Visual identity
+
+Make it look like a military-industrial nightmare.
+
+Use:
+- Extremely thick armor.
+- Huge mechanical joints.
+- Exposed hydraulics.
+- Multiple interconnected mechanical structures.
+- Large ammunition containers.
+- Oversized weapons.
+- Reinforced leg assemblies.
+- Heavy support machinery.
+- Industrial markings and hazard stripes.
+
+Use a dark, worn military color scheme.
+
+The machine should show signs of extreme battlefield use.
+
+Its armor should have scratches, burn marks, repaired sections, exposed metal, and damaged components.
+
+Make the boss look old, terrifying, and incredibly expensive to manufacture.
+
+---
+
+# 3. COLOSSAL PROCEDURAL LEG SYSTEM
+
+The boss must have its own advanced procedural leg animation system.
+
+Do not use the same walking animation as the regular mechs.
+
+Because of its enormous size and mass, it should have a substantially different gait.
+
+### Leg configuration
+
+The main Thunderhead should have approximately 10 to 12 massive articulated legs.
+
+The exact number can differ between variants.
+
+Each leg should contain:
+- Large upper mechanical segments.
+- Reinforced articulated joints.
+- Heavy hydraulic pistons.
+- Lower support segments.
+- Wide mechanical feet.
+- Visible joint rotation.
+- Suspension components.
+
+The legs should be disproportionately thick compared with ordinary mech legs.
+
+### Movement
+
+The boss should move extremely slowly.
+
+Its walking animation must emphasize weight.
+
+When the boss takes a step:
+1. The selected leg prepares to lift.
+2. Hydraulic components visibly extend.
+3. The foot slowly leaves the ground.
+4. The leg moves toward its next position.
+5. The foot makes contact with the terrain.
+6. Suspension compresses under the machine's weight.
+7. The central chassis slightly shifts to distribute its mass.
+
+The other legs must coordinate to maintain stability.
+
+Use a coordinated multi-legged gait appropriate for such a large machine.
+
+Do not make all legs move simultaneously.
+
+Implement actual inverse kinematics and world-space foot planting.
+
+### Ground effects
+
+Every step should produce noticeable environmental effects.
+
+Depending on the terrain:
+- Dust clouds.
+- Dirt displacement.
+- Small debris.
+- Ground impact effects.
+- Subtle camera vibration.
+- Heavy metallic footsteps.
+
+The footsteps should sound enormous.
+
+The ground should visibly react when the machine walks.
+
+### Stability and posture
+
+The boss should have different physical postures.
+
+**Walking posture:** Legs maintain a stable walking configuration.
+
+**Stationary artillery posture:** Legs spread apart to increase stability.
+
+**Firing posture:** The chassis lowers slightly while the rear legs brace against recoil.
+
+**Reloading posture:** Auxiliary mechanical structures adjust around the cannon.
+
+**Damaged posture:** The chassis becomes uneven when legs are damaged.
+
+**Emergency posture:** The remaining operational legs redistribute the machine's weight to prevent collapse.
+
+If multiple legs are destroyed, the machine should visibly struggle to move.
+
+Never allow its movement to remain perfectly normal after substantial leg damage.
+
+---
+
+# 4. PRIMARY WEAPON: STRATEGIC NUCLEAR MORTAR
+
+This is the defining feature of the boss.
+
+Give it a gigantic long-range mortar artillery system.
+
+The weapon should function differently from ordinary cannons, autocannons, and railguns.
+
+It should not behave like a normal projectile fired directly toward the player.
+
+It should launch enormous shells into a high ballistic trajectory before they descend onto the battlefield.
+
+### Weapon appearance
+
+The artillery system should be enormous.
+
+Include:
+- A massive elevated mortar barrel.
+- Heavy reinforced barrel supports.
+- Hydraulic elevation mechanisms.
+- Mechanical loading equipment.
+- A large ammunition compartment.
+- Visible recoil mechanisms.
+- Reinforced firing supports.
+- Heat vents.
+- Warning indicators.
+
+The weapon should be visible even when viewed from a distance.
+
+Make its barrel long, thick, and intimidating.
+
+The barrel should visibly elevate when preparing a shot.
+
+### Firing sequence
+
+Every nuclear mortar shot should have a deliberate firing sequence.
+
+**Stage 1: Target acquisition**
+
+The boss scans the battlefield.
+
+Its sensors rotate and search for targets.
+
+The weapon receives target information and begins calculating its firing position.
+
+**Stage 2: Weapon positioning**
+
+The artillery cannon slowly rotates and elevates.
+
+Mechanical supports adjust.
+
+The boss begins repositioning its legs.
+
+**Stage 3: Stabilization**
+
+The machine enters its artillery firing stance.
+
+The legs spread out.
+
+Hydraulics extend.
+
+The chassis lowers.
+
+The suspension adjusts to absorb the upcoming recoil.
+
+**Stage 4: Ammunition loading**
+
+Large ammunition-handling machinery loads the next shell.
+
+Create visible mechanical animations.
+
+Add heavy metallic loading sounds and hydraulic movement.
+
+**Stage 5: Warning sequence**
+
+The battlefield receives a clear incoming artillery warning.
+
+Add:
+- Emergency sirens.
+- Red targeting indicators.
+- Radio warning messages.
+- A visible impact prediction marker.
+- A countdown.
+- A distinctive audio cue.
+
+**Stage 6: Firing**
+
+The weapon fires with an enormous explosion-like muzzle flash.
+
+The artillery shell is launched into the air.
+
+The boss experiences massive physical recoil.
+
+Its chassis moves backward.
+
+Its suspension compresses.
+
+Its legs brace against the ground.
+
+Dust and debris are thrown outward.
+
+The camera shakes substantially.
+
+The firing sound should be one of the loudest sounds in the entire game.
+
+**Stage 7: Projectile travel**
+
+The shell travels through a high ballistic trajectory.
+
+It should be visible in the sky and leave an enormous smoke trail.
+
+The projectile should have a visible shadow or ground projection to help players understand its position.
+
+**Stage 8: Impact**
+
+When the shell hits the ground, create a massive explosion.
+
+The explosion should feature:
+- A blinding initial flash.
+- A huge expanding fireball.
+- A visible shockwave.
+- Thick smoke.
+- Flying debris.
+- Terrain destruction effects.
+- Persistent environmental hazards.
+- Strong camera shake.
+- A deep, powerful explosion sound.
+
+The blast should be significantly larger than normal artillery impacts.
+
+The exact blast radius and damage should be balanced for the game.
+
+### Nuclear-style visual effects
+
+The weapon should have the appearance and destructive presentation of a fictional strategic nuclear weapon.
+
+The explosion should be visually enormous.
+
+Add a rising mushroom-shaped smoke column, expanding dust cloud, intense illumination, and a lingering atmospheric effect.
+
+Use a distinctive color palette for its nuclear-style payload, different from ordinary explosive ammunition.
+
+The battlefield should temporarily become darker or more obscured by the enormous smoke cloud.
+
+Implement optional persistent radiation-like danger zones as fictional game mechanics.
+
+These zones should gradually fade rather than permanently disabling the map.
+
+Do not make the effect merely a larger orange explosion.
+
+It should be a recognizable signature attack.
+
+---
+
+# 5. DIFFERENT NUCLEAR MORTAR AMMUNITION
+
+Give the boss several types of fictional strategic artillery ammunition.
+
+Each ammunition type should have a different appearance, explosion, and tactical purpose.
+
+### A. STRATEGIC WARHEAD
+
+The main nuclear-style payload.
+
+Characteristics:
+- Extremely large explosion.
+- Huge blast radius.
+- Long-range ballistic trajectory.
+- Massive smoke column.
+- Temporary environmental danger zone.
+- Long reload time.
+
+This should be the boss's signature attack.
+
+### B. CLUSTER WARHEAD
+
+A shell that separates into several smaller explosive projectiles during its descent.
+
+Characteristics:
+- Multiple impact points.
+- Wide-area destruction.
+- Less damage per individual impact.
+- Forces the player to keep moving.
+- Distinct cluster explosion effects.
+
+### C. EMP WARHEAD
+
+A fictional electromagnetic payload.
+
+Characteristics:
+- Large visual energy discharge.
+- Temporarily disrupts electronic systems.
+- Can disable or interfere with targeting.
+- Can affect player and allied sensors.
+- Causes nearby lights and electronic indicators to flicker.
+
+Do not permanently disable player controls.
+
+Give the player a limited disruption period with clear visual feedback.
+
+### D. THERMOBLAST WARHEAD
+
+A massive conventional incendiary-style game projectile.
+
+Characteristics:
+- Intense initial explosion.
+- Large fire effects.
+- Persistent burning area.
+- Heavy smoke.
+- High damage to exposed units.
+
+### E. BUNKER-BUSTER WARHEAD
+
+Designed to attack heavily protected positions.
+
+Characteristics:
+- Narrower impact radius.
+- Greater penetration against armored structures.
+- Delayed explosion.
+- Powerful localized destruction.
+
+All ammunition types should have different projectiles, firing sounds, impact visuals, and tactical consequences.
+
+---
+
+# 6. BOSS VARIANTS
+
+Create several variants of the Thunderhead-class artillery platform.
+
+These must be genuinely different machines, not simply recolors or changes to their health values.
+
+Each version should have its own:
+- Silhouette.
+- Weapon configuration.
+- Leg arrangement.
+- Armor layout.
+- Movement behavior.
+- Artillery type.
+- Special attacks.
+- Combat strategy.
+- Visual effects.
+- Boss encounter design.
+
+Create at least five variants.
+
+## VARIANT 01: THUNDERHEAD - SIEGE
+
+<badge color="danger">PRIMARY BOSS</badge>
+
+Role: Strategic long-range bombardment.
+
+This is the standard version and the first major artillery boss.
+
+Characteristics:
+- 12 massive mechanical legs.
+- Enormous central armored body.
+- One gigantic nuclear mortar cannon.
+- Multiple ammunition compartments.
+- Heavy defensive armor.
+- Limited defensive autocannons.
+
+Combat behavior:
+
+The Siege variant prefers to remain extremely far away from the player.
+
+It uses its sensors to identify targets and continuously calculates long-range firing solutions.
+
+Its primary objective is to bombard the player's position and destroy allied formations.
+
+It should avoid unnecessary close-range encounters.
+
+Special attacks:
+- Strategic nuclear mortar.
+- Cluster bombardment.
+- Large area-denial artillery.
+- Emergency defensive cannon barrage.
+
+Visual identity:
+
+Make this variant exceptionally large.
+
+Its enormous artillery barrel should be positioned above the central chassis, dominating the entire silhouette.
+
+The player should recognize it immediately.
+
+## VARIANT 02: THUNDERHEAD - CATACLYSM
+
+Role: Extreme-destruction strategic boss.
+
+Characteristics:
+- Massive reinforced chassis.
+- 14 to 16 extremely thick legs.
+- Multiple artillery support structures.
+- One oversized strategic mortar.
+- Additional ammunition modules.
+- Extremely heavy armor.
+
+This should be the largest and most intimidating variant.
+
+Its signature attack is an extraordinarily powerful strategic bombardment.
+
+Its shell creates a gigantic impact zone that can reshape a substantial portion of the battlefield.
+
+Special attacks:
+- Massive strategic warhead.
+- Delayed secondary detonations.
+- Extended bombardment sequence.
+- Large-scale area denial.
+
+Unlike the Siege variant, Cataclysm should be much harder to destroy and should have a longer attack preparation sequence.
+
+Make it feel like a final campaign boss.
+
+Its appearance should communicate overwhelming military power.
+
+## VARIANT 03: THUNDERHEAD - STORMBRINGER
+
+Role: Mobile long-range artillery hunter.
+
+Characteristics:
+- 10 reinforced legs.
+- Smaller chassis than Cataclysm.
+- Faster walking speed.
+- Improved turning.
+- Long-range mortar.
+- Multiple smaller artillery launchers.
+
+This variant should be more mobile.
+
+It can reposition after every major bombardment and attempt to maintain distance from the player.
+
+Special attacks:
+- Moving artillery bombardment.
+- Rapid multi-shell attacks.
+- Cluster payloads.
+- Defensive missile barrage.
+
+Unlike the standard version, Stormbringer should use mobility to avoid counterattacks.
+
+It must not be so fast that it loses its massive, heavy identity.
+
+## VARIANT 04: THUNDERHEAD - FORTRESS
+
+Role: Heavily armored stationary siege platform.
+
+Characteristics:
+- Wide, reinforced body.
+- 12 to 14 heavy support legs.
+- Extremely strong front-facing armor.
+- Multiple defensive weapon systems.
+- Massive mortar cannon.
+- Additional armor protection modules.
+
+This variant should behave like a walking fortress.
+
+It can deploy several support structures that make it more difficult to damage.
+
+Special attacks:
+- Strategic mortar bombardment.
+- Defensive artillery rounds.
+- Heavy autocannon suppression.
+- Deployable defensive turrets.
+- Reinforced firing posture.
+
+The Fortress should be the most difficult variant to approach.
+
+Its weakness should be its relatively slow repositioning and exposed rear mechanical components.
+
+## VARIANT 05: THUNDERHEAD - BLACKOUT
+
+Role: Electronic warfare and EMP-based strategic artillery.
+
+Characteristics:
+- 10 to 12 articulated legs.
+- Darker, specialized armor.
+- Large electronic warfare equipment.
+- Strategic EMP mortar.
+- Long-range detection systems.
+- Electronic defense equipment.
+
+Its main purpose is to disrupt the player's squad before destroying it with artillery.
+
+Special attacks:
+- Large EMP bombardment.
+- Temporary radar interference.
+- Sensor disruption.
+- Electronic decoys.
+- Multiple precision artillery strikes.
+
+Blackout should have visually distinctive energy effects.
+
+Use blue-white or violet electronic effects that contrast with the orange explosions of other variants.
+
+It should feel like an advanced, experimental weapons platform.
+
+---
+
+# 7. BOSS ENCOUNTER DESIGN
+
+The boss should not simply spawn beside the player and start shooting.
+
+Build an actual boss encounter.
+
+### Introduction sequence
+
+When the boss enters the battlefield:
+
+1. The screen briefly becomes quiet.
+2. Distant heavy mechanical footsteps can be heard.
+3. Allied sensors detect an enormous unidentified contact.
+4. The minimap displays a massive enemy threat indicator.
+5. A radio warning is issued.
+6. The camera gradually reveals the enormous machine.
+7. Its artillery cannon slowly moves into position.
+8. The boss health bar appears.
+
+Give it a cinematic introduction without taking control away from the player for too long.
+
+### Boss health
+
+Create a dedicated boss health interface.
+
+The interface should contain:
+- Boss name.
+- Military designation.
+- Large health bar.
+- Armor status.
+- Component damage indicators.
+- Current attack phase.
+- Threat level.
+
+The health bar should look like a serious military threat notification.
+
+### Boss stages
+
+Implement a multi-stage boss fight.
+
+**PHASE 1: INITIAL BOMBARDMENT**
+
+The boss stays at extreme range.
+
+It launches slow, powerful artillery attacks.
+
+The player must learn its firing pattern and avoid impact zones.
+
+**PHASE 2: INCREASED BOMBARDMENT**
+
+At approximately 70% health, the boss increases its firing frequency or introduces additional ammunition types.
+
+It begins using cluster shells and wider area denial.
+
+**PHASE 3: DEFENSIVE RESPONSE**
+
+At approximately 40% health, the boss activates additional defensive weapons.
+
+It may deploy auxiliary defenses and begin targeting the player's squad more aggressively.
+
+Its armor can start visibly breaking apart.
+
+**PHASE 4: CRITICAL CONDITION**
+
+At approximately 20% health, the boss enters a critical state.
+
+It begins firing a devastating final bombardment sequence.
+
+Its chassis becomes visibly damaged.
+
+Smoke pours from its damaged components.
+
+Its artillery cannon may become unstable.
+
+It should become more dangerous but also expose additional weaknesses.
+
+**FINAL DESTRUCTION**
+
+When the boss is defeated:
+- Its artillery system begins malfunctioning.
+- Warning indicators activate.
+- Mechanical components fail.
+- The massive cannon stops functioning.
+- The chassis loses stability.
+- Multiple legs collapse.
+- The machine experiences a massive destruction sequence.
+- The final explosion is significantly larger than ordinary enemy destruction.
+
+The destruction should feel like the defeat of a gigantic military installation.
+
+Do not instantly remove the boss sprite.
+
+Allow its destruction animation to play.
+
+---
+
+# 8. BOSS WEAK POINTS AND COMPONENT DESTRUCTION
+
+Do not make the boss one enormous health bar.
+
+Give it a component-based damage system.
+
+Possible targetable components:
+
+**Main artillery cannon**
+- Destroying it disables strategic mortar attacks.
+- The barrel should visibly become damaged.
+- Smoke should emerge from the damaged weapon.
+
+**Ammunition compartments**
+- Damage reduces available ammunition or disrupts its attack schedule.
+- Destroyed compartments should produce localized explosions.
+
+**Sensor array**
+- Damage reduces targeting accuracy.
+- The boss may take longer to acquire the player's location.
+
+**Leg assemblies**
+- Destroying legs reduces mobility.
+- The chassis should become uneven.
+- Walking becomes slower and less stable.
+
+**Auxiliary defensive weapons**
+- Destroying them removes some of the boss's close-range defenses.
+
+**Power and control systems**
+- Damage can disable certain special attacks.
+
+Armor should protect important components.
+
+Make attacking weak points more strategically useful than shooting randomly at the center of its chassis.
+
+Use different visual damage states for every major component.
+
+---
+
+# 9. EXTREME LONG-RANGE GAMEPLAY
+
+The defining gameplay feature of this boss is its enormous engagement distance.
+
+It should attack the player from much farther away than normal enemy artillery.
+
+The boss does not need to be directly visible at all times.
+
+It can occupy another part of the map and bombard the player's location.
+
+Implement long-range targeting using:
+- Enemy sensor detection.
+- Allied reconnaissance.
+- Minimap tracking.
+- Target acquisition.
+- Delayed firing solutions.
+- Visible impact prediction.
+
+The artillery should travel through a ballistic trajectory and should be able to strike locations beyond the player's immediate field of view.
+
+### Counterplay
+
+Even though the boss has enormous range, the attacks must remain fair.
+
+The player should have opportunities to:
+- Detect incoming attacks.
+- Move away from predicted impact areas.
+- Use buildings or terrain for cover.
+- Interrupt target acquisition.
+- Destroy supporting sensor components.
+- Find and attack the artillery platform.
+- Coordinate allied units.
+- Disable its offensive capabilities.
+
+Do not allow the boss to instantly hit the player from anywhere without warning.
+
+The player should be able to understand what is happening and react accordingly.
+
+---
+
+# 10. BOSS AI AND TACTICAL BEHAVIOR
+
+The boss needs a dedicated AI system instead of reusing ordinary enemy behavior.
+
+Create a state machine with states such as:
+
+- Dormant.
+- Detecting.
+- Tracking.
+- Acquiring target.
+- Positioning.
+- Stabilizing.
+- Loading ammunition.
+- Firing.
+- Recoil recovery.
+- Reloading.
+- Repositioning.
+- Defending.
+- Damaged.
+- Critical.
+- Destroyed.
+
+The boss should intelligently decide when to fire.
+
+For example:
+- It may prioritize the player's location.
+- It may attack clustered allied formations.
+- It may bombard important strategic locations.
+- It may predict the player's movement.
+- It may reposition when attacked.
+- It may use defensive weapons when enemies approach.
+
+Do not allow it to fire without considering its own stability, ammunition, weapon cooldown, or target acquisition.
+
+Its long-range attacks should be terrifying but predictable enough to reward skilled players.
+
+---
+
+# 11. AUDIO AND ATMOSPHERE
+
+The boss must have its own unique sound profile.
+
+Its sounds should be recognizable from ordinary artillery.
+
+### Mechanical sounds
+
+Include:
+- Enormous hydraulic movements.
+- Deep engine rumbling.
+- Heavy leg impacts.
+- Massive mechanical creaking.
+- Weapon rotation.
+- Shell loading.
+- Hydraulic stabilization.
+- Armor movement.
+
+### Artillery sounds
+
+The mortar should produce a devastating firing sound.
+
+The sound should include:
+- A powerful initial blast.
+- Extremely deep low-frequency impact.
+- Mechanical firing noise.
+- Long reverberation.
+- Distant battlefield echo.
+
+Each variant should have a distinct artillery sound.
+
+### Warning sounds
+
+Use a unique incoming nuclear mortar warning.
+
+The warning should be unmistakable.
+
+When a strategic warhead is inbound:
+- Sirens activate.
+- The HUD changes.
+- The impact marker becomes highly visible.
+- Allied units issue warnings.
+- The audio mix emphasizes the incoming threat.
+
+### Destruction sounds
+
+When the boss is defeated, use:
+- Hydraulic failures.
+- Mechanical collapse.
+- Exploding ammunition compartments.
+- Structural destruction.
+- A huge final explosion.
+- Long-lasting debris sounds.
+
+Do not make the boss sound like a regular enemy with louder footsteps.
+
+Its audio should communicate its enormous physical size.
+
+---
+
+# 12. NEW MISSIONS AND GAMEPLAY CONTENT
+
+Integrate the boss into the existing game modes.
+
+### Boss Hunt
+
+The player receives a mission to locate and destroy a Thunderhead artillery platform.
+
+The player must cross a large battlefield while avoiding its long-range attacks.
+
+### Strategic Defense
+
+The player must defend a military installation against an approaching artillery boss.
+
+The boss attacks the installation while the player and allied units attempt to destroy its weapon systems.
+
+### Counter-Battery Operation
+
+The player must locate an artillery boss using sensor information and reconnaissance.
+
+The boss changes firing positions and attacks from extreme distances.
+
+### Final Offensive
+
+Create a campaign mission where the player encounters the Cataclysm variant.
+
+This should be a major final encounter.
+
+### Boss Survival
+
+Allow players to select different boss variants in a special training or challenge mode.
+
+Allow the player to test weapons, strategies, and unit combinations against the boss.
+
+---
+
+# 13. VISUAL REQUIREMENTS
+
+The boss must look significantly different from every existing unit.
+
+Pay special attention to its silhouette.
+
+The artillery cannon, central chassis, large ammunition systems, and massive legs should make it immediately recognizable.
+
+It should look like a combination of:
+- A massive spider-like military machine.
+- A mobile siege installation.
+- A giant artillery platform.
+- A futuristic strategic weapons system.
+
+Make the different variants easy to identify from a distance.
+
+Do not rely only on changing their colors.
+
+Each variant must have recognizable structural differences.
+
+The boss should have visible mechanical details even when zoomed out.
+
+Add multiple animated components:
+- Rotating radar arrays.
+- Elevating artillery barrel.
+- Moving hydraulic supports.
+- Opening ammunition compartments.
+- Rotating defensive weapons.
+- Venting exhaust systems.
+- Flashing warning lights.
+- Moving mechanical legs.
+
+---
+
+# 14. PERFORMANCE AND TECHNICAL REQUIREMENTS
+
+Integrate the boss into the existing JavaScript and HTML5 Canvas project.
+
+Preserve all existing systems:
+- Player movement physics.
+- Heavy movement overhaul.
+- Procedural spider-leg animation.
+- Weapon recoil.
+- Audio.
+- Squad AI.
+- Enemy AI.
+- Terrain.
+- Camera.
+- Damage systems.
+- Unit selection.
+- Game modes.
+
+Create reusable boss systems.
+
+Recommended classes:
+- ThunderheadBoss.
+- BossVariant.
+- BossAI.
+- BossArtillery.
+- NuclearMortar.
+- BallisticShell.
+- BossComponent.
+- BossLeg.
+- BossHealthUI.
+- BossWarningSystem.
+- BossDestructionSequence.
+
+Use the existing physics timestep and projectile framework where possible.
+
+Do not create a completely separate physics system just for the boss.
+
+Boss recoil must physically influence its chassis and legs.
+
+The ballistic mortar projectile must have a proper trajectory and a predictable impact location.
+
+Use efficient particle systems and object pooling for explosions.
+
+The boss must not cause massive performance drops when its weapons fire.
+
+Because the machine is extremely large, implement appropriate camera scaling and rendering optimizations.
+
+Its off-screen attacks must still function correctly.
+
+---
+
+# 15. FINAL QUALITY REQUIREMENTS
+
+Follow these requirements strictly:
+
+- Do not make the boss look like a normal mech with extra armor.
+- Do not simply scale up an existing unit.
+- Do not give it ordinary machine-gun attacks as its primary weapon.
+- Do not make its nuclear mortar behave like a regular direct-fire cannon.
+- Do not make its legs static.
+- Do not make all variants visually identical.
+- Do not make every attack instantaneous.
+- Do not make its explosions identical to ordinary artillery.
+- Do not make the boss invincible.
+- Do not make the boss attacks unavoidable.
+- Do not let it ignore component damage.
+- Do not let its chassis remain perfectly stable when firing its enormous weapon.
+- Do not remove its destruction animation.
+- Do not make the health bar its only indication of damage.
+
+Every major system must actually work.
+
+All five variants must be functional, not just displayed in a selection menu.
+
+---
+
+# 16. FINAL EXPECTED RESULT
+
+I want a gigantic, terrifying long-range artillery boss that fundamentally changes how the player approaches combat.
+
+The player should be able to see the boss from a distance and immediately understand that it is an enormous threat.
+
+Its massive legs should slowly carry its heavily armored body across the battlefield.
+
+Its enormous mortar cannon should slowly rotate, elevate, and prepare to fire.
+
+Its ammunition-loading mechanisms should be visible.
+
+When it launches a strategic warhead, the entire machine should react to the physical recoil.
+
+The shell should travel in a massive ballistic arc.
+
+The player should hear the incoming warning before seeing the explosion.
+
+When the shell impacts, the battlefield should be illuminated by an enormous blast, followed by a giant smoke column and lingering environmental effects.
+
+There should be several different variants, each with its own silhouette, weapons, and combat behavior.
+
+**The Cataclysm variant should be one of the most intimidating final bosses in the entire game.**
+
+Make it feel less like an enemy mech and more like a mobile weapon of mass destruction.
+
+The defining experience should be:
+
+**You are not fighting another mech. You are fighting an enormous walking artillery installation capable of turning an entire battlefield into a crater.**

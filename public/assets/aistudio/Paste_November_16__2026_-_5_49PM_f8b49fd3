@@ -1,0 +1,1103 @@
+# MASTER GAME DEVELOPMENT PROMPT: 2D SCI-FI MECH COMBAT GAME
+
+## 1. Overall Vision
+
+Create a fully playable, detailed 2D sci-fi mech combat game heavily inspired by the atmosphere, combat style, mechanical movement, and battlefield experience of the anime **86 - Eighty-Six**.
+
+The game should make the player feel like a pilot operating a fast, fragile, multi-legged combat machine in a dangerous futuristic war. It should feature intense battles against autonomous enemy machines, squad-based combat, different playable mech classes, realistic movement physics, procedural leg animations, destructible environments, and a complete unit selection system.
+
+The goal is not to make a simple 2D shooting game. It should feel like a proper mech combat simulator adapted into a 2D format.
+
+The game must have:
+- Responsive and believable mech physics.
+- Procedurally animated spider-like legs.
+- Multiple playable units with different movement styles and weapons.
+- Enemy machines with different behaviors and combat roles.
+- A squad system with AI-controlled allies.
+- Large battlefields with natural terrain and obstacles.
+- Realistic recoil, acceleration, momentum, turning, and braking.
+- Detailed combat feedback and mechanical damage.
+- A polished interface, animations, sound effects, and atmosphere.
+
+Use original names, designs, characters, storylines, music, and visual assets. Take inspiration from the high-level themes and gameplay experience of 86 without directly reproducing its copyrighted characters, dialogue, exact machine designs, or story.
+
+---
+
+# 2. GAME CAMERA AND VISUAL PRESENTATION
+
+Create the game in a 2D angled top-down perspective.
+
+The camera should follow the player's mech smoothly and keep it near the center of the screen. The environment should move naturally as the player travels around the battlefield.
+
+The camera must support:
+- Smooth movement and acceleration.
+- Slight camera movement when the mech accelerates or brakes.
+- Small camera shake when firing powerful weapons.
+- Stronger camera shake during explosions and nearby impacts.
+- Smooth zooming when appropriate.
+- A minimap showing allies, enemies, objectives, and important locations.
+
+The game should look like a detailed 2D tactical sci-fi battlefield rather than a basic geometric prototype.
+
+Use detailed sprites, vector shapes, particles, shadows, lighting effects, muzzle flashes, smoke, sparks, projectile trails, explosions, and environmental effects.
+
+The visual style should be dark, gritty, industrial, and military-focused. Use a muted color palette with occasional bright indicators, warning lights, weapon effects, and explosions.
+
+The battlefield should feel large, dangerous, and active.
+
+---
+
+# 3. CORE MECH PHYSICS
+
+This is one of the most important parts of the entire game.
+
+Do not make the mech move like a floating character or an ordinary car. It must feel like a heavy, mechanical, multi-legged combat vehicle.
+
+Implement a proper physics-based movement system.
+
+### Acceleration and momentum
+
+The mech should not instantly reach its maximum speed.
+
+Movement should include:
+- Gradual acceleration.
+- Realistic deceleration.
+- Momentum when releasing movement controls.
+- Different acceleration values depending on the unit's weight.
+- Different maximum speeds for every unit.
+- Different turning speeds.
+- Momentum-based drifting during sharp turns.
+- Braking and reversing.
+- A slight delay when changing movement direction.
+
+Lightweight units should accelerate quickly and turn sharply. Heavy units should accelerate more slowly, require more time to change direction, and retain more momentum.
+
+### Turning and rotation
+
+The mech's body must rotate naturally.
+
+Implement:
+- Angular acceleration.
+- Angular velocity.
+- Rotational damping.
+- Different rotation speeds for different chassis.
+- Natural turning while moving.
+- Independent weapon aiming.
+
+The weapon should be able to aim toward the mouse cursor while the mech's body faces a different direction.
+
+This is important. The mech should not need to rotate its entire body every time the player aims at something.
+
+### Terrain interaction
+
+The mech should react to its environment.
+
+Different surfaces should affect movement:
+- Mud reduces acceleration and traction.
+- Sand slightly reduces maximum speed.
+- Rocky terrain creates small movement disturbances.
+- Concrete allows more consistent movement.
+- Slopes affect acceleration and braking.
+- Water may slow down certain units.
+- Obstacles should physically block the mech.
+
+Add subtle chassis movement when crossing rough terrain.
+
+### Weight and suspension
+
+Each unit should have a different mass, acceleration, suspension response, and stability.
+
+When the mech moves:
+- Its body should slightly tilt or shift.
+- Its chassis should bounce subtly.
+- Its suspension should react to impacts.
+- Its body should respond to recoil.
+- Its movement should look heavier when stopping abruptly.
+
+A heavy artillery mech should not feel identical to a lightweight reconnaissance mech.
+
+---
+
+# 4. PROCEDURAL SPIDER-LEG ANIMATION SYSTEM
+
+This is one of the highest-priority features.
+
+Every multi-legged mech must have fully procedural leg animation. Do not simply use a looping walking animation or rotate static legs.
+
+The legs must dynamically respond to the mech's actual movement, direction, speed, rotation, and terrain.
+
+### Inverse kinematics
+
+Implement procedural inverse kinematics for every leg.
+
+Each leg should have:
+- A body attachment point.
+- Multiple articulated segments.
+- A visible knee or joint.
+- A foot position.
+- A target position.
+- A stance phase.
+- A swing phase.
+
+Use inverse kinematics to calculate the correct joint positions between the body, joints, and feet.
+
+The legs should bend naturally according to their target positions.
+
+### Walking animation
+
+Implement a coordinated walking system.
+
+Use an alternating tripod gait or another suitable multi-legged walking pattern.
+
+The legs should:
+- Lift from the ground.
+- Move toward their next foot position.
+- Touch the ground naturally.
+- Remain planted while supporting the chassis.
+- Repeat the cycle according to movement speed.
+
+The animation should automatically match the speed of the mech.
+
+When the mech moves slowly, the legs should move slowly.
+
+When it accelerates, the legs should move faster.
+
+When it reaches maximum speed, the legs should transition into a running gait with quicker and more aggressive steps.
+
+### Foot planting
+
+This is extremely important.
+
+During the stance phase, each foot should remain approximately planted in world space while the body moves over it.
+
+During the swing phase, the foot should move toward a new target position.
+
+Avoid sliding feet.
+
+The feet should not randomly teleport or move independently of the mech.
+
+### Different movement states
+
+Create different procedural animations for:
+
+1. Idle: Legs remain planted with subtle joint movement and small mechanical adjustments.
+2. Walking: Slow, controlled stepping.
+3. Running: Faster alternating steps.
+4. Sprinting: Longer strides with more noticeable body movement.
+5. Strafing: Legs reposition naturally while the mech moves sideways.
+6. Reversing: Feet follow a backward movement pattern.
+7. Turning: Individual legs adjust their positions to support body rotation.
+8. Sharp braking: Legs reposition to stabilize the chassis.
+9. Shooting: The body reacts to weapon recoil while the legs maintain stability.
+10. Taking damage: Damaged legs should move incorrectly or become partially unresponsive.
+11. Destroyed leg: The mech should visibly limp, lose stability, and experience reduced mobility.
+12. Stationary aiming: The legs should make small adjustments to maintain balance.
+
+### Terrain adaptation
+
+The foot placement system should account for nearby terrain.
+
+Feet should avoid being placed inside obstacles when possible.
+
+If a foot cannot reach its normal target, adjust its position.
+
+The chassis should react slightly when one side of the mech is elevated or when a foot steps onto uneven ground.
+
+### Animation quality
+
+The animation must be smooth and consistent.
+
+Avoid:
+- Random leg movements.
+- Legs stretching unnaturally.
+- Feet sliding constantly.
+- Jittering joints.
+- Sudden snapping.
+- Legs passing through the chassis.
+- All legs moving simultaneously.
+- Legs remaining frozen while the mech moves.
+
+All leg animation should be calculated from the actual physics state, not from a separate animation that ignores movement.
+
+Make the procedural animation system reusable so every playable mech can have its own number of legs, leg lengths, gait timing, and movement characteristics.
+
+---
+
+# 5. PLAYABLE MECH ROSTER
+
+Do not limit the player to a single mech.
+
+Create a unit selection screen where the player can inspect, select, and test different combat machines.
+
+Every unit must have distinct:
+- Movement physics.
+- Acceleration.
+- Maximum speed.
+- Turning speed.
+- Weight.
+- Armor.
+- Weapon configuration.
+- Reload speed.
+- Weapon recoil.
+- Leg arrangement.
+- Leg animation.
+- Special ability.
+
+The units should feel genuinely different when controlled.
+
+Create at least seven playable units.
+
+### UNIT 01: RECON SCOUT
+
+Role: Reconnaissance and rapid movement.
+
+Characteristics:
+- Extremely lightweight.
+- Very high acceleration.
+- High maximum speed.
+- Excellent turning ability.
+- Weak armor.
+- Low weapon damage.
+
+Equipment:
+- Light autocannon.
+- Basic targeting system.
+- Enemy detection equipment.
+
+Special ability: Temporary movement boost that increases acceleration and maximum speed.
+
+Leg configuration: Four lightweight articulated legs.
+
+The scout should feel extremely responsive and agile.
+
+### UNIT 02: STANDARD COMBAT WALKER
+
+Role: Balanced frontline combat.
+
+Characteristics:
+- Average weight.
+- Balanced acceleration.
+- Moderate armor.
+- Good turning speed.
+- Reliable weapon performance.
+
+Equipment:
+- Automatic cannon.
+- Secondary weapon.
+- Standard targeting equipment.
+
+Special ability: Temporary defensive stabilization that reduces incoming damage.
+
+Leg configuration: Six articulated legs.
+
+This should be the default unit and the easiest unit for beginners to control.
+
+### UNIT 03: LONG-RANGE SNIPER
+
+Role: Precision engagement.
+
+Characteristics:
+- Low mobility while aiming.
+- Moderate movement speed.
+- Strong long-range capabilities.
+- Low armor.
+- Powerful single-shot weapon.
+
+Equipment:
+- High-powered railgun.
+- Long-range optical system.
+- Limited secondary ammunition.
+
+Special ability: Enter a stationary firing stance for improved accuracy and reduced recoil.
+
+Leg configuration: Four reinforced legs with wider support positioning.
+
+When entering firing mode, the legs should spread out and stabilize the chassis.
+
+### UNIT 04: HEAVY ASSAULT WALKER
+
+Role: Frontline heavy combat.
+
+Characteristics:
+- High mass.
+- Slow acceleration.
+- Lower turning speed.
+- High armor.
+- Strong weapon resistance.
+
+Equipment:
+- Heavy autocannon.
+- Heavy machine gun.
+- Additional armor plating.
+
+Special ability: Deploy reinforced armor that temporarily reduces incoming damage.
+
+Leg configuration: Eight heavy mechanical legs.
+
+Its movements should look powerful and heavy. It should visibly struggle when rapidly changing direction.
+
+### UNIT 05: ARTILLERY WALKER
+
+Role: Long-range indirect fire.
+
+Characteristics:
+- Very high weapon damage.
+- Slow movement.
+- Heavy recoil.
+- Moderate armor.
+- Low close-range effectiveness.
+
+Equipment:
+- Long-range artillery cannon.
+- Explosive ammunition.
+- Targeting system.
+
+Special ability: Fire a high-damage artillery round at a marked location.
+
+Artillery should use projectile physics, including travel time and a visible trajectory.
+
+Leg configuration: Six reinforced support legs.
+
+The legs should brace and spread apart when firing the main weapon.
+
+### UNIT 06: ELECTRONIC WARFARE WALKER
+
+Role: Reconnaissance, disruption, and support.
+
+Characteristics:
+- Average movement speed.
+- Moderate armor.
+- Specialized equipment.
+- Limited direct combat damage.
+
+Equipment:
+- Disruption equipment.
+- Detection radar.
+- Light defensive weapon.
+
+Special ability: Temporarily interfere with nearby enemy targeting and reveal hidden enemy locations.
+
+Leg configuration: Six lightweight legs with compact equipment mounts.
+
+### UNIT 07: ENGINEER SUPPORT WALKER
+
+Role: Repair and battlefield assistance.
+
+Characteristics:
+- Moderate speed.
+- Low offensive damage.
+- Average armor.
+- Strong support capabilities.
+
+Equipment:
+- Light defensive weapon.
+- Repair system.
+- Deployable support equipment.
+
+Special ability: Repair nearby allied units over time.
+
+Leg configuration: Six articulated legs with visible mechanical support equipment.
+
+---
+
+# 6. UNIT SELECTION AND TESTING
+
+Build a complete unit selection interface.
+
+The player should be able to:
+- Browse all available units.
+- Select a unit.
+- Preview the selected mech.
+- Rotate or inspect its model.
+- View its statistics.
+- View its weapons.
+- View its abilities.
+- Compare it with other units.
+- Enter a testing battlefield.
+- Switch between available units during testing.
+
+Each unit should have a unique preview animation.
+
+Allow the player to test:
+- Walking.
+- Running.
+- Sprinting.
+- Strafing.
+- Turning.
+- Reversing.
+- Shooting.
+- Taking damage.
+- Using special abilities.
+
+Create a dedicated testing area with different terrain types and stationary targets.
+
+Make it easy to switch between units without restarting the entire game.
+
+---
+
+# 7. WEAPON AND COMBAT SYSTEM
+
+Combat should feel fast, dangerous, and mechanical.
+
+Implement multiple weapon types.
+
+### Automatic cannons
+
+- Continuous firing.
+- Individual projectiles.
+- Muzzle flashes.
+- Recoil.
+- Bullet impacts.
+- Reloading or overheating where appropriate.
+
+### Machine guns
+
+- High fire rate.
+- Lower individual damage.
+- Visible projectile trails.
+- Weapon spread.
+- Recoil accumulation.
+
+### Railguns
+
+- Powerful single shots.
+- Charge-up animation.
+- Bright projectile effect.
+- Large recoil.
+- High penetration.
+- Long reload time.
+
+### Artillery
+
+- Ballistic projectile movement.
+- Visible projectile arc.
+- Explosive impact.
+- Area damage.
+- Large explosion particles.
+- Strong camera shake.
+
+### Missiles
+
+- Lock-on targeting.
+- Warning indicators.
+- Homing movement.
+- Limited turning ability.
+- Interception or countermeasures.
+
+### Weapon physics
+
+Weapons should interact with the mech.
+
+For example:
+- Firing powerful weapons should push the chassis backward slightly.
+- Heavy weapons should create noticeable recoil.
+- Rapid firing should make the weapon harder to stabilize.
+- Certain weapons should require the mech to enter a stable firing stance.
+- Explosions should affect nearby units and environmental objects.
+
+### Damage system
+
+Do not make every mech have one simple health bar.
+
+Implement individual component damage.
+
+Possible components:
+- Main chassis.
+- Left legs.
+- Right legs.
+- Weapon systems.
+- Sensors.
+- Engine.
+- Armor plating.
+
+Damage to individual legs should affect movement.
+
+Damage to the engine should reduce acceleration.
+
+Damage to sensors should reduce targeting accuracy and detection range.
+
+Damage to weapons should affect firing performance.
+
+A heavily damaged mech should visibly behave differently from a fully functional one.
+
+---
+
+# 8. ENEMY MACHINE AI
+
+Create multiple enemy types rather than using one generic enemy.
+
+Enemy units should have different movement patterns, weapon configurations, and combat behaviors.
+
+### Enemy scout
+
+- Fast.
+- Weak armor.
+- Attempts to flank.
+- Uses hit-and-run tactics.
+
+### Enemy assault unit
+
+- Balanced movement.
+- Attacks directly.
+- Uses cover.
+- Coordinates with nearby enemies.
+
+### Enemy sniper
+
+- Maintains distance.
+- Searches for firing positions.
+- Prioritizes exposed targets.
+- Retreats when approached.
+
+### Enemy heavy unit
+
+- Slow.
+- Powerful weapons.
+- High durability.
+- Pushes toward the player.
+
+### Enemy swarm unit
+
+- Weak individually.
+- Attacks in groups.
+- Attempts to surround the player.
+- Creates pressure through numbers.
+
+### Enemy hunter
+
+- Aggressive.
+- Attempts to predict player movement.
+- Uses flanking behavior.
+- Pursues damaged units.
+
+### Enemy AI behavior
+
+Enemies should not simply move toward the player in a straight line.
+
+Implement:
+- Pathfinding.
+- Target selection.
+- Line-of-sight checks.
+- Cover usage.
+- Flanking.
+- Retreating.
+- Tactical repositioning.
+- Group behavior.
+- Different engagement distances.
+- Target prioritization.
+- Reloading and weapon cooldowns.
+
+Enemies should be capable of losing sight of the player and searching for them.
+
+They should also respond to allied units, nearby explosions, and other battlefield events.
+
+---
+
+# 9. ALLIED SQUAD SYSTEM
+
+The player should not fight alone.
+
+Create AI-controlled allied mechs that accompany the player.
+
+The player should be able to issue squad commands.
+
+Commands should include:
+
+- Follow me.
+- Hold position.
+- Attack my target.
+- Defend this location.
+- Spread out.
+- Regroup.
+- Retreat.
+- Focus on a specific enemy.
+
+Each squadmate should have:
+- Its own health.
+- Its own weapon.
+- Its own movement physics.
+- Its own personality or combat behavior.
+- Its own targeting logic.
+- Independent damage and ammunition status.
+
+Squadmates should avoid stacking directly on top of one another.
+
+Use formation positioning and separation behavior to make the squad move naturally.
+
+They should maintain reasonable spacing, avoid obstacles, and attempt to support the player.
+
+Allied AI should be useful rather than constantly getting stuck or requiring continuous player commands.
+
+---
+
+# 10. BATTLEFIELD AND ENVIRONMENT
+
+Create multiple maps with different environments.
+
+Possible locations:
+
+1. Abandoned urban district.
+2. Open grassland battlefield.
+3. Rocky mountain region.
+4. Desert combat zone.
+5. Destroyed industrial complex.
+6. Forest battlefield.
+7. Snow-covered military installation.
+
+Each map should contain:
+- Terrain variation.
+- Obstacles.
+- Cover.
+- Buildings.
+- Ruins.
+- Roads.
+- Destroyed military vehicles.
+- Environmental debris.
+- Strategic locations.
+- Mission objectives.
+
+Add destructible objects when possible.
+
+Explosions should produce particles and temporary smoke.
+
+Destroyed buildings or objects should leave behind debris.
+
+The environment should contribute to gameplay rather than acting as decoration.
+
+Use obstacles to block projectiles, interfere with vision, and create tactical opportunities.
+
+---
+
+# 11. GAME MODES
+
+Implement several game modes.
+
+### Campaign
+
+Create an original military science-fiction campaign.
+
+The player should participate in a series of missions involving a small squad of mech pilots.
+
+Include:
+- Mission briefings.
+- Objectives.
+- Character interactions.
+- Squad deployment.
+- Increasing difficulty.
+- Narrative progression.
+- Mission completion screens.
+- Unlockable equipment.
+
+The story should explore the psychological pressure of war, the importance of squadmates, the danger of autonomous enemy machines, and the struggle to survive.
+
+Use original characters and an original setting.
+
+### Skirmish
+
+Allow the player to enter individual battles.
+
+Let the player choose:
+- Map.
+- Playable unit.
+- Allied squad composition.
+- Enemy difficulty.
+- Number of enemies.
+- Battle conditions.
+
+### Survival
+
+Spawn increasingly difficult waves of enemy machines.
+
+The player must survive for as long as possible.
+
+### Training
+
+Provide a dedicated training environment where the player can test:
+- Movement.
+- Leg animation.
+- Weapons.
+- Recoil.
+- Damage.
+- Unit abilities.
+- Different terrain types.
+
+### Free Roam
+
+Allow the player to explore a large battlefield without mission restrictions.
+
+Include enemy patrols and optional combat encounters.
+
+---
+
+# 12. USER INTERFACE
+
+Create a polished military-style interface.
+
+The main menu should contain:
+
+- Campaign.
+- Skirmish.
+- Survival.
+- Training.
+- Free Roam.
+- Unit Selection.
+- Settings.
+
+During combat, display:
+
+- Player health.
+- Armor condition.
+- Weapon ammunition.
+- Reload status.
+- Selected weapon.
+- Current unit name.
+- Squad status.
+- Special ability cooldown.
+- Mission objective.
+- Minimap.
+- Enemy indicators.
+
+Add damage indicators and warning messages.
+
+When a leg or component is damaged, show its status in a small mechanical diagram of the player's current mech.
+
+The UI should have an industrial military aesthetic, but use original layouts and graphics.
+
+It must remain readable during combat.
+
+---
+
+# 13. AUDIO AND GAME FEEDBACK
+
+Add sound effects for:
+- Mechanical footsteps.
+- Leg movement.
+- Engine sounds.
+- Weapon firing.
+- Reloading.
+- Mechanical impacts.
+- Explosions.
+- Warning alarms.
+- Sensor detection.
+- Enemy destruction.
+- Unit damage.
+- Special abilities.
+
+Each mech should have a slightly different movement sound depending on its weight and leg configuration.
+
+Heavy mechs should produce deeper, heavier mechanical footsteps.
+
+Light scouts should sound faster and more precise.
+
+Add an atmospheric original soundtrack with a bleak futuristic military tone.
+
+The soundtrack should not overpower important combat sounds.
+
+---
+
+# 14. CONTROLS
+
+Use the following default keyboard and mouse controls:
+
+- W: Move forward.
+- A: Move left.
+- S: Move backward.
+- D: Move right.
+- Mouse: Aim weapon.
+- Left click: Fire primary weapon.
+- Right click: Fire secondary weapon.
+- Shift: Sprint.
+- Space: Special ability.
+- R: Reload.
+- E: Interact.
+- Q: Open squad command interface.
+- Tab: Display tactical overview.
+- 1: Primary weapon.
+- 2: Secondary weapon.
+- 3: Special equipment.
+- M: Toggle minimap.
+- Escape: Pause menu.
+
+Allow players to remap controls through the settings menu.
+
+The movement controls should be responsive while preserving the mech's physical momentum.
+
+---
+
+# 15. TECHNICAL IMPLEMENTATION
+
+Build the game using:
+
+- HTML5.
+- CSS.
+- JavaScript.
+- HTML5 Canvas.
+
+Use vanilla JavaScript unless an external library is genuinely necessary.
+
+The game should run directly in a modern desktop browser.
+
+Use a structured project architecture.
+
+Recommended files:
+
+- index.html
+- style.css
+- main.js
+- physics.js
+- mech.js
+- proceduralLegs.js
+- weapons.js
+- enemies.js
+- alliedAI.js
+- pathfinding.js
+- combat.js
+- particles.js
+- camera.js
+- maps.js
+- UI.js
+- audio.js
+- missions.js
+
+Separate systems into reusable classes and modules.
+
+For example:
+- Mech
+- MechPhysics
+- ProceduralLeg
+- LegAnimator
+- Weapon
+- Projectile
+- Enemy
+- AlliedUnit
+- SquadController
+- Camera
+- Particle
+- MissionManager
+
+Do not place the entire game into one enormous function.
+
+Use a consistent update and rendering system.
+
+Use a fixed physics timestep with interpolation for rendering.
+
+Aim for stable 60 FPS.
+
+Use delta time correctly and avoid frame-rate-dependent physics.
+
+Avoid unnecessary object creation during every frame.
+
+Use object pooling for frequently created projectiles and particles.
+
+Optimize the game so several allied and enemy mechs can exist simultaneously without major performance problems.
+
+---
+
+# 16. VISUAL QUALITY AND ANIMATION REQUIREMENTS
+
+The game must not look like a basic school project.
+
+Prioritize the following details:
+
+1. Smooth body movement.
+2. Proper procedural leg animation.
+3. Mechanical-looking joints.
+4. Foot placement.
+5. Natural turning.
+6. Visible weapon recoil.
+7. Explosions and particles.
+8. Projectile trails.
+9. Environmental destruction.
+10. Clear unit silhouettes.
+11. Detailed health and damage feedback.
+12. Smooth camera movement.
+
+Use layering to create visual depth.
+
+The mech should have:
+- A visible central chassis.
+- Articulated legs.
+- Mechanical joints.
+- Weapon mounts.
+- Sensors.
+- Armor sections.
+- Small lights and indicators.
+- Shadows beneath the chassis and legs.
+
+Legs should be drawn behind or in front of the chassis according to their actual positions.
+
+Do not draw all legs on the same layer.
+
+The procedural leg system should make the mech feel like a living mechanical creature rather than a vehicle with decorative legs.
+
+---
+
+# 17. PROGRESSION AND CUSTOMIZATION
+
+Create a system for unlocking and upgrading units.
+
+Possible upgrades:
+
+- Increased engine output.
+- Improved turning speed.
+- Increased armor.
+- Better weapon stabilization.
+- Faster reloads.
+- Improved sensors.
+- Enhanced leg durability.
+- Better suspension.
+- Special equipment upgrades.
+
+Allow the player to customize:
+- Primary weapon.
+- Secondary weapon.
+- Armor configuration.
+- Support equipment.
+- Visual colors.
+- Optional mechanical attachments.
+
+Upgrades should have meaningful trade-offs.
+
+For example, heavier armor should increase weight and reduce acceleration.
+
+A stronger weapon should potentially increase recoil and power consumption.
+
+Do not allow upgrades to make every unit feel identical.
+
+---
+
+# 18. SAVING AND SETTINGS
+
+Save game progress locally.
+
+Save:
+- Campaign progress.
+- Unlocked units.
+- Purchased upgrades.
+- Selected unit.
+- Settings.
+- Control preferences.
+
+Use browser local storage.
+
+Add settings for:
+- Master volume.
+- Music volume.
+- Sound effects volume.
+- Camera shake.
+- Screen resolution or display scaling.
+- Graphics quality.
+- Mouse sensitivity.
+- Control remapping.
+
+---
+
+# 19. DEVELOPMENT PRIORITIES
+
+Do not attempt to create every feature at the expense of the core gameplay.
+
+Implement the systems in this order:
+
+**Priority 1: Core movement**
+- Working player mech.
+- Physics-based acceleration and turning.
+- Mouse aiming.
+- Smooth camera.
+- Proper collision.
+
+**Priority 2: Procedural legs**
+- Inverse kinematics.
+- Foot placement.
+- Walking gait.
+- Running gait.
+- Turning animation.
+- Damage-related leg behavior.
+
+**Priority 3: Combat**
+- Primary weapons.
+- Projectiles.
+- Recoil.
+- Enemy damage.
+- Explosions.
+- Destruction.
+
+**Priority 4: Multiple units**
+- All seven playable mech classes.
+- Different statistics.
+- Different weapons.
+- Different leg configurations.
+- Unit selection.
+- Testing area.
+
+**Priority 5: AI**
+- Enemy behavior.
+- Allied squadmates.
+- Squad commands.
+- Pathfinding.
+- Target selection.
+
+**Priority 6: Complete game**
+- Maps.
+- Missions.
+- Game modes.
+- UI.
+- Audio.
+- Progression.
+- Saving.
+
+---
+
+# 20. STRICT QUALITY REQUIREMENTS
+
+These requirements must be followed.
+
+- Do not create a simple top-down tank game and call it a mech game.
+- Do not use static legs.
+- Do not use generic walking sprites for the spider legs.
+- Do not make every unit have the same movement physics.
+- Do not make the mech instantly change direction.
+- Do not make the mech float across the ground.
+- Do not make weapons fire without recoil or feedback.
+- Do not make enemies follow the player in a straight line.
+- Do not make allied units overlap constantly.
+- Do not use placeholder buttons that do nothing.
+- Do not create fake unit selection screens.
+- Every selectable mech must actually work.
+- Every weapon must actually fire and interact with enemies.
+- Every special ability must have a working effect.
+- Every game mode shown in the menu must be functional.
+- All animations must remain smooth while the game is running.
+- All units must have their own distinct physics and animation configuration.
+
+If an advanced feature cannot be completed immediately, build a functional simplified version rather than displaying a nonworking placeholder.
+
+---
+
+# 21. FINAL DELIVERABLE
+
+Deliver a fully playable game, not just a design document or a visual mockup.
+
+The first playable version must include:
+
+- One complete battlefield.
+- One player-controlled mech.
+- At least three functional enemy types.
+- At least three playable mech classes.
+- Fully procedural multi-legged animations.
+- Physics-based movement.
+- Mouse aiming.
+- Functional weapons.
+- Enemy AI.
+- Allied squadmates.
+- A working unit selection interface.
+- A training area.
+- A pause menu.
+- A restart function.
+
+After the first playable version works, expand it to include the complete seven-unit roster and additional systems.
+
+Provide all required source files and explain how to run the game locally.
+
+Do not stop after creating the menu. Do not stop after drawing the mech. Make sure the player can actually control it, move around the battlefield, test the procedural leg animations, switch between different units, fight enemies, and complete a playable mission.
+
+**The most important thing:** Make the mech movement and procedural spider-leg animation feel exceptionally convincing. The player should be able to watch the legs carefully and see that every foot placement, step, joint movement, and body adjustment responds to the actual movement of the machine. This is a core feature of the game, not a cosmetic detail.

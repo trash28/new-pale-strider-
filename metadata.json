@@ -1,0 +1,8 @@
+{
+  "name": "Pale Strider",
+  "description": "A 2D tactical sci-fi mech combat simulator featuring physics-driven multi-legged walkers, procedural inverse-kinematic spider-leg animation, squad command AI, and component damage.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: "Barlow Condensed", sans-serif;
+    --font-sans: "Public Sans", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0b0e12;
+    color: #e5e8ec;
+    font-family: var(--font-sans);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom thin military scrollbars for hangar/briefing panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #10141a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b3340;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

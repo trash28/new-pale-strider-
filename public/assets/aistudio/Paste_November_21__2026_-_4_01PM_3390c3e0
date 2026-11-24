@@ -1,0 +1,681 @@
+Implement a major gameplay update introducing a new elite stealth-assassin mech unit, focused heavily on cinematic takedowns, high-speed teleportation, interactive timing-based combat, and exceptionally polished procedural animations.
+
+The game is heavily inspired by **86: Eighty-Six**, so the new unit must fit the existing futuristic military atmosphere, mechanical designs, squad combat systems, and enemy AI.
+
+**THE MAIN FOCUS OF THIS UPDATE IS ANIMATION QUALITY.**
+
+Do not treat the animations as secondary visual additions. The takedowns, teleportation, combat interactions, enemy reactions, camera movements, and first-person sequences must be among the most polished features in the game.
+
+Avoid basic animations, stiff movements, robotic-looking transitions, or repetitive sequences. Make the entire experience feel like an intense cinematic mech assassination system.
+
+Inspect the existing unit framework, animation controller, camera system, damage system, enemy AI, squad AI, and combat mechanics before implementation. Reuse existing systems wherever possible.
+
+---
+
+**1. INTRODUCE A NEW STEALTH-ASSASSIN UNIT**
+
+Add a completely new playable mech specializing in stealth, infiltration, assassination, and extremely fast close-range combat.
+
+Its identity should revolve around being nearly undetectable until it decides to attack.
+
+The unit should have the following characteristics:
+
+- Extremely high movement speed.
+- Ability to become completely invisible.
+- Very quiet movement.
+- Reduced or eliminated mechanical footsteps while stealth is active.
+- Ability to approach enemies without immediately alerting them.
+- Exceptional close-range combat capability.
+- Short-range teleportation.
+- Specialized assassination and takedown animations.
+- Unique combat interactions against unaware enemies.
+
+The unit should have a distinctive mechanical appearance that fits the game's existing futuristic military aesthetic.
+
+Its design should communicate speed, precision, and stealth.
+
+Consider features such as:
+- Lightweight mechanical armor.
+- Sleek and streamlined proportions.
+- Specialized leg components for rapid movement.
+- Minimal exposed mechanical noise sources.
+- Subtle energy effects.
+- Distinctive stealth-related visual elements.
+
+Do not simply recolor an existing mech. Give it a recognizable silhouette and its own animation identity.
+
+**Stealth behavior:**
+
+When stealth is activated:
+
+- The unit becomes visually invisible.
+- Its visibility effects should disappear smoothly.
+- Mechanical footsteps should become extremely quiet or inaudible.
+- Movement sounds should be significantly reduced.
+- Enemy detection should become substantially more difficult.
+- The unit should be able to approach enemies without immediately attracting attention.
+
+Make sure invisibility is implemented through the actual stealth system rather than simply changing the unit's transparency without affecting enemy detection.
+
+Enemy AI should recognize the difference between a visible target and an undetected stealth unit.
+
+Stealth should not automatically guarantee that the unit can never be detected. Use appropriate detection conditions, such as close proximity, direct interactions, or other gameplay circumstances, to keep the mechanic balanced.
+
+When stealth ends, restore the normal visual appearance and appropriate mechanical sounds.
+
+Make the transition smooth and visually satisfying.
+
+---
+
+**2. EXTREMELY FAST MOVEMENT AND TELEPORTATION ULTIMATE**
+
+The new unit must be exceptionally fast.
+
+Its movement should be noticeably faster than ordinary assault units, allowing it to quickly infiltrate enemy positions, reposition, and perform takedowns.
+
+However, its most important ability is its ultimate skill.
+
+**ULTIMATE: PHANTOM EXECUTION**
+
+The unit can teleport directly behind an eligible enemy and initiate a cinematic takedown.
+
+This ability should feel almost instantaneous.
+
+When activated:
+
+1. Identify an eligible enemy.
+2. Check whether the enemy can be reached.
+3. Briefly distort or disappear the assassin unit.
+4. Teleport behind the selected enemy.
+5. Orient the unit correctly toward the enemy's back.
+6. Trigger the appropriate assassination animation.
+7. Transition into the interactive takedown sequence.
+
+The teleportation should be extremely fast, with a satisfying disappearance and reappearance effect.
+
+The unit should not simply move quickly toward the enemy.
+
+It must genuinely relocate through the existing teleportation or dash infrastructure where appropriate.
+
+**Teleportation requirements:**
+
+- Support different enemy sizes.
+- Account for enemy orientation.
+- Calculate a valid position behind the target.
+- Prevent teleportation inside walls or obstacles.
+- Avoid spawning inside the enemy's model.
+- Prevent invalid teleport destinations.
+- Avoid triggering takedowns when the enemy is already dead.
+- Handle enemies that are moving or turning.
+- Prevent multiple simultaneous takedowns on the same target.
+
+The unit should be able to use this ultimate against suitable standard enemies and other eligible targets.
+
+Bosses and exceptionally large enemies should have appropriately designed interactions rather than automatically receiving ordinary instant-kill takedowns.
+
+Give the ultimate a meaningful cooldown and appropriate activation restrictions.
+
+Do not allow unlimited consecutive executions.
+
+Make sure the ability feels powerful without trivializing every encounter.
+
+---
+
+**3. CINEMATIC TAKEDOWN ANIMATION SYSTEM**
+
+This is the most important feature of the update.
+
+When the assassin successfully teleports behind an enemy, trigger a dedicated cinematic takedown animation.
+
+The takedown should look like a coordinated mechanical assassination, not a simple damage animation.
+
+The assassin should physically interact with the enemy throughout the sequence.
+
+Possible animation elements include:
+
+- Rapidly grabbing or restraining the enemy.
+- Striking vulnerable mechanical joints.
+- Using specialized mechanical blades or weapons.
+- Disabling important mechanical components.
+- Forcing the enemy into an unstable position.
+- Executing a final decisive attack.
+- Allowing the enemy to collapse naturally.
+
+These are examples. Create varied and visually interesting choreography that fits the mechanical designs of both units.
+
+**Animation quality requirements:**
+
+Every animation should have:
+- Proper body positioning.
+- Accurate contact points.
+- Smooth transitions.
+- Correct mechanical joint movement.
+- Believable momentum.
+- Appropriate enemy reactions.
+- Proper synchronization between both models.
+- No visible snapping or teleporting between animation frames.
+- No limbs passing through one another.
+- No unrealistic stretching.
+- No detached weapons or armor pieces.
+
+The enemy must react physically to the takedown.
+
+Do not make the enemy stand perfectly still while the assassin performs an animation around it.
+
+Use appropriate reactions such as stumbling, resisting, twisting, losing balance, or being forced into a different position.
+
+Make sure the assassin's movements have weight and momentum.
+
+Even though the unit is extremely fast, its mechanical movements should remain believable.
+
+**Camera presentation:**
+
+During takedowns, temporarily adjust the camera to make the action easier to see.
+
+Use cinematic camera positioning where appropriate:
+- Brief camera transitions.
+- Dynamic framing.
+- Close-up shots of important actions.
+- Controlled camera movement.
+- Smooth transitions into and out of the sequence.
+- Appropriate impact emphasis.
+
+Do not make the camera excessively shaky or disorienting.
+
+The sequence should be readable and visually impressive without taking too much control away from the player.
+
+Avoid unnecessarily long animations that interrupt gameplay.
+
+---
+
+**4. CREATE 20+ UNIQUE TAKEDOWN VARIATIONS**
+
+Create AT LEAST 20 genuinely different takedown animation variations.
+
+This is a strict requirement.
+
+Do not create 20 versions that are merely recolored, slightly rotated, or played at different speeds.
+
+Each variation should have noticeably different choreography, movement, positioning, and enemy reactions.
+
+Examples of possible takedown concepts:
+
+1. Rapid rear mechanical blade execution.
+2. Dual-arm mechanical restraint followed by a disabling strike.
+3. High-speed rotational takedown.
+4. Knee-joint disruption followed by a finishing attack.
+5. Rear-mounted weapon execution.
+6. Shoulder-assisted mechanical throw.
+7. Rapid grapple followed by a core strike.
+8. Low-profile sweep and finishing attack.
+9. Jumping rear assault.
+10. Sideways displacement followed by a rear execution.
+11. Mechanical arm lock and joint destruction.
+12. Rapid multi-strike takedown.
+13. Weapon-assisted precision execution.
+14. Aerial interception followed by a ground takedown.
+15. Rear restraint followed by an energy-assisted attack.
+16. High-speed spinning execution.
+17. Mechanical leg sweep and follow-up strike.
+18. Sudden teleportation into a close-range disabling maneuver.
+19. Dual-stage takedown involving multiple mechanical movements.
+20. A particularly aggressive ultimate execution with a dramatic finishing sequence.
+
+Develop additional variations beyond these examples if appropriate.
+
+**Variation requirements:**
+
+- Each animation must have its own choreography.
+- Enemy reactions should differ.
+- Camera positioning should vary where appropriate.
+- Animation timing should feel natural.
+- Sound effects should match the specific action.
+- The transition into the timing minigame must work correctly.
+- The final execution must transition smoothly into the enemy's death or disabled state.
+
+Randomize or intelligently select the variations so that repeated takedowns do not constantly play the same sequence.
+
+Use the target's size, orientation, movement state, and type to determine which animations are appropriate.
+
+Do not play an animation that requires an enemy to stand upright if the enemy is already on the ground.
+
+Do not force an animation that is incompatible with the target's mechanical anatomy.
+
+If an appropriate animation cannot be selected, use a safe fallback rather than allowing the animation system to break.
+
+---
+
+**5. INTRODUCE AN INTERACTIVE TIMING MINIGAME**
+
+Takedowns must not be entirely automatic.
+
+After the initial assassination animation begins, introduce a skill-based timing minigame.
+
+The player must actively participate in the takedown by pressing the appropriate input at the correct moment.
+
+The objective is to make the takedown feel like a struggle between two powerful mechanical units rather than a passive cutscene.
+
+**Minigame presentation:**
+
+Create a visually polished interface that fits the futuristic military theme.
+
+The minigame should feel integrated into the cinematic action.
+
+Do not simply display a generic progress bar in the middle of the screen.
+
+Use visual elements such as:
+- A timing indicator.
+- A moving target marker.
+- A clearly defined success zone.
+- A danger or failure zone.
+- Subtle interface animations.
+- Responsive visual feedback.
+- Appropriate sound cues.
+
+The minigame should appear at the correct moment during the takedown sequence.
+
+For example, the assassin may restrain the enemy, but the enemy begins resisting and attempting to break free.
+
+At this moment, the player must execute a precisely timed input to successfully complete the next stage of the takedown.
+
+**Timing mechanics:**
+
+Implement a timing-based input system with different outcomes:
+
+- PERFECT: The player hits the ideal timing window.
+- GOOD: The player succeeds within a slightly wider timing window.
+- MISS: The player fails to hit the required timing window.
+
+Perfect inputs should reward the player with smoother and more decisive takedown progression.
+
+Good inputs should allow the sequence to continue with a less efficient result.
+
+Misses should have actual gameplay consequences.
+
+Do not make the minigame purely cosmetic.
+
+**Failure consequences:**
+
+If the player repeatedly misses:
+- The enemy should resist more effectively.
+- The takedown should become unstable.
+- The enemy may break free.
+- The assassin may be forced into a recovery animation.
+- The enemy may retaliate.
+- The assassination attempt may fail.
+
+The consequences should depend on the specific takedown and enemy.
+
+Do not make one missed input instantly kill the player or arbitrarily end every sequence.
+
+The player should have an opportunity to recover from mistakes where appropriate.
+
+**Success consequences:**
+
+If the player consistently performs well:
+- The takedown becomes more efficient.
+- The enemy is disabled faster.
+- The finishing animation becomes more decisive.
+- The final impact receives additional visual and audio emphasis.
+- The player may receive a suitable combat reward.
+
+Perfect performance should feel satisfying.
+
+The player should clearly understand why a takedown succeeded or failed.
+
+---
+
+**6. APPLY THE SAME MINIGAME TO THE PLAYER'S SQUADMATES**
+
+The new takedown system must also work when friendly AI squadmates perform assassinations.
+
+When a squadmate using the stealth-assassin unit initiates a takedown, the same interactive minigame should be used where appropriate.
+
+However, friendly AI must not be forced to wait for the player to manually complete every minigame.
+
+Implement an AI resolution system.
+
+**AI minigame resolution:**
+
+When a friendly squadmate performs the timing minigame, give it a flat 50% chance of successfully beating the minigame.
+
+This must be a genuine 50% success probability, not a variable chance secretly modified by difficulty, unit health, enemy type, or other factors.
+
+The result should be determined independently for each eligible minigame.
+
+- 50% chance: AI successfully beats the minigame.
+- 50% chance: AI fails the minigame.
+
+The outcome should determine whether the squadmate successfully completes the takedown or the enemy resists and potentially retaliates.
+
+Even though the result is automatically calculated for AI, the same minigame interface and animation sequence should remain visually present where appropriate.
+
+Do not display fake player inputs or pretend the AI is pressing buttons.
+
+The minigame should resolve naturally through the AI system.
+
+Make sure multiple squadmates performing separate takedowns do not interfere with one another's minigame resolution.
+
+If the enemy breaks free, the squadmate should transition back into normal combat AI.
+
+---
+
+**7. APPLY THE SAME MINIGAME TO THE PLAYER IN FIRST-PERSON POV**
+
+When an enemy assassin using this new unit successfully approaches and initiates a takedown against the player, the player must experience the same timing minigame.
+
+However, this sequence must be presented from the player's first-person perspective.
+
+Do not switch the player into a third-person cinematic camera for this interaction.
+
+**First-person assassination sequence:**
+
+When the enemy assassin teleports behind the player:
+
+1. Trigger the appropriate enemy teleportation effect.
+2. Start the enemy's takedown animation.
+3. Temporarily control the player's first-person camera.
+4. Show the enemy assassin entering the player's immediate field of view.
+5. Begin the interactive timing minigame.
+6. Allow the player to fight back through correctly timed inputs.
+7. Resolve the takedown based on the player's performance.
+
+The enemy should physically interact with the player's mech in a way that is visible from first-person POV.
+
+Use appropriate camera movement and mechanical reactions to communicate:
+- Being grabbed.
+- Losing balance.
+- Being restrained.
+- Resisting the enemy.
+- Attempting to break free.
+- Successfully escaping or being defeated.
+
+The player should feel physically involved in the encounter.
+
+**First-person minigame presentation:**
+
+Design a dedicated first-person version of the same timing minigame.
+
+It should be positioned clearly without completely obscuring the action.
+
+The interface should:
+- Remain readable.
+- Have responsive timing indicators.
+- Provide clear success and failure feedback.
+- Synchronize with the enemy's animation.
+- Use appropriate sounds.
+- Transition smoothly between minigame stages.
+
+For example, the player may need to time a defensive mechanical movement, activate a countermeasure, or resist the enemy's attempt to disable their mech.
+
+Use the same PERFECT, GOOD, and MISS outcomes.
+
+**Player failure:**
+
+If the player fails:
+- The assassin continues the takedown.
+- The player's mech reacts appropriately.
+- Additional timing opportunities may occur depending on the animation.
+- Repeated failure can result in the player's mech being disabled or destroyed, depending on the encounter's balance.
+
+**Player success:**
+
+If the player succeeds:
+- The player breaks free.
+- The enemy assassin is forced away.
+- The player returns to normal control.
+- The enemy transitions into a combat or recovery state.
+- Play an appropriate counterattack or escape animation.
+
+Make the first-person experience smooth and readable.
+
+Do not allow the player to become permanently stuck in the minigame or lose control if the enemy dies, despawns, or is interrupted.
+
+---
+
+**8. ADD THE NEW UNIT AS AN ENEMY**
+
+Introduce the same stealth-assassin unit as a hostile enemy.
+
+It must use the same core identity and abilities as the playable version.
+
+Enemy assassin units should:
+- Become invisible.
+- Move extremely quietly.
+- Approach the player's squad without being immediately detected.
+- Use their teleportation ultimate.
+- Attempt to position themselves behind targets.
+- Initiate takedowns against eligible squadmates.
+- Participate in ordinary combat when assassination is not possible.
+
+They should feel like dangerous specialist enemies rather than ordinary hostile mechs.
+
+**Enemy stealth AI:**
+
+The enemy assassin should intelligently select targets.
+
+Possible target priorities:
+- Isolated squadmates.
+- Damaged squadmates.
+- Units that are separated from the formation.
+- Important support units.
+- The player when an opportunity is available.
+
+Do not make the enemy repeatedly target the same unit regardless of the battlefield situation.
+
+The AI should evaluate target accessibility, distance, visibility, and combat conditions.
+
+It should use stealth to approach targets rather than constantly running directly toward them while invisible.
+
+**Enemy takedown interactions:**
+
+When the enemy assassin gets behind a squadmate, it should attempt the same cinematic takedown system.
+
+When the target is a friendly AI squadmate:
+- Use the corresponding takedown animation.
+- Trigger the timing minigame visually.
+- Resolve the minigame through the flat 50% AI success chance.
+- On success, complete the takedown.
+- On failure, allow the squadmate to resist or escape.
+
+When the target is the player:
+- Use the first-person takedown sequence.
+- Present the interactive timing minigame.
+- Let the player actively resist.
+
+Do not allow enemy assassins to instantly eliminate entire squads without interaction or counterplay.
+
+**Detection and counterplay:**
+
+The squad should have a chance to detect enemy assassins through appropriate mechanics.
+
+For example:
+- Nearby squadmates may detect unusual movement.
+- Close proximity may reveal the assassin.
+- Certain sensors may detect stealth distortions.
+- Attacks should reveal the assassin's position.
+- The player should have opportunities to react to suspicious activity.
+
+Do not make enemy assassins completely undetectable under all circumstances.
+
+The objective is to create tension and surprise without making encounters unfair.
+
+---
+
+**9. ANIMATION, SOUND DESIGN, AND PRESENTATION**
+
+This entire update depends on high-quality animations and sound design.
+
+Do not use placeholder animations for the final implementation.
+
+The following areas must receive particular attention:
+
+**Character and mech animation:**
+- Stealth activation.
+- Stealth deactivation.
+- Quiet movement.
+- Rapid movement.
+- Teleportation.
+- Teleportation recovery.
+- Rear positioning.
+- Initial takedown.
+- Grappling.
+- Mechanical restraint.
+- Struggling.
+- Counterattacks.
+- Finishing attacks.
+- Enemy reactions.
+- Falling and destruction.
+- First-person takedown interactions.
+- Squadmate takedowns.
+
+**Animation smoothness:**
+
+All animation transitions must be properly blended.
+
+Avoid:
+- Sudden snapping.
+- Frozen poses.
+- Repeated animation loops that look unnatural.
+- Incorrect limb positioning.
+- Mechanical joints bending incorrectly.
+- Models clipping into each other.
+- Weapons passing through armor.
+- Animation desynchronization.
+- Enemy models failing to react.
+- Camera movement that feels disconnected from the action.
+
+The assassin and target must remain synchronized throughout every takedown.
+
+Pay particular attention to different mech sizes and body proportions.
+
+An animation designed for one enemy should not be blindly reused on a model with incompatible anatomy.
+
+Create appropriate animation adaptations or variations.
+
+**Sound effects:**
+
+Add high-quality, satisfying sound effects for the entire system.
+
+Include:
+- Stealth activation.
+- Stealth deactivation.
+- Quiet mechanical movement.
+- Teleportation disappearance.
+- Teleportation reappearance.
+- Energy distortion.
+- Takedown initiation.
+- Mechanical grabbing.
+- Armor impacts.
+- Joint damage.
+- Weapon strikes.
+- Mechanical resistance.
+- Timing minigame indicators.
+- PERFECT input.
+- GOOD input.
+- MISS input.
+- Enemy escape.
+- Successful execution.
+- First-person counterattack.
+- Enemy defeat.
+
+The sounds should feel mechanical, powerful, and satisfying.
+
+Use distinct audio cues for different takedown variations.
+
+Make the PERFECT timing sound especially rewarding.
+
+Do not make the audio excessively loud or repetitive.
+
+Ensure the sound effects are synchronized with the exact moments of physical contact and animation events.
+
+Avoid playing the same impact sound several times unnecessarily.
+
+---
+
+**10. PERFORMANCE, ANIMATION RELIABILITY, AND TESTING**
+
+The update introduces many complex interactions between two units, camera control, AI, and animation sequences.
+
+Ensure the implementation remains stable even when several assassins and squadmates are active simultaneously.
+
+Reuse existing animation controllers, damage handling, AI behavior, and camera infrastructure where possible.
+
+Do not create a completely separate animation system if the existing one can support the new mechanics.
+
+Before considering the update complete, test the following:
+
+**Playable assassin:**
+1. Activate stealth.
+2. Verify visual invisibility.
+3. Verify reduced movement noise.
+4. Approach enemies without immediately alerting them.
+5. Use the teleportation ultimate.
+6. Verify correct positioning behind enemies.
+7. Test teleportation near walls and obstacles.
+8. Verify that the ultimate cooldown works.
+
+**Takedown animations:**
+9. Verify that at least 20 genuinely unique takedown variations exist.
+10. Verify that variations are selected correctly.
+11. Test takedowns against different enemy sizes.
+12. Test moving and stationary targets.
+13. Check animation synchronization.
+14. Check enemy reactions.
+15. Check camera transitions.
+16. Check that no models or limbs clip through one another.
+
+**Timing minigame:**
+17. Test PERFECT, GOOD, and MISS outcomes.
+18. Verify that timing affects actual gameplay.
+19. Test recovery after missed inputs.
+20. Verify successful takedowns.
+21. Verify failed takedowns.
+22. Test the minigame repeatedly without animation or input bugs.
+
+**Friendly AI:**
+23. Have squadmates perform takedowns.
+24. Verify the flat 50% success probability.
+25. Verify that AI failures allow enemies to resist.
+26. Verify that multiple squadmates can perform separate interactions.
+27. Confirm that AI does not pretend to use player inputs.
+
+**Enemy assassin:**
+28. Spawn the assassin as a hostile enemy.
+29. Verify stealth behavior.
+30. Verify quiet movement.
+31. Verify target selection.
+32. Verify teleportation behind squadmates.
+33. Verify AI takedown interactions.
+34. Verify the 50% AI minigame resolution.
+35. Test enemy assassinations against the player.
+
+**First-person player interaction:**
+36. Trigger an enemy takedown against the player.
+37. Verify that the sequence stays in first-person POV.
+38. Verify that the minigame is readable.
+39. Test successful player escapes.
+40. Test failed player escapes.
+41. Verify that normal player control is restored correctly.
+
+**Final quality checks:**
+42. Test several assassins operating simultaneously.
+43. Test takedowns during large battles.
+44. Verify sound synchronization.
+45. Check performance and memory usage.
+46. Check for animation interruptions when targets die or despawn.
+47. Verify that all cooldowns, states, and effects are cleaned up properly.
+
+Do not consider this update finished just because the unit can turn invisible or play an assassination animation.
+
+The actual takedown interactions, timing minigame, enemy resistance, AI behavior, first-person sequences, and animation synchronization must all work.
+
+**FINAL REQUIREMENT:**
+
+The defining feature of this update is its animation quality.
+
+The new assassin must feel like an exceptionally fast, silent, and dangerous mechanical predator. Its teleportation should be instantaneous and visually impressive. Its takedowns should have at least 20 distinct, carefully choreographed variations. The timing minigame should make every assassination interactive, and enemy assassins should create equally intense encounters for the player.
+
+Prioritize smooth animation blending, physical interaction, satisfying sound design, responsive controls, and cinematic presentation.
+
+The finished result should feel like a polished high-budget futuristic military combat system inspired by 86: Eighty-Six, not a collection of basic animations attached to an ordinary mech.
